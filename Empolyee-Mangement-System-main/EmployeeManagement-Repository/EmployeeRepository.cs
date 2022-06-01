@@ -38,6 +38,7 @@ namespace EmployeeManagement_Repository
             if (employee != null)
             {
                 dbContext.Employees.Remove(employee);
+                await this.dbContext.SaveChangesAsync();
             }
         }
         public async Task<List<Employee>> GetAllEmployeesAsync()
