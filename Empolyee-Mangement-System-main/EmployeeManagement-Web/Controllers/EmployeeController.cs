@@ -1,5 +1,5 @@
 ﻿using EmployeeManagement_Business;
-using EmployeeManagement_Repository;
+using EmployeeManagement_Repository.Entities;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 

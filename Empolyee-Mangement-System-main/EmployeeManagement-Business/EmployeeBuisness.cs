@@ -1,5 +1,5 @@
 ﻿using EmployeeManagement_Repository;
-using EmployeeManagement_Web;
+using EmployeeManagement_Repository.Entities;
 using System.Net;
 
 namespace EmployeeManagement_Business
