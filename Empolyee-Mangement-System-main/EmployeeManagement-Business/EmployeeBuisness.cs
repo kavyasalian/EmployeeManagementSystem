@@ -14,8 +14,8 @@ namespace EmployeeManagement_Business
 
         public async Task<Employee> GetEmployeeAsync(int Id)
         {
-            var alumnus = await employeeRepository.GetById(Id);
-            return alumnus;
+            var employee = await employeeRepository.GetById(Id);
+            return employee;
 
         }
         public async Task<HttpStatusCode> SaveEmployeeAsync(Employee employee)
