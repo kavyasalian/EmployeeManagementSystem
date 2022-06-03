@@ -1,5 +1,5 @@
 ﻿using EmployeeManagement_Repository;
-using EmployeeManagement_Web;
+using EmployeeManagement_Repository.Entities;
 using System.Net;
 
 namespace EmployeeManagement_Business
@@ -14,8 +14,8 @@ namespace EmployeeManagement_Business
 
         public async Task<Employee> GetEmployeeAsync(int Id)
         {
-            var alumnus = await employeeRepository.GetById(Id);
-            return alumnus;
+            var employee = await employeeRepository.GetById(Id);
+            return employee;
 
         }
         public async Task<HttpStatusCode> SaveEmployeeAsync(Employee employee)

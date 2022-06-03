@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace EmployeeManagement_Web
+namespace EmployeeManagement_Repository.Entities
 {
     public partial class Employee
     {
