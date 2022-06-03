@@ -1,4 +1,4 @@
-﻿using EmployeeManagement_Web;
+﻿using EmployeeManagement_Repository.Entities;
 
 namespace EmployeeManagement_Repository
 {
