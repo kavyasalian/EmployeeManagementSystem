@@ -37,21 +37,20 @@ namespace EmployeeManagement_Repository.Entities
             {
                 entity.ToTable("Company");
 
-                entity.Property(e => e.DateCreated)
-                    .HasColumnType("datetime")
-                    .HasColumnName("Date_created");
-
-                entity.Property(e => e.DateModified)
-                    .HasColumnType("datetime")
-                    .HasColumnName("Date_modified");
-
-                entity.Property(e => e.IsDeleted).HasColumnName("Is_deleted");
-
-                entity.Property(e => e.OrgName)
+                entity.Property(e => e.CompanyAddress)
                     .IsRequired()
-                    .HasMaxLength(200)
-                    .IsUnicode(false)
-                    .HasColumnName("Org_name");
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CompanyName)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CompanyPhone)
+                    .IsRequired()
+                    .HasMaxLength(12)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<Employee>(entity =>
