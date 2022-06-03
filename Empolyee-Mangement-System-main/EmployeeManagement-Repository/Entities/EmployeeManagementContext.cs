@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 #nullable disable
 
-namespace EmployeeManagement_Web
+namespace EmployeeManagement_Repository.Entities
 {
     public partial class EmployeeManagementContext : DbContext
     {
@@ -17,6 +17,7 @@ namespace EmployeeManagement_Web
         {
         }
 
+        public virtual DbSet<Company> Companies { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -31,6 +32,26 @@ namespace EmployeeManagement_Web
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
+
+            modelBuilder.Entity<Company>(entity =>
+            {
+                entity.ToTable("Company");
+
+                entity.Property(e => e.CompanyAddress)
+                    .IsRequired()
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CompanyName)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CompanyPhone)
+                    .IsRequired()
+                    .HasMaxLength(12)
+                    .IsUnicode(false);
+            });
 
             modelBuilder.Entity<Employee>(entity =>
             {
