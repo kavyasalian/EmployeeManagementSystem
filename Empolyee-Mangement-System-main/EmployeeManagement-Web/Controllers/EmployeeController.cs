@@ -27,8 +27,8 @@ namespace EmployeeManagement_Web.Controllers
         [HttpGet(Name = "GetEmployee")]
         public async Task<IActionResult> GetById(int employeeId)
         {
-            var alumnus = await employeeBusiness.GetEmployeeAsync(employeeId);
-            return Ok(alumnus);
+            var employee = await employeeBusiness.GetEmployeeAsync(employeeId);
+            return Ok(employee);
         }
         [HttpPost(Name = "SaveEmployee")]
         public async Task<HttpStatusCode> SaveEmployee(Employee employee)
@@ -43,8 +43,8 @@ namespace EmployeeManagement_Web.Controllers
         [HttpDelete(Name = "DeeleteEmployee")]
         public async Task<IActionResult> DeleteById(int employeeId)
         {
-            var alumnus = await employeeBusiness.DeleteEmployeeAsync(employeeId);
-            return Ok(alumnus);
+            var employee = await employeeBusiness.DeleteEmployeeAsync(employeeId);
+            return Ok(employee);
         }
     }
 }
