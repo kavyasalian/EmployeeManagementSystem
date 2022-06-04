@@ -15,19 +15,49 @@ namespace EmployeeManagement_Repository
         {
             this._dbContext = new EmployeeManagementContext();
         }
-        public async Task<HttpStatusCode> Update(Company company)
+
+        public async Task<bool> Create(Company company)
         {
-            var existingCompany = _dbContext.Companies.Where(a => a.Id == company.Id).FirstOrDefault();
+            _dbContext.Companies.Add(company);
+            var effectedRows =  await _dbContext.SaveChangesAsync();
+            return effectedRows > 0;
+        }
+
+        public async Task<List<Company>> GetAllCompaniesAsync()
+        {
+            return _dbContext.Companies.ToList();
+        }
+
+        public async Task<Company> GetById(int Id)
+        {
+            var company = _dbContext.Companies.FirstOrDefault(c => c.CompanyId == Id);
+            return company;
+        }
+
+        public async Task<bool> Update(Company company)
+        {
+            var existingCompany = _dbContext.Companies.Where(c => c.CompanyId == company.CompanyId).FirstOrDefault();
             if( existingCompany != null)
             {
-                existingCompany.OrgName = company.OrgName;
-                existingCompany.DateCreated = company.DateCreated;
-                existingCompany.DateModified = company.DateModified;
-                existingCompany.IsDeleted = company.IsDeleted;
-                await _dbContext.SaveChangesAsync();
-                return HttpStatusCode.OK;   
+                existingCompany.CompanyName = company.CompanyName;
+                existingCompany.CompanyPhone = company.CompanyPhone;
+                existingCompany.CompanyAddress = company.CompanyAddress;
+                var effectedRows = await _dbContext.SaveChangesAsync();
+                return effectedRows > 0;   
             }
-            return HttpStatusCode.BadRequest;
+            return false;
+        }
+
+        public async Task<bool> Delete(int companyId)
+        {
+            var company = await GetById(companyId);
+            if (company != null)
+            {
+                _dbContext.Companies.Remove(company);
+                await _dbContext.SaveChangesAsync();
+                return true;
+            }
+            return false;
         }
     }
 }

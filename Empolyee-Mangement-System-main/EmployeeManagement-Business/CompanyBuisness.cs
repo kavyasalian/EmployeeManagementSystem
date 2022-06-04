@@ -17,10 +17,45 @@ namespace EmployeeManagement_Business
             this._companyRepository = new CompanyRepository();
         }
 
+        public async Task<HttpStatusCode> AddCompanyAsync(Company company)
+        {
+            var status = await _companyRepository.Create(company);
+            if(status)
+            {
+                return HttpStatusCode.OK;
+            }
+            return HttpStatusCode.BadRequest;
+        }
+
+        public async Task<Company> GetCompanyAsync(int Id)
+        {
+            var company = await _companyRepository.GetById(Id);
+            return company;
+        }
+
+        public async Task<List<Company>> GetAllCompaniesAsync()
+        {
+            return await _companyRepository.GetAllCompaniesAsync();
+        }
+
         public async Task<HttpStatusCode> UpdateCompanyAsync(Company company)
         {
             var status = await _companyRepository.Update(company);
-            return status;
+            if (status)
+            {
+                return HttpStatusCode.OK;
+            }
+            return HttpStatusCode.BadRequest;
+        }
+
+        public async Task<HttpStatusCode> DeleteCompanyAsync(int Id)
+        {
+            var status = await _companyRepository.Delete(Id);
+            if (status)
+            {
+                return HttpStatusCode.OK;
+            }
+            return HttpStatusCode.BadRequest;
         }
     }
 }
