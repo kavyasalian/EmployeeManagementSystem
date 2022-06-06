@@ -1,5 +1,8 @@
-﻿using EmployeeManagement_Business;
+﻿using Microsoft.AspNetCore.Mvc;
+using EmployeeManagement_Business;
+using EmployeeManagement_Repository.Entities;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -16,30 +19,34 @@ namespace EmployeeManagement_Web.Controllers
             _logger = logger;
             companyBusiness = new CompanyBusiness();
         }
-        // GET: api/<CompanyController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+
+        [HttpPost("SaveCompany")]
+        public async Task<HttpStatusCode> SaveCompany(Company company)
         {
-            return new string[] { "value1", "value2" };
+            return await companyBusiness.SaveCompanyAsync(company);
         }
 
-        // GET api/<CompanyController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet("GetCompanyById")]
+        public async Task<IActionResult> GetById(int companyId)
         {
-            return "value";
+            var company = await _companyBuisness.GetCompanyAsync(companyId);
+            if(company != null)
+        {
+                return Ok(company);
+            }
+            return BadRequest();
         }
 
-        // POST api/<CompanyController>
-        [HttpPost]
-        public void Post([FromBody] string value)
+        [HttpGet("GetAllCompany")]
+        public async Task<List<Company>> GetAllEmployee()
         {
+            return await _companyBuisness.GetAllCompaniesAsync();
         }
 
-        // PUT api/<CompanyController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("UpdateCompany")]
+        public async Task<HttpStatusCode> UpdateCompany(Company company)
         {
+            return await this._companyBuisness.UpdateCompanyAsync(company);
         }
 
         // DELETE api/<CompanyController>/5
