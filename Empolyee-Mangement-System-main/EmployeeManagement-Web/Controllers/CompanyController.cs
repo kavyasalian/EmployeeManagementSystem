@@ -11,13 +11,13 @@ public class CompanyController : Controller
     private readonly CompanyBusiness companyBusiness;
     public CompanyController()
     {
-       this.companyBusiness = new CompanyBusiness();
+        this.companyBusiness = new CompanyBusiness();
     }
 
     [HttpGet("GetCompanyDetails")]
     public async Task<IActionResult> GetCompanyDetails(int Id)
     {
-        var company= await this.companyBusiness.GetCompanyAsync(Id);
+        var company = await this.companyBusiness.GetCompanyAsync(Id);
         if (company != null)
         {
             return Ok(company);
@@ -25,5 +25,5 @@ public class CompanyController : Controller
         return BadRequest();
 
 
-    }
+    } 
 }
