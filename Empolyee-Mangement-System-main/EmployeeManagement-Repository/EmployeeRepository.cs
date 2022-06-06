@@ -21,7 +21,7 @@ namespace EmployeeManagement_Repository
             var existingAmployee = dbContext.Employees.Where(h => h.Id == employee.Id).FirstOrDefault();
             if (existingAmployee != null)
             {
-                existingAmployee.FirstName = employee.FirstName; // update only changeable properties
+                existingAmployee.FirstName = employee.FirstName; 
                 await this.dbContext.SaveChangesAsync();
             }
         }
