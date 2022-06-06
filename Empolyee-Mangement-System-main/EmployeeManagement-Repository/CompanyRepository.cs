@@ -16,7 +16,7 @@ namespace EmployeeManagement_Repository
         }
         public async Task<Company> GetById(int Id)
         {
-            var company = dbContext.Companies.FirstOrDefault(e => e.Id == Id);
+            var company = dbContext.Companies.FirstOrDefault(e => e.CompanyId == Id);
             return company;
         }
 
