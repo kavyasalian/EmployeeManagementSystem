@@ -16,6 +16,7 @@ namespace EmployeeManagement_Business
             companyRepository = new CompanyRepository();
         }
         public async Task<Company> GetCompanyAsync(int Id)
+
         {
             var alumnus = await companyRepository.GetById(Id);
             return alumnus;
@@ -23,3 +24,4 @@ namespace EmployeeManagement_Business
         }
     }
 }
+

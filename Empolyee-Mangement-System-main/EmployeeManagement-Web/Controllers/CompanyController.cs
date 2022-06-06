@@ -11,6 +11,7 @@ public class CompanyController : Controller
     private readonly CompanyBusiness companyBusiness;
     public CompanyController()
     {
+
         this.companyBusiness = new CompanyBusiness();
     }
 
