@@ -20,8 +20,8 @@ namespace EmployeeManagement_Repository
 
         public async Task Create(Company company)
         {
-            dbContext.Companies.Add(company);
-            await dbContext.SaveChangesAsync();
+            _dbContext.Companies.Add(company);
+            await _dbContext.SaveChangesAsync();
         }
 
         public async Task<List<Company>> GetAllCompaniesAsync()
@@ -48,17 +48,16 @@ namespace EmployeeManagement_Repository
             }
             return false;
         }
-
-        public async Task<bool> Delete(int companyId)
+        public async Task Delete(int companyId)
         {
             var company = await GetById(companyId);
             if (company != null)
             {
                 _dbContext.Companies.Remove(company);
-                await _dbContext.SaveChangesAsync();
-                return true;
+                await this._dbContext.SaveChangesAsync();
             }
-            return false;
         }
+
     }
-}
+    }
+
