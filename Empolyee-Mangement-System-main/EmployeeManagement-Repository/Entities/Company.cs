@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace EmployeeManagement_Repository.Entities
 {
-    public partial class Company
+    public partial class company
     {
         public int CompanyId { get; set; }
         public string CompanyName { get; set; }
