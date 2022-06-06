@@ -1,4 +1,5 @@
-﻿using EmployeeManagement_Business;
+﻿using Microsoft.AspNetCore.Mvc;
+using EmployeeManagement_Business;
 using EmployeeManagement_Repository.Entities;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -9,46 +10,49 @@ namespace EmployeeManagement_Web.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CompanyController : ControllerBase
+    [Route("[controller]")]
+    public class CompanyController : Controller
     {
-        private readonly ILogger<CompanyController> _logger;
-        private readonly CompanyBuisness companyBusiness;
-        public CompanyController(ILogger<CompanyController> logger)
+        private readonly CompanyBuisness _companyBuisness;
+        public CompanyController()
         {
-            _logger = logger;
-            companyBusiness = new CompanyBuisness();
-        }
-        // GET: api/<CompanyController>
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
+            this._companyBuisness = new CompanyBuisness();
         }
 
-        // GET api/<CompanyController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/<CompanyController>
         [HttpPost("SaveCompany")]
         public async Task<HttpStatusCode> SaveCompany(Company company)
         {
             return await companyBusiness.SaveCompanyAsync(company);
         }
 
-        // PUT api/<CompanyController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpGet("GetCompanyById")]
+        public async Task<IActionResult> GetById(int companyId)
         {
+            var company = await _companyBuisness.GetCompanyAsync(companyId);
+            if(company != null)
+        {
+                return Ok(company);
+            }
+            return BadRequest();
         }
 
-        // DELETE api/<CompanyController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpGet("GetAllCompany")]
+        public async Task<List<Company>> GetAllEmployee()
         {
+            return await _companyBuisness.GetAllCompaniesAsync();
+        }
+
+        [HttpPut("UpdateCompany")]
+        public async Task<HttpStatusCode> UpdateCompany(Company company)
+        {
+            return await this._companyBuisness.UpdateCompanyAsync(company);
+        }
+
+        [HttpDelete("DeleteCompany")]
+        public async Task<IActionResult> DeleteById(int companyId)
+        {
+            var employee = await _companyBuisness.DeleteCompanyAsync(companyId);
+            return Ok(employee);
         }
     }
 }
