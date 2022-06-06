@@ -29,7 +29,7 @@ namespace EmployeeManagement_Web.Controllers
         [HttpGet("GetCompanyById")]
         public async Task<IActionResult> GetById(int companyId)
         {
-            var company = await _companyBuisness.GetCompanyAsync(companyId);
+            var company = await companyBusiness.GetCompanyAsync(companyId);
             if(company != null)
         {
                 return Ok(company);
@@ -40,13 +40,13 @@ namespace EmployeeManagement_Web.Controllers
         [HttpGet("GetAllCompany")]
         public async Task<List<Company>> GetAllEmployee()
         {
-            return await _companyBuisness.GetAllCompaniesAsync();
+            return await companyBusiness.GetAllCompaniesAsync();
         }
 
         [HttpPut("UpdateCompany")]
         public async Task<HttpStatusCode> UpdateCompany(Company company)
         {
-            return await this._companyBuisness.UpdateCompanyAsync(company);
+            return await this.companyBusiness.UpdateCompanyAsync(company);
         }
 
         // DELETE api/<CompanyController>/5
