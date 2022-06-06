@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 
 namespace EmployeeManagement_Repository
 {
+    
+    
     public class CompanyRepository
     {
         private readonly EmployeeManagementContext _dbContext;
@@ -16,11 +18,10 @@ namespace EmployeeManagement_Repository
             this._dbContext = new EmployeeManagementContext();
         }
 
-        public async Task<bool> Create(Company company)
+        public async Task Create(Company company)
         {
-            _dbContext.Companies.Add(company);
-            var effectedRows =  await _dbContext.SaveChangesAsync();
-            return effectedRows > 0;
+            dbContext.Companies.Add(company);
+            await dbContext.SaveChangesAsync();
         }
 
         public async Task<List<Company>> GetAllCompaniesAsync()
@@ -38,7 +39,7 @@ namespace EmployeeManagement_Repository
         {
             var existingCompany = _dbContext.Companies.Where(c => c.CompanyId == company.CompanyId).FirstOrDefault();
             if( existingCompany != null)
-            {
+        {
                 existingCompany.CompanyName = company.CompanyName;
                 existingCompany.CompanyPhone = company.CompanyPhone;
                 existingCompany.CompanyAddress = company.CompanyAddress;

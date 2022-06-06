@@ -1,10 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using EmployeeManagement_Business;
 using EmployeeManagement_Repository.Entities;
+using Microsoft.AspNetCore.Mvc;
 using System.Net;
+
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace EmployeeManagement_Web.Controllers
 {
+    [Route("api/[controller]")]
     [ApiController]
     [Route("[controller]")]
     public class CompanyController : Controller
@@ -15,11 +19,10 @@ namespace EmployeeManagement_Web.Controllers
             this._companyBuisness = new CompanyBuisness();
         }
 
-        [HttpPost("AddCompany")]
-        public async Task<IActionResult> AddCompany(Company company)
+        [HttpPost("SaveCompany")]
+        public async Task<HttpStatusCode> SaveCompany(Company company)
         {
-            var status = await _companyBuisness.AddCompanyAsync(company);
-            return Ok(status);           
+            return await companyBusiness.SaveCompanyAsync(company);
         }
 
         [HttpGet("GetCompanyById")]
@@ -27,7 +30,7 @@ namespace EmployeeManagement_Web.Controllers
         {
             var company = await _companyBuisness.GetCompanyAsync(companyId);
             if(company != null)
-            {
+        {
                 return Ok(company);
             }
             return BadRequest();
