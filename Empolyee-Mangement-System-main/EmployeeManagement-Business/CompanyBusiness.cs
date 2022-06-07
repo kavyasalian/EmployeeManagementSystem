@@ -1,48 +1,53 @@
 ﻿using EmployeeManagement_Repository;
 using EmployeeManagement_Repository.Entities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace EmployeeManagement_Web.Controllers
+namespace EmployeeManagement_Business
 {
     public class CompanyBusiness
     {
         private readonly CompanyRepository companyRepository;
-
-        public EmployeeRepository CompanyRepository { get; }
-
         public CompanyBusiness()
         {
             this.companyRepository = new CompanyRepository();
+        }
+        public async Task<HttpStatusCode> SaveCompanyAsync(Company company)
+        {
+            await companyRepository.Create(company);
+            return HttpStatusCode.OK;
+
+        }
+
+        public async Task<Company> GetCompanyAsync(int Id)
+        {
+            var company = await companyRepository.GetById(Id);
+            return company;
+        }
+
+        
+        public async Task<HttpStatusCode> UpdateCompanyAsync(Company company)
+        {
+            var status = await companyRepository.Update(company);
+            if (status)
+            {
+                await companyRepository.Create(company);
+                return HttpStatusCode.OK;
+            }
+            return HttpStatusCode.BadRequest;
+        }
+        public async Task<HttpStatusCode> DeleteCompanyAsync(int CompanyId)
+        {
+            await companyRepository.Delete(CompanyId);
+            return HttpStatusCode.OK;
         }
         public async Task<List<Company>> GetAllComapnyAsync()
         {
             return await companyRepository.GetAllCompanyAsync();
         }
-
-        public async Task<Company> GetCompanyAsync(int companyId)
-        {
-            var company = await companyRepository.GetById(companyId);
-            return company;
-        }
-
-        public Task<HttpStatusCode> SaveCompanyAsync(Company company)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<HttpStatusCode> UpdateCompanyAsync(Company company)
-        {
-            await companyRepository.Update(company);
-            return HttpStatusCode.OK;
-        }
-
-        public async Task<HttpStatusCode> DeleteCompanyAsync(int companyId)
-        {
-            await companyRepository.Delete(companyId);
-            return HttpStatusCode.OK;
-
-        }
-
-
     }
 }

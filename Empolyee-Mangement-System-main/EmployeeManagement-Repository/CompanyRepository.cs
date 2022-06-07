@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EmployeeManagement_Repository.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -8,6 +9,8 @@ using EmployeeManagement_Repository.Entities;
 
 namespace EmployeeManagement_Repository
 {
+    
+    
     public class CompanyRepository
     {
         private readonly EmployeeManagementContext _dbContext;
@@ -21,34 +24,43 @@ namespace EmployeeManagement_Repository
             _dbContext.Companies.Add(company);
             await _dbContext.SaveChangesAsync();
         }
-       
-       public async Task Update(Company company)
-       {
-           var existingAmployee = _dbContext.Companies.Where(h => h.CompanyId == company.CompanyId).FirstOrDefault();
-          if (existingAmployee != null)
-          {
-               existingAmployee.CompanyName = company.CompanyName; // update only changeable properties
-               await this._dbContext.SaveChangesAsync();
-            }
-        }
+
+        
+        
+
         public async Task<Company> GetById(int Id)
         {
-            var company = _dbContext.Companies.FirstOrDefault(e => e.CompanyId == Id);
+            var company = _dbContext.Companies.FirstOrDefault(c => c.CompanyId == Id);
             return company;
         }
-        public async Task Delete(int CompanyId)
+
+        public async Task<bool> Update(Company company)
         {
-            var company = await GetById(CompanyId);
+            var existingCompany = _dbContext.Companies.Where(c => c.CompanyId == company.CompanyId).FirstOrDefault();
+            if( existingCompany != null)
+        {
+                existingCompany.CompanyName = company.CompanyName;
+                existingCompany.CompanyPhone = company.CompanyPhone;
+                existingCompany.CompanyAddress = company.CompanyAddress;
+                var effectedRows = await _dbContext.SaveChangesAsync();
+                return effectedRows > 0;   
+            }
+            return false;
+        }
+        public async Task Delete(int companyId)
+        {
+            var company = await GetById(companyId);
             if (company != null)
             {
                 _dbContext.Companies.Remove(company);
                 await this._dbContext.SaveChangesAsync();
             }
-        }
-        public async Task<List<Company>> GetAllCompanyAsync()
-        {
-            return _dbContext.Companies.ToList();
+            public async Task<List<Company>> GetAllCompanyAsync()
+            {
+                return _dbContext.Companies.ToList();
+            }
         }
 
     }
-}
+    }
+
