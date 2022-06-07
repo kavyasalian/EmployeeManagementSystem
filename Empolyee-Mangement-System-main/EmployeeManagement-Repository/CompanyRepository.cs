@@ -20,8 +20,8 @@ namespace EmployeeManagement_Repository
 
         public async Task Create(Company company)
         {
-            dbContext.Companies.Add(company);
-            await dbContext.SaveChangesAsync();
+            _dbContext.Companies.Add(company);
+            await _dbContext.SaveChangesAsync();
         }
 
         public async Task<List<Company>> GetAllCompaniesAsync()

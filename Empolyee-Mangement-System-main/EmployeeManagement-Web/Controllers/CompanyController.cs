@@ -8,21 +8,20 @@ using System.Net;
 
 namespace EmployeeManagement_Web.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
     [Route("[controller]")]
     public class CompanyController : Controller
     {
-        private readonly CompanyBuisness _companyBuisness;
+        private readonly CompanyBusiness _companyBuisness;
         public CompanyController()
         {
-            this._companyBuisness = new CompanyBuisness();
+            this._companyBuisness = new CompanyBusiness();
         }
 
         [HttpPost("SaveCompany")]
         public async Task<HttpStatusCode> SaveCompany(Company company)
         {
-            return await companyBusiness.SaveCompanyAsync(company);
+            return await _companyBuisness.SaveCompanyAsync(company);
         }
 
         [HttpGet("GetCompanyById")]
