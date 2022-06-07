@@ -12,14 +12,14 @@ namespace EmployeeManagement_Web.Controllers
     public class CompanyController : Controller
     {
         
-        private readonly CompanyBuisness companyBusiness;
+        private readonly CompanyBusiness companyBusiness;
         public CompanyController()
         {
-            companyBusiness = new CompanyBuisness();
+            companyBusiness = new CompanyBusiness();
         }
 
         [HttpGet("GetAllCompany")]
-        public async Task<List<company>> GetAllCompany()
+        public async Task<List<EmployeeManagement_Repository.Entities.Company>> GetAllCompany()
         {
             return await companyBusiness.GetAllComapnyAsync();
         }
@@ -30,12 +30,12 @@ namespace EmployeeManagement_Web.Controllers
             return Ok(company);
         }
         [HttpPost(Name = "SaveCompany")]
-        public async Task<HttpStatusCode> SaveCompany(company company)
+        public async Task<HttpStatusCode> SaveCompany(EmployeeManagement_Repository.Entities.Company company)
         {
             return await companyBusiness.SaveCompanyAsync(company);
         }
         [HttpPut(Name = "UpdateCompany")]
-        public async Task<HttpStatusCode> UpdateCompany(company company)
+        public async Task<HttpStatusCode> UpdateCompany(EmployeeManagement_Repository.Entities.Company company)
         {
             return await companyBusiness.UpdateCompanyAsync(company);
         }

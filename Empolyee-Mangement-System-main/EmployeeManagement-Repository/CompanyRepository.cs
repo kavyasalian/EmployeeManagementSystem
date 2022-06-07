@@ -16,13 +16,13 @@ namespace EmployeeManagement_Repository
             this._dbContext = new EmployeeManagementContext();
         }
 
-        public async Task Create(company company)
+        public async Task Create(Company company)
         {
             _dbContext.Companies.Add(company);
             await _dbContext.SaveChangesAsync();
         }
        
-       public async Task Update(company company)
+       public async Task Update(Company company)
        {
            var existingAmployee = _dbContext.Companies.Where(h => h.CompanyId == company.CompanyId).FirstOrDefault();
           if (existingAmployee != null)
@@ -31,7 +31,7 @@ namespace EmployeeManagement_Repository
                await this._dbContext.SaveChangesAsync();
             }
         }
-        public async Task<company> GetById(int Id)
+        public async Task<Company> GetById(int Id)
         {
             var company = _dbContext.Companies.FirstOrDefault(e => e.CompanyId == Id);
             return company;
@@ -45,7 +45,7 @@ namespace EmployeeManagement_Repository
                 await this._dbContext.SaveChangesAsync();
             }
         }
-        public async Task<List<company>> GetAllCompanyAsync()
+        public async Task<List<Company>> GetAllCompanyAsync()
         {
             return _dbContext.Companies.ToList();
         }
