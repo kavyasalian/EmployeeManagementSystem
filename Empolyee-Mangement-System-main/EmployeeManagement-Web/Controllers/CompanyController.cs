@@ -12,22 +12,24 @@ namespace EmployeeManagement_Web.Controllers
     [Route("[controller]")]
     public class CompanyController : Controller
     {
-        private readonly CompanyBusiness _companyBuisness;
-        public CompanyController()
+        private readonly ILogger<CompanyController> _logger;
+        private readonly CompanyBusiness companyBusiness;
+        public CompanyController(ILogger<CompanyController> logger)
         {
-            this._companyBuisness = new CompanyBusiness();
+            _logger = logger;
+            companyBusiness = new CompanyBusiness();
         }
 
         [HttpPost("SaveCompany")]
         public async Task<HttpStatusCode> SaveCompany(Company company)
         {
-            return await _companyBuisness.SaveCompanyAsync(company);
+            return await companyBusiness.SaveCompanyAsync(company);
         }
 
         [HttpGet("GetCompanyById")]
         public async Task<IActionResult> GetById(int companyId)
         {
-            var company = await _companyBuisness.GetCompanyAsync(companyId);
+            var company = await companyBusiness.GetCompanyAsync(companyId);
             if(company != null)
         {
                 return Ok(company);
@@ -38,20 +40,21 @@ namespace EmployeeManagement_Web.Controllers
         [HttpGet("GetAllCompany")]
         public async Task<List<Company>> GetAllEmployee()
         {
-            return await _companyBuisness.GetAllCompaniesAsync();
+            return await companyBusiness.GetAllCompaniesAsync();
         }
 
         [HttpPut("UpdateCompany")]
         public async Task<HttpStatusCode> UpdateCompany(Company company)
         {
-            return await this._companyBuisness.UpdateCompanyAsync(company);
+            return await this.companyBusiness.UpdateCompanyAsync(company);
         }
 
-        [HttpDelete("DeleteCompany")]
-        public async Task<IActionResult> DeleteById(int companyId)
+        // DELETE api/<CompanyController>/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteById(int id)
         {
-            var employee = await _companyBuisness.DeleteCompanyAsync(companyId);
-            return Ok(employee);
+            var company = await companyBusiness.DeleteCompanyAsync(id);
+            return Ok(company);
         }
     }
 }
