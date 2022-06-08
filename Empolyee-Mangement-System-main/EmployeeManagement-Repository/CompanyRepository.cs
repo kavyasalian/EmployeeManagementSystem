@@ -55,10 +55,11 @@ namespace EmployeeManagement_Repository
                 _dbContext.Companies.Remove(company);
                 await this._dbContext.SaveChangesAsync();
             }
-            public async Task<List<Company>> GetAllCompanyAsync()
-            {
-                return _dbContext.Companies.ToList();
-            }
+            
+        }
+        public async Task<List<Company>> GetAllCompanyAsync()
+        {
+            return _dbContext.Companies.ToList();
         }
 
     }

@@ -54,7 +54,7 @@ namespace EmployeeManagement_Web.Controllers
             return Ok(company);
         }
         [HttpGet("GetAllCompany")]
-        public async Task<List<EmployeeManagement_Repository.Entities.Company>> GetAllCompany()
+        public async Task<List<Company>> GetAllCompany()
         {
             return await companyBusiness.GetAllComapnyAsync();
         }
