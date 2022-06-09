@@ -38,6 +38,11 @@ namespace EmployeeManagement_Business
         public async Task<List<Employee>> GetAllEmployeesAsync()
         {
             return await employeeRepository.GetAllEmployeesAsync();
+        }      
+        
+        public async Task<List<Employee>> FetchAllEmployeesAsync(String gender)
+        {
+            return await employeeRepository.FetchAllEmployeeByGenderAsync(gender);
         }
     }
 }

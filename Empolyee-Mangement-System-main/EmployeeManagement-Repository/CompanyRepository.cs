@@ -1,4 +1,5 @@
 ﻿using EmployeeManagement_Repository.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +27,7 @@ namespace EmployeeManagement_Repository
 
         public async Task<List<Company>> GetAllCompaniesAsync()
         {
-            return _dbContext.Companies.ToList();
+            return _dbContext.Companies.Include(a => a.CompanyId).ToList();
         }
 
         public async Task<Company> GetById(int Id)
