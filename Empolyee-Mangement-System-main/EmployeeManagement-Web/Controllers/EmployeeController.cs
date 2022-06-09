@@ -28,7 +28,30 @@ namespace EmployeeManagement_Web.Controllers
         public async Task<IActionResult> GetById(int employeeId)
         {
             var employee = await employeeBusiness.GetEmployeeAsync(employeeId);
-            return Ok(employee);
+            
+            if(employee != null)
+            {
+                return Ok(employee);
+            }
+            else
+            {
+                return BadRequest(employee);
+            }
+        }
+
+        [HttpGet("FetchAllEmployeeByGender")]
+        public async Task<IActionResult> FetchAllEmployeeByGender(String gender)
+        {
+            var employees = await employeeBusiness.FetchAllEmployeesAsync(gender);
+          
+            if (employees != null)
+            {
+                return Ok(employees);
+            }
+            else
+            {
+                return BadRequest(employees);
+            }
         }
         [HttpPost(Name = "SaveEmployee")]
         public async Task<HttpStatusCode> SaveEmployee(Employee employee)
