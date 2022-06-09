@@ -29,11 +29,7 @@ namespace EmployeeManagement_Business
             return company;
         }
 
-        public async Task<List<Company>> GetAllCompaniesAsync()
-        {
-            return await companyRepository.GetAllCompaniesAsync();
-        }
-
+        
         public async Task<HttpStatusCode> UpdateCompanyAsync(Company company)
         {
             var status = await companyRepository.Update(company);
@@ -48,6 +44,10 @@ namespace EmployeeManagement_Business
         {
             await companyRepository.Delete(CompanyId);
             return HttpStatusCode.OK;
+        }
+        public async Task<List<Company>> GetAllComapnyAsync()
+        {
+            return await companyRepository.GetAllCompanyAsync();
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using EmployeeManagement_Repository.Entities;
 
 namespace EmployeeManagement_Repository
 {
@@ -25,6 +26,8 @@ namespace EmployeeManagement_Repository
             await _dbContext.SaveChangesAsync();
         }
 
+        
+        
         public async Task<List<Company>> GetAllCompaniesAsync()
         {
             return _dbContext.Companies.Include(a => a.CompanyId).ToList();
@@ -59,7 +62,11 @@ namespace EmployeeManagement_Repository
                 await _dbContext.SaveChangesAsync();
                 return true;
             }
-            return false;
+            
+        }
+        public async Task<List<Company>> GetAllCompanyAsync()
+        {
+            return _dbContext.Companies.ToList();
         }
 
     }

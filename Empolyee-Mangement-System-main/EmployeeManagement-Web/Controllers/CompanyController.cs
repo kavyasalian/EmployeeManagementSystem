@@ -3,6 +3,8 @@ using EmployeeManagement_Business;
 using EmployeeManagement_Repository.Entities;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
+using EmployeeManagement_Business;
+using EmployeeManagement_Repository;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -37,11 +39,6 @@ namespace EmployeeManagement_Web.Controllers
             return BadRequest();
         }
 
-        [HttpGet("GetAllCompany")]
-        public async Task<List<Company>> GetAllEmployee()
-        {
-            return await companyBusiness.GetAllCompaniesAsync();
-        }
 
         [HttpPut("UpdateCompany")]
         public async Task<HttpStatusCode> UpdateCompany(Company company)
@@ -55,6 +52,11 @@ namespace EmployeeManagement_Web.Controllers
         {
             var company = await companyBusiness.DeleteCompanyAsync(id);
             return Ok(company);
+        }
+        [HttpGet("GetAllCompany")]
+        public async Task<List<Company>> GetAllCompany()
+        {
+            return await companyBusiness.GetAllComapnyAsync();
         }
     }
 }
