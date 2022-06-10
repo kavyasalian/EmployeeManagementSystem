@@ -7,6 +7,10 @@
     [Phone]        VARCHAR (50) NOT NULL,
     [DateCreated]  VARCHAR (50) NOT NULL,
     [DateModified] VARCHAR (50) NOT NULL,
-    CONSTRAINT [PK_Employee] PRIMARY KEY CLUSTERED ([Id] ASC)
+    [CompanyId]    INT          NOT NULL,
+    CONSTRAINT [PK_Employee] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_Employee_Company] FOREIGN KEY ([CompanyId]) REFERENCES [dbo].[Company] ([CompanyId])
 );
+
+
 

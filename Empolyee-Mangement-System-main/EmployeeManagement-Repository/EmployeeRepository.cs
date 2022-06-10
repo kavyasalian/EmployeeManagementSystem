@@ -1,4 +1,5 @@
 ﻿using EmployeeManagement_Repository.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace EmployeeManagement_Repository
 {
@@ -28,8 +29,24 @@ namespace EmployeeManagement_Repository
 
         public async Task<Employee> GetById(int Id)
         {
-            var employee = dbContext.Employees.FirstOrDefault(e => e.Id == Id);
-            return employee;
+            var result = from employee in dbContext.Employees
+                         from company in dbContext.Companies
+                         where employee.Id == Id
+                         orderby employee.FirstName descending
+                         select new Employee
+                         {
+                             Id = employee.Id,
+                             FirstName = employee.FirstName,
+                             LastName = employee.LastName,
+                             Gender = employee.Gender,
+                             Email = employee.Email,
+                             Phone = employee.Phone,
+                             DateCreated = employee.DateCreated,
+                             DateModified = employee.DateModified,
+                             CompanyId = employee.CompanyId,
+                             Company = employee.Company,
+                         };
+            return result.FirstOrDefault();
         }
 
         public async Task Delete(int employeeId)
@@ -43,7 +60,46 @@ namespace EmployeeManagement_Repository
         }
         public async Task<List<Employee>> GetAllEmployeesAsync()
         {
-            return dbContext.Employees.ToList();
+            var result = from employee in dbContext.Employees
+                         from company in dbContext.Companies
+                         where employee.CompanyId == company.CompanyId
+                         orderby employee.FirstName 
+                         select new Employee
+                         {
+                             Id = employee.Id,
+                             FirstName = employee.FirstName,
+                             LastName = employee.LastName,
+                             Gender = employee.Gender,
+                             Email = employee.Email,
+                             Phone = employee.Phone,
+                             DateCreated = employee.DateCreated,
+                             DateModified = employee.DateModified,
+                             CompanyId = employee.CompanyId,
+                             Company = employee.Company
+                         };
+
+            return result.ToList();
+        }
+        public async  Task<List<Employee>> FetchAllEmployeeByGenderAsync(String gender) 
+        {
+            var result = from employee in dbContext.Employees.Where(a => a.Gender == gender)
+                         from company in dbContext.Companies
+                         where employee.CompanyId == company.CompanyId
+                         orderby employee.FirstName
+                         select new Employee
+                         {
+                             Id = employee.Id,
+                             FirstName = employee.FirstName,
+                             LastName = employee.LastName,
+                             Gender = employee.Gender,
+                             Email = employee.Email,
+                             Phone = employee.Phone,
+                             DateCreated = employee.DateCreated,
+                             DateModified = employee.DateModified,
+                             CompanyId = employee.CompanyId,
+                             Company = employee.Company
+                         };
+           return result.ToList();
         }
     }
 }
