@@ -62,6 +62,7 @@ namespace EmployeeManagement_Repository
                 await _dbContext.SaveChangesAsync();
                 return true;
             }
+            return false;
             
         }
         public async Task<List<Company>> GetAllCompanyAsync()
