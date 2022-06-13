@@ -22,14 +22,14 @@ namespace EmployeeManagement_Web.Controllers
         [HttpGet("GetAllEmployee")]
         public async Task<List<Employee>> GetAllEmployee()
         {
-             return await employeeBusiness.GetAllEmployeesAsync();
+            return await employeeBusiness.GetAllEmployeesAsync();
         }
         [HttpGet(Name = "GetEmployee")]
-        public async Task<IActionResult> GetById(int employeeId)
+        public async Task<IActionResult> GetById(int Id)
         {
-            var employee = await employeeBusiness.GetEmployeeAsync(employeeId);
-            
-            if(employee != null)
+            var employee = await employeeBusiness.GetEmployeeAsync(Id);
+
+            if (employee != null)
             {
                 return Ok(employee);
             }
@@ -39,11 +39,14 @@ namespace EmployeeManagement_Web.Controllers
             }
         }
 
-        [HttpGet("FetchAllEmployeeByGender")]
-        public async Task<IActionResult> FetchAllEmployeeByGender(String gender)
+
+        //model
+
+        [HttpGet("GetEmployeeById")]
+        public async Task<IActionResult> GetEmployeeById(int Id)
         {
-            var employees = await employeeBusiness.FetchAllEmployeesAsync(gender);
-          
+            var employees = await employeeBusiness.GetEmployeeListAsync(Id);
+
             if (employees != null)
             {
                 return Ok(employees);
@@ -53,6 +56,25 @@ namespace EmployeeManagement_Web.Controllers
                 return BadRequest(employees);
             }
         }
+
+
+
+        [HttpGet("FetchAllEmployeeByGender")]
+        public async Task<IActionResult> FetchAllEmployeeByGender(String gender)
+        {
+            var employees = await employeeBusiness.FetchAllEmployeesAsync(gender);
+
+            if (employees != null)
+            {
+                return Ok(employees);
+            }
+            else
+            {
+                return BadRequest(employees);
+            }
+        }
+
+
         [HttpPost(Name = "SaveEmployee")]
         public async Task<HttpStatusCode> SaveEmployee(Employee employee)
         {

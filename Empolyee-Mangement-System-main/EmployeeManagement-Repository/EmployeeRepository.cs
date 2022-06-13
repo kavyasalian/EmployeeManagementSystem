@@ -30,8 +30,30 @@ namespace EmployeeManagement_Repository
         public async Task<Employee> GetById(int Id)
         {
             var result = from employee in dbContext.Employees
-                         from company in dbContext.Companies
-                         where employee.Id == Id
+                        from company in dbContext.Companies
+                        where employee.Id == Id
+                         orderby employee.FirstName descending
+                         select new Employee
+                       {
+                            Id = employee.Id,
+                            FirstName = employee.FirstName,
+                            LastName = employee.LastName,
+                            Gender = employee.Gender,
+                            Email = employee.Email,
+                             Phone = employee.Phone,
+                             DateCreated = employee.DateCreated,
+                             DateModified = employee.DateModified,
+                            CompanyId = employee.CompanyId,
+                            Company = employee.Company,
+                         };
+            return result.FirstOrDefault();
+        }
+
+        //model
+        public async Task<List<Employee>> GetEmployeeByIdAsync(int Id)
+        {
+            var result = from employee in dbContext.Employees
+                         where employee.Id == employee.Id
                          orderby employee.FirstName descending
                          select new Employee
                          {
@@ -41,12 +63,9 @@ namespace EmployeeManagement_Repository
                              Gender = employee.Gender,
                              Email = employee.Email,
                              Phone = employee.Phone,
-                             DateCreated = employee.DateCreated,
-                             DateModified = employee.DateModified,
-                             CompanyId = employee.CompanyId,
-                             Company = employee.Company,
+                             
                          };
-            return result.FirstOrDefault();
+            return result.ToList();
         }
 
         public async Task Delete(int employeeId)
