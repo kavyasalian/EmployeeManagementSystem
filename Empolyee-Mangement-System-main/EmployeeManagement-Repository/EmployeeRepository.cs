@@ -1,4 +1,5 @@
-﻿using EmployeeManagement_Repository.Entities;
+﻿using EmployeeManagement.Data;
+using EmployeeManagement_Repository.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace EmployeeManagement_Repository
@@ -11,9 +12,19 @@ namespace EmployeeManagement_Repository
             this.dbContext = new EmployeeManagementContext();
         }
 
-        public async Task Create(Employee employee)
+        public async Task Create(EmployeeCreateModel employee)
         {
-            dbContext.Employees.Add(employee);
+            dbContext.Employees.Add( new Employee
+            {
+                FirstName = employee.FirstName,
+                LastName = employee.LastName,
+                Gender = employee.Gender,
+                Email = employee.Email,
+                Phone = employee.Phone,
+                DateCreated = employee.DateCreated,
+                DateModified = employee.DateModified,
+                CompanyId = employee.CompanyId,
+            });
             await dbContext.SaveChangesAsync();
         }
 
