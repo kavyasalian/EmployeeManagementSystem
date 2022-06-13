@@ -21,9 +21,13 @@ namespace EmployeeManagement_Business
         }
         public async Task<HttpStatusCode> SaveEmployeeAsync(EmployeeCreateModel employee)
         {
-             await employeeRepository.Create(employee);
-            return HttpStatusCode.OK;
+            var status = await employeeRepository.Create(employee);
 
+            if (status)
+            {
+                return HttpStatusCode.OK;
+            }
+            return HttpStatusCode.BadRequest;
         }
         public async Task<HttpStatusCode> UpdateEmployeeAsync(Employee employee)
         {
