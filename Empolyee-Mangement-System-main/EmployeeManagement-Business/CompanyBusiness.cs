@@ -1,11 +1,7 @@
-﻿using EmployeeManagement_Repository;
+﻿using EmployeeManagement.Data;
+using EmployeeManagement_Repository;
 using EmployeeManagement_Repository.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EmployeeManagement_Business
 {
@@ -16,38 +12,79 @@ namespace EmployeeManagement_Business
         {
             this.companyRepository = new CompanyRepository();
         }
-        public async Task<HttpStatusCode> SaveCompanyAsync(Company company)
+        public async Task<HttpStatusCode> SaveCompanyAsync(CompanyCreateModel company)
         {
-            await companyRepository.Create(company);
-            return HttpStatusCode.OK;
+            var status = await companyRepository.Create(new Company
+            {
+                CompanyName = company.CompanyName,
+                CompanyAddress = company.CompanyAddress,
+                CompanyPhone = company.CompanyPhone,
+            });
 
+            return status ? HttpStatusCode.OK : HttpStatusCode.BadRequest;
         }
 
-        public async Task<Company> GetCompanyAsync(int Id)
+        public async Task<CompanyViewModel> GetCompanyAsync(int Id)
         {
             var company = await companyRepository.GetById(Id);
-            return company;
+            if (company != null)
+            {
+                var companyView = new CompanyViewModel
+                {
+                    CompanyId = company.CompanyId,
+                    CompanyName = company.CompanyName,
+                    CompanyAddress = company.CompanyAddress,
+                    CompanyPhone = company.CompanyPhone,
+                };
+
+                return companyView;
+            }
+            return null;
         }
 
-        
-        public async Task<HttpStatusCode> UpdateCompanyAsync(Company company)
+        public async Task<HttpStatusCode> UpdateCompanyAsync(CompanyViewModel companyView)
         {
+            var company = new Company
+            {
+                CompanyId = companyView.CompanyId,
+                CompanyName = companyView.CompanyName,
+                CompanyAddress = companyView.CompanyAddress,
+                CompanyPhone = companyView.CompanyPhone,
+            };
             var status = await companyRepository.Update(company);
             if (status)
             {
-                await companyRepository.Create(company);
                 return HttpStatusCode.OK;
             }
-            return HttpStatusCode.BadRequest;
+            else
+            {
+                return HttpStatusCode.BadRequest;
+            }
         }
+
         public async Task<HttpStatusCode> DeleteCompanyAsync(int CompanyId)
         {
-            await companyRepository.Delete(CompanyId);
-            return HttpStatusCode.OK;
+            var status = await companyRepository.Delete(CompanyId);
+            return status ? HttpStatusCode.OK : HttpStatusCode.BadRequest;
         }
-        public async Task<List<Company>> GetAllComapnyAsync()
+
+        public async Task<List<CompanyViewModel>> GetAllComapnyAsync()
         {
-            return await companyRepository.GetAllCompanyAsync();
+            var companies = await companyRepository.GetAllCompanyAsync();
+            var comapnyList = new List<CompanyViewModel>();
+
+            foreach (Company company in companies)
+            {
+                comapnyList.Add(new CompanyViewModel
+                {
+                    CompanyId = company.CompanyId,
+                    CompanyName = company.CompanyName,
+                    CompanyAddress = company.CompanyAddress,
+                    CompanyPhone = company.CompanyPhone
+                });
+            }
+            return comapnyList;
         }
+
     }
 }
