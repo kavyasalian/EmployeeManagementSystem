@@ -98,9 +98,6 @@ namespace EmployeeManagement_Repository
         public List<Employee> GetAllEmployeesListAsync(int CompanyId)
         {
             return dbContext.Employees.Where(x => x.CompanyId == CompanyId).ToList();
-
-
-
         }
 
 
