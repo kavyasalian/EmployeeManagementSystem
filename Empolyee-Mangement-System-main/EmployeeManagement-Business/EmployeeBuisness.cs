@@ -1,4 +1,5 @@
-﻿using EmployeeManagement_Repository;
+﻿using EmployeeManagement.Data;
+using EmployeeManagement_Repository;
 using EmployeeManagement_Repository.Entities;
 using System.Net;
 
@@ -24,7 +25,7 @@ namespace EmployeeManagement_Business
             return HttpStatusCode.OK;
 
         }
-        public async Task<HttpStatusCode> UpdateEmployeeAsync(Employee employee)
+        public async Task<HttpStatusCode> UpdateEmployeeAsync(UpdateModelView employee)
         {
             await employeeRepository.Update(employee);
             return HttpStatusCode.OK;

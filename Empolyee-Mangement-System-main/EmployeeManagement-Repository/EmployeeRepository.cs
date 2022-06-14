@@ -1,4 +1,5 @@
-﻿using EmployeeManagement_Repository.Entities;
+﻿using EmployeeManagement.Data;
+using EmployeeManagement_Repository.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace EmployeeManagement_Repository
@@ -17,14 +18,24 @@ namespace EmployeeManagement_Repository
             await dbContext.SaveChangesAsync();
         }
 
-        public async Task Update(Employee employee)
+        public async Task <bool> Update(UpdateModelView employee)
         {
-            var existingAmployee = dbContext.Employees.Where(h => h.Id == employee.Id).FirstOrDefault();
-            if (existingAmployee != null)
+
+            var existingEmployee = dbContext.Employees.Where(a => a.Id == employee.Id).FirstOrDefault();
+            if (existingEmployee != null)
             {
-                existingAmployee.FirstName = employee.FirstName; // update only changeable properties
+                existingEmployee.FirstName = employee.FirstName;
+                existingEmployee.LastName = employee.LastName;
+                existingEmployee.Email = employee.Email;
+                existingEmployee.Gender = employee.Gender;
+                existingEmployee.Phone = employee.Phone;
+                existingEmployee.DateCreated = employee.DateCreated;
+                existingEmployee.DateModified = employee.DateModified;
+                existingEmployee.CompanyId = employee.CompanyId;
                 await this.dbContext.SaveChangesAsync();
+                return true;
             }
+            return false;
         }
 
         public async Task<Employee> GetById(int Id)
@@ -60,25 +71,7 @@ namespace EmployeeManagement_Repository
         }
         public async Task<List<Employee>> GetAllEmployeesAsync()
         {
-            var result = from employee in dbContext.Employees
-                         from company in dbContext.Companies
-                         where employee.CompanyId == company.CompanyId
-                         orderby employee.FirstName 
-                         select new Employee
-                         {
-                             Id = employee.Id,
-                             FirstName = employee.FirstName,
-                             LastName = employee.LastName,
-                             Gender = employee.Gender,
-                             Email = employee.Email,
-                             Phone = employee.Phone,
-                             DateCreated = employee.DateCreated,
-                             DateModified = employee.DateModified,
-                             CompanyId = employee.CompanyId,
-                             Company = employee.Company
-                         };
-
-            return result.ToList();
+            return dbContext.Employees.Include(a=>a.Company).ToList();
         }
         public async  Task<List<Employee>> FetchAllEmployeeByGenderAsync(String gender) 
         {

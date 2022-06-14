@@ -1,4 +1,5 @@
-﻿using EmployeeManagement_Business;
+﻿using EmployeeManagement.Data;
+using EmployeeManagement_Business;
 using EmployeeManagement_Repository.Entities;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -59,7 +60,7 @@ namespace EmployeeManagement_Web.Controllers
             return await employeeBusiness.SaveEmployeeAsync(employee);
         }
         [HttpPut(Name = "UpdateEmployee")]
-        public async Task<HttpStatusCode> UpdateEmployee(Employee employee)
+        public async Task<HttpStatusCode> UpdateEmployee(UpdateModelView employee)
         {
             return await employeeBusiness.UpdateEmployeeAsync(employee);
         }
