@@ -16,7 +16,7 @@ namespace EmployeeManagement_Repository
         {
             try
             {
-                dbContext.Employees.Add( new Employee
+                dbContext.Employees.Add(new Employee
                 {
                     FirstName = employee.FirstName,
                     LastName = employee.LastName,
@@ -37,6 +37,11 @@ namespace EmployeeManagement_Repository
                 return false;
             }
 
+        }
+
+        public Task Create(Employee employee)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task Update(Employee employee)
@@ -92,39 +97,39 @@ namespace EmployeeManagement_Repository
         }
         public List<Employee> GetAllEmployeesListAsync(int CompanyId)
         {
-            return  dbContext.Employees.Where(x => x.CompanyId == CompanyId).ToList();
-            
-           
-           // return dbContext.Employees.ToList();
+            return dbContext.Employees.Where(x => x.CompanyId == CompanyId).ToList();
+
+
+            // return dbContext.Employees.ToList();
         }
-            //}
+        //}
 
 
-            //var result = from employee in dbContext.Employees
-            //             from company in dbContext.Companies
-            //             where employee.CompanyId == company.companyId
-            //             orderby employee.FirstName 
-            //             select new Employee
-            //             {
-            //                 //Id = employee.Id,
-            //                 FirstName = employee.FirstName,
-            //                 LastName = employee.LastName,
-            //                 //Gender = employee.Gender,
-            //                // Email = employee.Email,
-            //                 //Phone = employee.Phone,
-            //                 //DateCreated = employee.DateCreated,
-            //                 //DateModified = employee.DateModified,
-            //                 //CompanyId = employee.CompanyId,
-            //                 //Company = employee.Company
-            //             };
+        //var result = from employee in dbContext.Employees
+        //             from company in dbContext.Companies
+        //             where employee.CompanyId == company.companyId
+        //             orderby employee.FirstName 
+        //             select new Employee
+        //             {
+        //                 //Id = employee.Id,
+        //                 FirstName = employee.FirstName,
+        //                 LastName = employee.LastName,
+        //                 //Gender = employee.Gender,
+        //                // Email = employee.Email,
+        //                 //Phone = employee.Phone,
+        //                 //DateCreated = employee.DateCreated,
+        //                 //DateModified = employee.DateModified,
+        //                 //CompanyId = employee.CompanyId,
+        //                 //Company = employee.Company
+        //             };
 
-            //return result.ToList();
-        
-        public async  Task<List<Employee>> FetchAllEmployeeByGenderAsync(String gender) 
+        //return result.ToList();
+
+        public async Task<List<Employee>> FetchAllEmployeeByGenderAsync(String gender)
         {
             var result = from employee in dbContext.Employees.Where(a => a.Gender == gender)
                          from company in dbContext.Companies
-                         where employee.CompanyId == company.companyId
+                         where employee.CompanyId == company.CompanyId
                          orderby employee.FirstName
                          select new Employee
                          {
@@ -139,7 +144,7 @@ namespace EmployeeManagement_Repository
                              CompanyId = employee.CompanyId,
                              Company = employee.Company
                          };
-           return result.ToList();
+            return result.ToList();
         }
         //public async Task<List<Employee>> GetAllEmployeesIdAsync()
         //{
@@ -159,14 +164,14 @@ namespace EmployeeManagement_Repository
         //                    // DateModified= employee.DateModified,
         //                    // CompanyId= employee.CompanyId,
         //                    // Company= employee.Company
-                           
+
         //                 };
 
         //    return result.ToList();
         //}
         //public async Task<List<Employee>> GetAllEmployeeByIdAsync(int CompanyId)
         //{
-           
+
         //    var a =dbContext.Companies.Where(x => x.companyId == CompanyId).Include(x => x.Employees).ToList();
         //    return dbContext.Employees.ToList();
         //}
@@ -188,9 +193,9 @@ namespace EmployeeManagement_Repository
         //                     Company = employee.Company
         //                 };
         //    return result.ToList();
-        }
-                                                                  
-        }
-     
+    }
 
-    
+}
+
+
+

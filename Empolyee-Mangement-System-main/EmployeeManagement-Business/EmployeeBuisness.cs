@@ -37,13 +37,13 @@ namespace EmployeeManagement_Business
             return HttpStatusCode.OK;
         }
 
-        
+
 
         public async Task<List<EmployeeViewModel>> GetAllEmployeesByIdAsync(int CompanyId)
         {
             var employees = employeeRepository.GetAllEmployeesListAsync(CompanyId);
             var employeeModel = new List<EmployeeViewModel>();
-            foreach (var employee in employees) 
+            foreach (var employee in employees)
             {
                 var emp = new EmployeeViewModel();
                 emp.FirstName = employee.FirstName;
@@ -60,5 +60,5 @@ namespace EmployeeManagement_Business
         }
     }
 }
-    
+
 

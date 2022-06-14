@@ -45,8 +45,8 @@ namespace EmployeeManagement_Web.Controllers
         public async Task<IActionResult> GetById(int employeeId)
         {
             var employee = await employeeBusiness.GetAllEmployeesByIdAsync(employeeId);
-            
-            if(employee != null)
+
+            if (employee != null)
             {
                 return Ok(employee);
             }
@@ -60,14 +60,14 @@ namespace EmployeeManagement_Web.Controllers
         //    var employee = await employeeBusiness.GetAllEmployeesListAsync(employeeId);
         //    return Ok(employee);
 
-           
+
         //}
 
         [HttpGet("FetchAllEmployeeByGender")]
         public async Task<IActionResult> FetchAllEmployeeByGender(String gender)
         {
             var employees = await employeeBusiness.FetchAllEmployeesAsync(gender);
-          
+
             if (employees != null)
             {
                 return Ok(employees);
@@ -93,7 +93,7 @@ namespace EmployeeManagement_Web.Controllers
         //}
 
         [HttpPost(Name = "SaveEmployee")]
-        public async Task<HttpStatusCode> SaveEmployee(EmployeeCreateModel employee)
+        public async Task<HttpStatusCode> SaveEmployee(Employee employee)
         {
             return await employeeBusiness.SaveEmployeeAsync(employee);
         }
