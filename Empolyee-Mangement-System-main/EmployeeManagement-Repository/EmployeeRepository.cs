@@ -80,29 +80,12 @@ namespace EmployeeManagement_Repository
                 await this.dbContext.SaveChangesAsync();
             }
         }
-        public async Task<List<Employee>> GetAllEmployeesAsync()
+        public List<Employee> GetAllEmployeesAsync()
         {
-            var result = from employee in dbContext.Employees
-                         from company in dbContext.Companies
-                         where employee.CompanyId == company.CompanyId
-                         orderby employee.FirstName 
-                         select new Employee
-                         {
-                             Id = employee.Id,
-                             FirstName = employee.FirstName,
-                             LastName = employee.LastName,
-                             Gender = employee.Gender,
-                             Email = employee.Email,
-                             Phone = employee.Phone,
-                             DateCreated = employee.DateCreated,
-                             DateModified = employee.DateModified,
-                             CompanyId = employee.CompanyId,
-                             Company = employee.Company
-                         };
-
-            return result.ToList();
+            var emp = (dbContext.Employees.Include(x => x.Company)).ToList();
+            return emp;
         }
-        public async  Task<List<Employee>> FetchAllEmployeeByGenderAsync(String gender) 
+        public async Task<List<Employee>> FetchAllEmployeeByGenderAsync(String gender)
         {
             var result = from employee in dbContext.Employees.Where(a => a.Gender == gender)
                          from company in dbContext.Companies
@@ -121,7 +104,7 @@ namespace EmployeeManagement_Repository
                              CompanyId = employee.CompanyId,
                              Company = employee.Company
                          };
-           return result.ToList();
+            return result.ToList();
         }
     }
 }
