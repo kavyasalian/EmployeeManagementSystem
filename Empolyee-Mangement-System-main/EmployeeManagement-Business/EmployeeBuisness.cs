@@ -41,11 +41,11 @@ namespace EmployeeManagement_Business
             return await employeeRepository.GetAllEmployeesAsync();
         }      
         
-        public async Task<List<EmployeeViewModel1>> FetchAllEmployeesAsync(String gender)
+        public async Task<List<EmployeeFilterModel>> FetchAllEmployeesAsync(String gender)
         {
             var employees =  employeeRepository.GetAllEmployeesAsync(gender);
-            var emp = new EmployeeViewModel1();
-            var employeesModel = new List<EmployeeViewModel1>();
+            var emp = new EmployeeFilterModel();
+            var employeesModel = new List<EmployeeFilterModel>();
             foreach (var employee in employees)
             {
                 emp.FirstName = employee.FirstName;
