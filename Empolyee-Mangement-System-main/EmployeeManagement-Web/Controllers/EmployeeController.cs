@@ -1,4 +1,5 @@
-﻿using EmployeeManagement_Business;
+﻿using EmployeeManagement.Data;
+using EmployeeManagement_Business;
 using EmployeeManagement_Repository.Entities;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -20,7 +21,7 @@ namespace EmployeeManagement_Web.Controllers
         }
 
         [HttpGet("GetAllEmployee")]
-        public async Task<List<Employee>> GetAllEmployee()
+        public async Task<List<EmployeeViewModel>> GetAllEmployee()
         {
              return await employeeBusiness.GetAllEmployeesAsync();
         }
@@ -54,7 +55,7 @@ namespace EmployeeManagement_Web.Controllers
             }
         }
         [HttpPost(Name = "SaveEmployee")]
-        public async Task<HttpStatusCode> SaveEmployee(Employee employee)
+        public async Task<HttpStatusCode> SaveEmployee(EmployeeCreateModel employee)
         {
             return await employeeBusiness.SaveEmployeeAsync(employee);
         }
