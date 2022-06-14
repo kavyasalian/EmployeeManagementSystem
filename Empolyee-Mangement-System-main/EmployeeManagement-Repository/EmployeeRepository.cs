@@ -1,4 +1,5 @@
-﻿using EmployeeManagement_Repository.Entities;
+﻿using EmployeeManagement.Data;
+using EmployeeManagement_Repository.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace EmployeeManagement_Repository
@@ -47,6 +48,13 @@ namespace EmployeeManagement_Repository
                              Company = employee.Company,
                          };
             return result.FirstOrDefault();
+        }
+
+        public List<Employee> GetAllEmployeesAsync(string gender)
+
+        {
+            var employees = dbContext.Employees.Where(h => h.Gender == gender).Include(a=> a.Company).ToList();
+            return employees;
         }
 
         public async Task Delete(int employeeId)
@@ -101,5 +109,9 @@ namespace EmployeeManagement_Repository
                          };
            return result.ToList();
         }
+        /*public async Task<List<Employee>> FetchAllEmployeeByGender(String gender)
+        {
+            va
+        }*/
     }
 }

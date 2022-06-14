@@ -1,6 +1,7 @@
 ﻿using EmployeeManagement_Repository;
 using EmployeeManagement_Repository.Entities;
 using System.Net;
+using EmployeeManagement.Data;
 
 namespace EmployeeManagement_Business
 {
@@ -40,9 +41,23 @@ namespace EmployeeManagement_Business
             return await employeeRepository.GetAllEmployeesAsync();
         }      
         
-        public async Task<List<Employee>> FetchAllEmployeesAsync(String gender)
+        public async Task<List<EmployeeViewModel>> FetchAllEmployeesAsync(String gender)
         {
-            return await employeeRepository.FetchAllEmployeeByGenderAsync(gender);
+            var employees =  employeeRepository.GetAllEmployeesAsync(gender);
+            var emp = new EmployeeViewModel();
+            var employeesModel = new List<EmployeeViewModel>();
+            foreach (var employee in employees)
+            {
+                emp.FirstName = employee.FirstName;
+                emp.LastName= employee.LastName;
+                emp.Gender= employee.Gender;
+                emp.Email = employee.Email;
+                emp.CompanyName = employee.Company.CompanyName;
+                emp.CompanyAddress= employee.Company.CompanyAddress;
+
+                employeesModel.Add(emp);
+            }
+            return employeesModel;
         }
     }
 }
