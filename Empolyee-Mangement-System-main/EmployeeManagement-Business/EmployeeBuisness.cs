@@ -1,4 +1,5 @@
-﻿using EmployeeManagement_Repository;
+﻿using EmployeeManagement.Data;
+using EmployeeManagement_Repository;
 using EmployeeManagement_Repository.Entities;
 using System.Net;
 
@@ -18,11 +19,15 @@ namespace EmployeeManagement_Business
             return employee;
 
         }
-        public async Task<HttpStatusCode> SaveEmployeeAsync(Employee employee)
+        public async Task<HttpStatusCode> SaveEmployeeAsync(EmployeeCreateModel employee)
         {
-             await employeeRepository.Create(employee);
-            return HttpStatusCode.OK;
+            var status = await employeeRepository.Create(employee);
 
+            if (status)
+            {
+                return HttpStatusCode.OK;
+            }
+            return HttpStatusCode.BadRequest;
         }
         public async Task<HttpStatusCode> UpdateEmployeeAsync(Employee employee)
         {
