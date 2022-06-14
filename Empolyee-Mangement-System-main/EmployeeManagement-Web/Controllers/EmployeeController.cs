@@ -19,15 +19,31 @@ namespace EmployeeManagement_Web.Controllers
             employeeBusiness = new EmployeeBuisness();
         }
 
-        [HttpGet("GetAllEmployee")]
-        public async Task<List<Employee>> GetAllEmployee()
+        //[HttpGet("GetAllEmployee")]
+        //public async Task<List<Employee>> GetAllEmployee()
+        //{
+        //     return await employeeBusiness.GetAllEmployeesAsync();
+        //}
+
+        [HttpGet("FetchAllEmployeeById")]
+        public async Task<IActionResult> GetAllEmployeeAsync(int CompanyId)
         {
-             return await employeeBusiness.GetAllEmployeesAsync();
+            var employees = await employeeBusiness.GetAllEmployeesByIdAsync(CompanyId);
+
+            if (employees != null)
+            {
+                return Ok(employees);
+            }
+            else
+            {
+                return BadRequest(employees);
+            }
         }
+
         [HttpGet(Name = "GetEmployee")]
         public async Task<IActionResult> GetById(int employeeId)
         {
-            var employee = await employeeBusiness.GetEmployeeAsync(employeeId);
+            var employee = await employeeBusiness.GetAllEmployeesByIdAsync(employeeId);
             
             if(employee != null)
             {
@@ -38,6 +54,13 @@ namespace EmployeeManagement_Web.Controllers
                 return BadRequest(employee);
             }
         }
+        //public async Task<IActionResult> FetchAllEmployeeByIdAsync(int employeeId)
+        //{
+        //    var employee = await employeeBusiness.GetAllEmployeesListAsync(employeeId);
+        //    return Ok(employee);
+
+           
+        //}
 
         [HttpGet("FetchAllEmployeeByGender")]
         public async Task<IActionResult> FetchAllEmployeeByGender(String gender)
@@ -53,6 +76,21 @@ namespace EmployeeManagement_Web.Controllers
                 return BadRequest(employees);
             }
         }
+        //[HttpGet("FetchAllEmployeeById")]
+        //public async Task<IActionResult> GetAllEmployeeByIdAsync(int Id)
+        //{
+        //    var employees = await employeeBusiness.GetAllEmployeesListAsync(Id);
+
+        //    if (employees != null)
+        //    {
+        //        return Ok(employees);
+        //    }
+        //    else
+        //    {
+        //        return BadRequest(employees);
+        //    }
+        //}
+
         [HttpPost(Name = "SaveEmployee")]
         public async Task<HttpStatusCode> SaveEmployee(Employee employee)
         {

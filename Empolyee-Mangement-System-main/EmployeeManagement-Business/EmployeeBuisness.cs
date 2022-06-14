@@ -1,4 +1,5 @@
-﻿using EmployeeManagement_Repository;
+﻿using EmployeeManagement.Data;
+using EmployeeManagement_Repository;
 using EmployeeManagement_Repository.Entities;
 using System.Net;
 
@@ -20,7 +21,7 @@ namespace EmployeeManagement_Business
         }
         public async Task<HttpStatusCode> SaveEmployeeAsync(Employee employee)
         {
-             await employeeRepository.Create(employee);
+            await employeeRepository.Create(employee);
             return HttpStatusCode.OK;
 
         }
@@ -32,17 +33,32 @@ namespace EmployeeManagement_Business
         }
         public async Task<HttpStatusCode> DeleteEmployeeAsync(int Id)
         {
-             await employeeRepository.Delete(Id);
+            await employeeRepository.Delete(Id);
             return HttpStatusCode.OK;
         }
-        public async Task<List<Employee>> GetAllEmployeesAsync()
-        {
-            return await employeeRepository.GetAllEmployeesAsync();
-        }      
+
         
+
+        public async Task<List<EmployeeViewModel>> GetAllEmployeesByIdAsync(int CompanyId)
+        {
+            var employees = employeeRepository.GetAllEmployeesListAsync(CompanyId);
+            var employeeModel = new List<EmployeeViewModel>();
+            foreach (var employee in employees) 
+            {
+                var emp = new EmployeeViewModel();
+                emp.FirstName = employee.FirstName;
+                emp.LastName = employee.LastName;
+                employeeModel.Add(emp);
+
+            }
+            return employeeModel;
+        }
+
         public async Task<List<Employee>> FetchAllEmployeesAsync(String gender)
         {
             return await employeeRepository.FetchAllEmployeeByGenderAsync(gender);
         }
     }
 }
+    
+
