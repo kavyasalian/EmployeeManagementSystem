@@ -71,6 +71,13 @@ namespace EmployeeManagement_Repository
             return result.FirstOrDefault();
         }
 
+        public List<Employee> GetAllEmployeesAsync(string gender)
+
+        {
+            var employees = dbContext.Employees.Where(h => h.Gender == gender).Include(a=> a.Company).ToList();
+            return employees;
+        }
+
         public async Task Delete(int employeeId)
         {
             var employee = await GetById(employeeId);
@@ -106,5 +113,9 @@ namespace EmployeeManagement_Repository
                          };
             return result.ToList();
         }
+        /*public async Task<List<Employee>> FetchAllEmployeeByGender(String gender)
+        {
+            va
+        }*/
     }
 }
