@@ -16,7 +16,7 @@ namespace EmployeeManagement_Repository
         {
             try
             {
-                dbContext.Employees.Add( new Employee
+                dbContext.Employees.Add(new Employee
                 {
                     FirstName = employee.FirstName,
                     LastName = employee.LastName,
@@ -39,14 +39,25 @@ namespace EmployeeManagement_Repository
 
         }
 
-        public async Task Update(Employee employee)
+        public async Task<bool> Update(UpdateModelView employee)
         {
-            var existingAmployee = dbContext.Employees.Where(h => h.Id == employee.Id).FirstOrDefault();
-            if (existingAmployee != null)
+
+            var existingEmployee = dbContext.Employees.Where(a => a.Id == employee.Id).FirstOrDefault();
+            if (existingEmployee != null)
             {
-                existingAmployee.FirstName = employee.FirstName; // update only changeable properties
+                existingEmployee.FirstName = employee.FirstName;
+                existingEmployee.LastName = employee.LastName;
+                existingEmployee.Email = employee.Email;
+                existingEmployee.Gender = employee.Gender;
+                existingEmployee.Phone = employee.Phone;
+                existingEmployee.DateCreated = employee.DateCreated;
+                existingEmployee.DateCreated = employee.DateCreated;
+                existingEmployee.DateModified = employee.DateModified;
+                existingEmployee.CompanyId = employee.CompanyId;
                 await this.dbContext.SaveChangesAsync();
+                return true;
             }
+            return false;
         }
 
         public async Task<Employee> GetById(int Id)
@@ -74,7 +85,7 @@ namespace EmployeeManagement_Repository
         public List<Employee> GetAllEmployeesAsync(string gender)
 
         {
-            var employees = dbContext.Employees.Where(h => h.Gender == gender).Include(a=> a.Company).ToList();
+            var employees = dbContext.Employees.Where(h => h.Gender == gender).Include(a => a.Company).ToList();
             return employees;
         }
 

@@ -30,7 +30,7 @@ namespace EmployeeManagement_Business
             }
             return HttpStatusCode.BadRequest;
         }
-        public async Task<HttpStatusCode> UpdateEmployeeAsync(Employee employee)
+        public async Task<HttpStatusCode> UpdateEmployeeAsync(UpdateModelView employee)
         {
             await employeeRepository.Update(employee);
             return HttpStatusCode.OK;
