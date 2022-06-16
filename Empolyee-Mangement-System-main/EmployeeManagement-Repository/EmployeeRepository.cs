@@ -1,7 +1,5 @@
 ﻿using EmployeeManagement.Data;
 using EmployeeManagement_Repository.Entities;
-using Microsoft.EntityFrameworkCore;
-
 namespace EmployeeManagement_Repository
 {
     public class EmployeeRepository
@@ -11,7 +9,6 @@ namespace EmployeeManagement_Repository
         {
             this.dbContext = new EmployeeManagementContext();
         }
-
         public async Task<bool> Create(EmployeeCreateModel employee)
         {
             try
@@ -38,12 +35,6 @@ namespace EmployeeManagement_Repository
             }
 
         }
-
-        public Task Create(Employee employee)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task Update(Employee employee)
         {
             var existingAmployee = dbContext.Employees.Where(h => h.Id == employee.Id).FirstOrDefault();
@@ -75,17 +66,6 @@ namespace EmployeeManagement_Repository
                          };
             return result.FirstOrDefault();
         }
-
-        public static Task GetAllEmployeeesListAsync(int companyId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public static Task GetAllEmployeeesAsync(int companyId)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task Delete(int employeeId)
         {
             var employee = await GetById(employeeId);
@@ -99,9 +79,6 @@ namespace EmployeeManagement_Repository
         {
             return dbContext.Employees.Where(x => x.CompanyId == CompanyId).ToList();
         }
-
-
-
         public async Task<List<Employee>> FetchAllEmployeeByGenderAsync(String gender)
         {
             var result = from employee in dbContext.Employees.Where(a => a.Gender == gender)
@@ -123,9 +100,6 @@ namespace EmployeeManagement_Repository
                          };
             return result.ToList();
         }
-
-
-
     }
 
 }

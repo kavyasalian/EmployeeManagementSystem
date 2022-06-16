@@ -10,7 +10,6 @@ namespace EmployeeManagement_Web.Controllers
     [Route("[controller]")]
     public class EmployeeController : Controller
     {
-
         private readonly ILogger<EmployeeController> _logger;
         private readonly EmployeeBuisness employeeBusiness;
 
@@ -19,8 +18,6 @@ namespace EmployeeManagement_Web.Controllers
             _logger = logger;
             employeeBusiness = new EmployeeBuisness();
         }
-
-
         [HttpGet("FetchAllEmployeeById")]
         public async Task<IActionResult> GetAllEmployeeAsync(int CompanyId)
         {
@@ -50,8 +47,6 @@ namespace EmployeeManagement_Web.Controllers
                 return BadRequest(employee);
             }
         }
-
-
         [HttpGet("FetchAllEmployeeByGender")]
         public async Task<IActionResult> FetchAllEmployeeByGender(String gender)
         {
@@ -66,7 +61,6 @@ namespace EmployeeManagement_Web.Controllers
                 return BadRequest(employees);
             }
         }
-
         [HttpPost(Name = "SaveEmployee")]
         public async Task<HttpStatusCode> SaveEmployee(Employee employee)
         {
