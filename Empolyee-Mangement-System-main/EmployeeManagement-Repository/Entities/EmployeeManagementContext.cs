@@ -19,6 +19,7 @@ namespace EmployeeManagement_Repository.Entities
 
         public virtual DbSet<Company> Companies { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
+        public virtual DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -97,6 +98,32 @@ namespace EmployeeManagement_Repository.Entities
                     .HasForeignKey(d => d.CompanyId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Employee_Company");
+            });
+
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("User");
+
+                entity.Property(e => e.RoleId).HasColumnName("Role_Id");
+
+                entity.Property(e => e.UserEmail)
+                    .IsRequired()
+                    .HasMaxLength(10)
+                    .HasColumnName("User_Email");
+
+                entity.Property(e => e.UserFirstName)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .HasColumnName("User_First_Name");
+
+                entity.Property(e => e.UserLastName)
+                    .IsRequired()
+                    .HasMaxLength(10)
+                    .HasColumnName("User_Last_Name");
+
+                entity.Property(e => e.UserPhone).HasColumnName("User_Phone");
             });
 
             OnModelCreatingPartial(modelBuilder);

@@ -1,10 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using EmployeeManagement_Business;
 using EmployeeManagement_Repository.Entities;
-using Microsoft.AspNetCore.Mvc;
-using System.Net;
-using EmployeeManagement_Business;
-using EmployeeManagement_Repository;
+using System.Net;using EmployeeManagement_Repository;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
