@@ -50,24 +50,14 @@ namespace EmployeeManagement_Repository
         }
 
         //model
-        public async Task<List<Employee>> GetEmployeeByIdAsync(int Id)
+        public List <Employee> GetEmployeeByIdAsync(int Id)
         {
-            var result = from employee in dbContext.Employees
-                         where employee.Id == employee.Id
-                         orderby employee.FirstName descending
-                         select new Employee
-                         {
-                             Id = employee.Id,
-                             FirstName = employee.FirstName,
-                             LastName = employee.LastName,
-                             Gender = employee.Gender,
-                             Email = employee.Email,
-                             Phone = employee.Phone,
-                             
-                         };
-            return result.ToList();
+            return  dbContext.Employees.Where(x => x.Id == Id).ToList();
+            
         }
 
+        
+        
         public async Task Delete(int employeeId)
         {
             var employee = await GetById(employeeId);

@@ -19,11 +19,11 @@ namespace EmployeeManagement_Business
             return employee;
 
         }
-        public async Task<List<EmployeeViewModel>> GetEmployeeListAsync(int employeeId)
+        public async Task<List<EmployeeViewModel>> GetEmployeeListAsync(int Id)
         {
-            var employees =await employeeRepository.GetEmployeeByIdAsync(employeeId);
-            var employeesModel = new List<EmployeeViewModel>();
-            foreach (var employee in employees)
+            var employees =employeeRepository.GetEmployeeByIdAsync(Id);
+            var employeeModel = new List<EmployeeViewModel>();
+            foreach(var employee in employees)
             {
                 var emp = new EmployeeViewModel();
                 emp.Firstname = employee.FirstName;
@@ -31,12 +31,16 @@ namespace EmployeeManagement_Business
                 emp.Gender = employee.Gender;
                 emp.Email = employee.Email;
                 emp.Phone = employee.Phone;
-                employeesModel.Add(emp);
+                employeeModel.Add(emp);
             }
 
-            return employeesModel;
+            return employeeModel;
 
         }
+
+       
+
+
         public async Task<HttpStatusCode> SaveEmployeeAsync(Employee employee)
         {
             await employeeRepository.Create(employee);
