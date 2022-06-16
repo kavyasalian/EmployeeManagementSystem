@@ -16,7 +16,7 @@ namespace EmployeeManagement_Repository
         {
             try
             {
-                dbContext.Employees.Add( new Employee
+                dbContext.Employees.Add(new Employee
                 {
                     FirstName = employee.FirstName,
                     LastName = employee.LastName,
@@ -39,7 +39,7 @@ namespace EmployeeManagement_Repository
 
         }
 
-        public async Task <bool> Update(UpdateModelView employee)
+        public async Task<bool> Update(UpdateModelView employee)
         {
 
             var existingEmployee = dbContext.Employees.Where(a => a.Id == employee.Id).FirstOrDefault();
@@ -50,6 +50,7 @@ namespace EmployeeManagement_Repository
                 existingEmployee.Email = employee.Email;
                 existingEmployee.Gender = employee.Gender;
                 existingEmployee.Phone = employee.Phone;
+                existingEmployee.DateCreated = employee.DateCreated;
                 existingEmployee.DateCreated = employee.DateCreated;
                 existingEmployee.DateModified = employee.DateModified;
                 existingEmployee.CompanyId = employee.CompanyId;
@@ -84,7 +85,7 @@ namespace EmployeeManagement_Repository
         public List<Employee> GetAllEmployeesAsync(string gender)
 
         {
-            var employees = dbContext.Employees.Where(h => h.Gender == gender).Include(a=> a.Company).ToList();
+            var employees = dbContext.Employees.Where(h => h.Gender == gender).Include(a => a.Company).ToList();
             return employees;
         }
 
