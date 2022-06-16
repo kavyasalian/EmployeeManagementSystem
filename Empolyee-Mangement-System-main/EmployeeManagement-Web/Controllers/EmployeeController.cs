@@ -29,6 +29,7 @@ namespace EmployeeManagement_Web.Controllers
             }
             else
             {
+
                 return BadRequest(employees);
             }
         }
@@ -62,7 +63,7 @@ namespace EmployeeManagement_Web.Controllers
             }
         }
         [HttpPost(Name = "SaveEmployee")]
-        public async Task<HttpStatusCode> SaveEmployee(Employee employee)
+        public async Task<HttpStatusCode> SaveEmployee(EmployeeCreateModel employee)
         {
             return await employeeBusiness.SaveEmployeeAsync(employee);
         }

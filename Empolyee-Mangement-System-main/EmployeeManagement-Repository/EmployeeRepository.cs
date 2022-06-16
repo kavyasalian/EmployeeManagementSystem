@@ -1,5 +1,7 @@
 ﻿using EmployeeManagement.Data;
 using EmployeeManagement_Repository.Entities;
+using Microsoft.EntityFrameworkCore;
+
 namespace EmployeeManagement_Repository
 {
     public class EmployeeRepository
@@ -9,6 +11,7 @@ namespace EmployeeManagement_Repository
         {
             this.dbContext = new EmployeeManagementContext();
         }
+
         public async Task<bool> Create(EmployeeCreateModel employee)
         {
             try
@@ -35,7 +38,8 @@ namespace EmployeeManagement_Repository
             }
 
         }
-        public async Task Update(Employee employee)
+
+        public async Task<bool> Update(UpdateModelView employee)
         {
 
             var existingEmployee = dbContext.Employees.Where(a => a.Id == employee.Id).FirstOrDefault();
@@ -81,7 +85,7 @@ namespace EmployeeManagement_Repository
         public List<Employee> GetAllEmployeesAsync(string gender)
 
         {
-            var employees = dbContext.Employees.Where(h => h.Gender == gender).Include(a=> a.Company).ToList();
+            var employees = dbContext.Employees.Where(h => h.Gender == gender).Include(a => a.Company).ToList();
             return employees;
         }
 
@@ -94,10 +98,12 @@ namespace EmployeeManagement_Repository
                 await this.dbContext.SaveChangesAsync();
             }
         }
+
         public List<Employee> GetAllEmployeesListAsync(int CompanyId)
         {
             return dbContext.Employees.Where(x => x.CompanyId == CompanyId).ToList();
         }
+
         public async Task<List<Employee>> FetchAllEmployeeByGenderAsync(String gender)
         {
             var result = from employee in dbContext.Employees.Where(a => a.Gender == gender)
