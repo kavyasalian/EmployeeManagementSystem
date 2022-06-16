@@ -1,4 +1,5 @@
-﻿using EmployeeManagement_Business;
+﻿using EmployeeManagement.Data;
+using EmployeeManagement_Business;
 using EmployeeManagement_Repository.Entities;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -20,7 +21,7 @@ namespace EmployeeManagement_Web.Controllers
         }
 
         [HttpGet("GetAllEmployee")]
-        public async Task<List<Employee>> GetAllEmployee()
+        public async Task<List<EmployeeGetByIdModel>> GetAllEmployee()
         {
             return await employeeBusiness.GetAllEmployeesAsync();
         }
@@ -62,7 +63,7 @@ namespace EmployeeManagement_Web.Controllers
         [HttpGet("FetchAllEmployeeByGender")]
         public async Task<IActionResult> FetchAllEmployeeByGender(String gender)
         {
-            var employees = await employeeBusiness.FetchAllEmployeesAsync(gender);
+            var employees =  employeeBusiness.FetchAllEmployeesAsync(gender);
 
             if (employees != null)
             {
@@ -76,7 +77,7 @@ namespace EmployeeManagement_Web.Controllers
 
 
         [HttpPost(Name = "SaveEmployee")]
-        public async Task<HttpStatusCode> SaveEmployee(Employee employee)
+        public async Task<HttpStatusCode> SaveEmployee(EmployeeCreateModel employee)
         {
             return await employeeBusiness.SaveEmployeeAsync(employee);
         }
@@ -88,7 +89,7 @@ namespace EmployeeManagement_Web.Controllers
         [HttpDelete(Name = "DeeleteEmployee")]
         public async Task<IActionResult> DeleteById(int employeeId)
         {
-            var employee = await employeeBusiness.DeleteEmployeeAsync(employeeId);
+            var employee =  employeeBusiness.DeleteEmployeeAsync(employeeId);
             return Ok(employee);
         }
     }

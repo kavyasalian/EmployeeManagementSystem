@@ -1,4 +1,5 @@
-﻿using EmployeeManagement_Repository;
+﻿using EmployeeManagement.Data;
+using EmployeeManagement_Repository;
 using EmployeeManagement_Repository.Entities;
 using System;
 using System.Collections.Generic;
@@ -29,7 +30,11 @@ namespace EmployeeManagement_Business
             return company;
         }
 
-        
+       
+
+
+
+
         public async Task<HttpStatusCode> UpdateCompanyAsync(Company company)
         {
             var status = await companyRepository.Update(company);
@@ -49,5 +54,12 @@ namespace EmployeeManagement_Business
         {
             return await companyRepository.GetAllCompanyAsync();
         }
+
+
+       
+
+
+
+
     }
 }
