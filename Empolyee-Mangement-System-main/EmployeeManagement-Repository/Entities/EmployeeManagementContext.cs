@@ -19,13 +19,14 @@ namespace EmployeeManagement_Repository.Entities
 
         public virtual DbSet<Company> Companies { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
+        public virtual DbSet<Roll> Rolls { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=.;Database=EmployeeManagement;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=LAPTOP-3NSNKT6U\\SQLEXPRESS;Database=EmployeeManagement;Trusted_Connection=True;");
             }
         }
 
@@ -97,6 +98,23 @@ namespace EmployeeManagement_Repository.Entities
                     .HasForeignKey(d => d.CompanyId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Employee_Company");
+            });
+
+            modelBuilder.Entity<Roll>(entity =>
+            {
+                entity.ToTable("Roll");
+
+                entity.Property(e => e.RollId).HasColumnName("roll_id");
+
+                entity.Property(e => e.DateCreated)
+                    .HasColumnType("datetime")
+                    .HasColumnName("date_created");
+
+                entity.Property(e => e.RollName)
+                    .IsRequired()
+                    .HasMaxLength(10)
+                    .HasColumnName("roll_name")
+                    .IsFixedLength(true);
             });
 
             OnModelCreatingPartial(modelBuilder);
