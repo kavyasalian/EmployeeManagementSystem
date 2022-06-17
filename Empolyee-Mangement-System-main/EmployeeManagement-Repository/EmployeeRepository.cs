@@ -98,11 +98,12 @@ namespace EmployeeManagement_Repository
                 await this.dbContext.SaveChangesAsync();
             }
         }
-        public List<Employee> GetAllEmployeesAsync()
+
+        public List<Employee> GetAllEmployeesListAsync(int CompanyId)
         {
-            var emp = (dbContext.Employees.Include(x => x.Company)).ToList();
-            return emp;
+            return dbContext.Employees.Where(x => x.CompanyId == CompanyId).ToList();
         }
+
         public async Task<List<Employee>> FetchAllEmployeeByGenderAsync(String gender)
         {
             var result = from employee in dbContext.Employees.Where(a => a.Gender == gender)
@@ -124,9 +125,9 @@ namespace EmployeeManagement_Repository
                          };
             return result.ToList();
         }
-        /*public async Task<List<Employee>> FetchAllEmployeeByGender(String gender)
-        {
-            va
-        }*/
     }
+
 }
+
+
+
