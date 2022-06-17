@@ -13,10 +13,11 @@ namespace EmployeeManagement_Repository
             this._dbContext = new EmployeeManagementContext();
         }
 
-        public async Task Create(Company company)
+        public async Task<bool> Create(Company company)
         {
-            _dbContext.Companies.Add(company);
+            var effectedRow = _dbContext.Companies.Add(company);
             await _dbContext.SaveChangesAsync();
+            return ( effectedRow != null ) ? true:false;
         }
 
         public async Task<List<Company>> GetAllCompaniesAsync()
