@@ -10,7 +10,6 @@ namespace EmployeeManagement_Web.Controllers
     [Route("[controller]")]
     public class EmployeeController : Controller
     {
-
         private readonly ILogger<EmployeeController> _logger;
         private readonly EmployeeBuisness employeeBusiness;
 
@@ -19,13 +18,23 @@ namespace EmployeeManagement_Web.Controllers
             _logger = logger;
             employeeBusiness = new EmployeeBuisness();
         }
-
-        [HttpGet("GetAllEmployee")]
-        public async Task<List<EmployeeGetByIdModel>> GetAllEmployee()
+        [HttpGet("FetchAllEmployeeById")]
+        public async Task<IActionResult> GetAllEmployeeAsync(int CompanyId)
         {
-            return await employeeBusiness.GetAllEmployeesAsync();
+            var employees = await employeeBusiness.GetAllEmployeesByIdAsync(CompanyId);
+
+            if (employees != null)
+            {
+                return Ok(employees);
+            }
+            else
+            {
+
+                return BadRequest(employees);
+            }
         }
-        [HttpGet(Name = "GetEmployee")]
+
+        [HttpGet(Name = "GetEmployeeById")]
         public async Task<IActionResult> GetById(int Id)
         {
             var employee = await employeeBusiness.GetEmployeeAsync(Id);
@@ -39,31 +48,10 @@ namespace EmployeeManagement_Web.Controllers
                 return BadRequest(employee);
             }
         }
-
-
-        //model
-
-        [HttpGet("GetEmployeeById")]
-        public async Task<IActionResult> GetEmployeeById(int Id)
-        {
-            var employees = await employeeBusiness.GetEmployeeListAsync(Id);
-
-            if (employees != null)
-            {
-                return Ok(employees);
-            }
-            else
-            {
-                return BadRequest(employees);
-            }
-        }
-
-
-
         [HttpGet("FetchAllEmployeeByGender")]
         public async Task<IActionResult> FetchAllEmployeeByGender(String gender)
         {
-            var employees =  employeeBusiness.FetchAllEmployeesAsync(gender);
+            var employees = await employeeBusiness.FetchAllEmployeesAsync(gender);
 
             if (employees != null)
             {
@@ -74,23 +62,22 @@ namespace EmployeeManagement_Web.Controllers
                 return BadRequest(employees);
             }
         }
-
-
         [HttpPost(Name = "SaveEmployee")]
         public async Task<HttpStatusCode> SaveEmployee(EmployeeCreateModel employee)
         {
             return await employeeBusiness.SaveEmployeeAsync(employee);
         }
         [HttpPut(Name = "UpdateEmployee")]
-        public async Task<HttpStatusCode> UpdateEmployee(Employee employee)
+        public async Task<HttpStatusCode> UpdateEmployee(UpdateModelView employee)
         {
             return await employeeBusiness.UpdateEmployeeAsync(employee);
         }
         [HttpDelete(Name = "DeeleteEmployee")]
         public async Task<IActionResult> DeleteById(int employeeId)
         {
-            var employee =  employeeBusiness.DeleteEmployeeAsync(employeeId);
+            var employee = await employeeBusiness.DeleteEmployeeAsync(employeeId);
             return Ok(employee);
         }
+        
     }
 }

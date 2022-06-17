@@ -2,7 +2,6 @@
 using EmployeeManagement_Repository;
 using EmployeeManagement_Repository.Entities;
 using System.Net;
-using EmployeeManagement.Data;
 
 namespace EmployeeManagement_Business
 {
@@ -14,79 +13,27 @@ namespace EmployeeManagement_Business
             this.employeeRepository = new EmployeeRepository();
         }
 
-        public async Task<Employee> GetEmployeeAsync(int Id)
+        public async Task<EmployeeGetByIdModel> GetEmployeeAsync(int Id)
         {
             var employee = await employeeRepository.GetById(Id);
-            return employee;
+            var employeeModel = new EmployeeGetByIdModel();
+            
 
-        }
-
-        public async Task<List<EmployeeGetByIdModel>> GetEmployeeListAsync(int Id)
-        {
-            var employees = employeeRepository.GetEmployeeByIdAsync(Id);
-            var employeeModel = new List<EmployeeGetByIdModel>();
-            foreach (var employee in employees)
+            if (employee != null)
             {
-                var emp = new EmployeeGetByIdModel();
-                emp.Firstname = employee.FirstName;
-                emp.Lastname = employee.LastName;
-                emp.Gender = employee.Gender;
-                emp.Email = employee.Email;
-                emp.Phone = employee.Phone;
-                employeeModel.Add(emp);
-            }
-
-            return employeeModel;
-
-        }
-
-        public Task<List<EmployeeGetByIdModel>> GetAllEmployeesAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<HttpStatusCode> SaveEmployeeAsync(Employee employee)
-        {
-            await employeeRepository.Create(employee);
-            return HttpStatusCode.OK;
-        }
-
-        public async Task<List<EmployeeGetByIdModel>> FetchAllEmployeesAsync1(string gender)
-        {
-            var employees = employeeRepository.GetAllEmployeesAsync();
-            var employeeModel = new List<EmployeeGetByIdModel>();
-            foreach (var employee in employees)
-            {
-                var emp = new EmployeeGetByIdModel();
-                emp.FirstName = employee.FirstName;
-                emp.LastName = employee.LastName;
-                emp.Gender = employee.Gender;
-                emp.Phone = employee.Phone;
-                emp.Email = employee.Email;
-
-                employeeModel.Add(emp);
+                employeeModel.FirstName = employee.FirstName;
+                employeeModel.LastName = employee.LastName;
+                employeeModel.Gender = employee.Gender;
+                employeeModel.Email = employee.Email;
+                employeeModel.Phone = employee.Phone;
             }
             return employeeModel;
-        }
-
-       
-        private async Task<HttpStatusCode> DeleteEmployeeAsync1(int Id)
-        {
-            await employeeRepository.Delete(Id);
-            return HttpStatusCode.OK;
-        }
-
-        private async Task<HttpStatusCode> UpdateEmployeeAsync1(Employee employee)
-        {
-            await employeeRepository.Update(employee);
-            return HttpStatusCode.OK;
 
         }
 
-        private async Task<HttpStatusCode> SaveEmployeeAsync1(EmployeeCreateModel employee)
+        public async Task<HttpStatusCode> SaveEmployeeAsync(EmployeeCreateModel employee)
         {
             var status = await employeeRepository.Create(employee);
-
 
             if (status)
             {
@@ -95,24 +42,51 @@ namespace EmployeeManagement_Business
             return HttpStatusCode.BadRequest;
         }
 
-        public Task FetchAllEmployeesAsync(string gender)
+        public async Task<HttpStatusCode> UpdateEmployeeAsync(UpdateModelView employee)
         {
-            throw new NotImplementedException();
+            await employeeRepository.Update(employee);
+            return HttpStatusCode.OK;
+
         }
 
-        public Task DeleteEmployeeAsync(int employeeId)
+        public async Task<HttpStatusCode> DeleteEmployeeAsync(int Id)
         {
-            throw new NotImplementedException();
+            await employeeRepository.Delete(Id);
+            return HttpStatusCode.OK;
         }
 
-        public Task<HttpStatusCode> SaveEmployeeAsync(EmployeeCreateModel employee)
+        public async Task<List<EmployeeGetModel>> GetAllEmployeesByIdAsync(int CompanyId)
         {
-            throw new NotImplementedException();
+            var employees = employeeRepository.GetAllEmployeesListAsync(CompanyId);
+            var employeeModel = new List<EmployeeGetModel>();
+            foreach (var employee in employees)
+            {
+                var emp = new EmployeeGetModel();
+                emp.FirstName = employee.FirstName;
+                emp.LastName = employee.LastName;
+                employeeModel.Add(emp);
+
+            }
+            return employeeModel;
         }
 
-        public Task<HttpStatusCode> UpdateEmployeeAsync(Employee employee)
+        public async Task<List<EmployeeFilterModel>> FetchAllEmployeesAsync(String gender)
         {
-            throw new NotImplementedException();
+            var employees = employeeRepository.GetAllEmployeesAsync(gender);
+            var emp = new EmployeeFilterModel();
+            var employeesModel = new List<EmployeeFilterModel>();
+            foreach (var employee in employees)
+            {
+                emp.FirstName = employee.FirstName;
+                emp.LastName = employee.LastName;
+                emp.Gender = employee.Gender;
+                emp.Email = employee.Email;
+                emp.companyName = employee.Company.CompanyName;
+                emp.companyAddress = employee.Company.CompanyAddress;
+
+                employeesModel.Add(emp);
+            }
+            return employeesModel;
         }
     }
 }
