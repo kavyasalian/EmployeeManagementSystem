@@ -54,21 +54,7 @@ namespace EmployeeManagement_Business
             await employeeRepository.Delete(Id);
             return HttpStatusCode.OK;
         }
-
-        public async Task<List<EmployeeGetModel>> GetAllEmployeesByIdAsync(int CompanyId)
-        {
-            var employees = employeeRepository.GetAllEmployeesListAsync(CompanyId);
-            var employeeModel = new List<EmployeeGetModel>();
-            foreach (var employee in employees)
-            {
-                var emp = new EmployeeGetModel();
-                emp.FirstName = employee.FirstName;
-                emp.LastName = employee.LastName;
-                employeeModel.Add(emp);
-
-            }
-            return employeeModel;
-        }
+      
 
         public async Task<List<EmployeeFilterModel>> FetchAllEmployeesAsync(String gender)
         {
@@ -87,6 +73,41 @@ namespace EmployeeManagement_Business
                 employeesModel.Add(emp);
             }
             return employeesModel;
+        }
+        //public async Task<List<EmployeeViewModel>> GetAllEmployeesAsync()
+        //{
+        //    var employees = employeeRepository.GetAllEmployees();
+
+        //    var employeeModel = new List<EmployeeViewModel>();
+        //    foreach (var employee in employees)
+        //    {
+        //        var emp = new EmployeeViewModel();
+        //        emp.FirstName = employee.FirstName;
+        //        emp.LastName = employee.LastName;
+        //        emp.Gender = employee.Gender;
+        //        emp.Phone = employee.Phone;
+        //        emp.Email = employee.Email;
+        //        emp.CompanyName = employee.Company.CompanyName;
+        //        emp.CompanyAddress = employee.Company.CompanyAddress;
+        //        employeeModel.Add(emp);
+        //    }
+        //    return employeeModel;
+        //}
+
+        public async Task<List<EmployeeGetModel>> GetAllEmployeesByIdAsync(int CompanyId)
+        {
+            var employees = employeeRepository.GetAllEmployeesListAsync(CompanyId);
+            var employeeModel = new List<EmployeeGetModel>();
+            foreach (var employee in employees)
+            {
+                var emp = new EmployeeGetModel();
+                emp.FirstName = employee.FirstName;
+                emp.LastName = employee.LastName;
+                employeeModel.Add(emp);
+
+
+            }
+            return employeeModel;
         }
     }
 }
