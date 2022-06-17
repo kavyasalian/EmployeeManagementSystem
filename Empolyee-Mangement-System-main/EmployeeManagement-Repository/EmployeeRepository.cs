@@ -79,22 +79,10 @@ namespace EmployeeManagement_Repository
                 this.dbContext.SaveChangesAsync();
             }
         }
-
-        public object GetEmployeeByIdAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
-
         public List<Employee> GetAllEmployeesListAsync(int CompanyId)
         {
             return dbContext.Employees.Where(x => x.CompanyId == CompanyId).ToList();
         }
-
-        public object GetByIdAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<List<Employee>> FetchAllEmployeeByGenderAsync(String gender)
         {
             var result = from employee in dbContext.Employees.Where(a => a.Gender == gender)

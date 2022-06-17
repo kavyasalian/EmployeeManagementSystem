@@ -17,7 +17,7 @@ namespace EmployeeManagement_Business
         {
             var employee = await employeeRepository.GetById(Id);
             var employeeModel = new EmployeeGetByIdModel();
-            
+
 
             if (employee != null)
             {

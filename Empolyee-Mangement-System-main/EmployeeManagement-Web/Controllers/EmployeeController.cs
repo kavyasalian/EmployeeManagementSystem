@@ -78,6 +78,6 @@ namespace EmployeeManagement_Web.Controllers
             var employee = await employeeBusiness.DeleteEmployeeAsync(employeeId);
             return Ok(employee);
         }
-        
+
     }
 }
