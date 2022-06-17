@@ -9,6 +9,10 @@ namespace EmployeeManagement_Repository
 {
     public class RoleRepository
     {
-       
+        private readonly EmployeeManagementContext dbContext;
+        public RoleRepository()
+        {
+            this.dbContext = new EmployeeManagementContext();
+        }
     }
 }
