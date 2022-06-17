@@ -1,12 +1,23 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using EmployeeManagement_Business;
+using EmployeeManagement_Repository.Entities;
+using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace EmployeeManagement_Web.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class RoleController :ControllerBase
+    public class RoleController : Controller
     {
-        private readonly RoleBusiness roleBusiness;
+
+        private readonly ILogger<RoleController> _logger;
+        private readonly RoleBusiness RoleBusiness;
+        public RoleController(ILogger<RoleController> logger)
+        {
+            _logger = logger;
+            RoleBusiness = new RoleBusiness();
+        }
+
     }
 }
