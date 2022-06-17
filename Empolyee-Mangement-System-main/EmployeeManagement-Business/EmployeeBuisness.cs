@@ -13,10 +13,21 @@ namespace EmployeeManagement_Business
             this.employeeRepository = new EmployeeRepository();
         }
 
-        public async Task<Employee> GetEmployeeAsync(int Id)
+        public async Task<EmployeeGetByIdModel> GetEmployeeAsync(int Id)
         {
             var employee = await employeeRepository.GetById(Id);
-            return employee;
+            var employeeModel = new EmployeeGetByIdModel();
+
+
+            if (employee != null)
+            {
+                employeeModel.FirstName = employee.FirstName;
+                employeeModel.LastName = employee.LastName;
+                employeeModel.Gender = employee.Gender;
+                employeeModel.Email = employee.Email;
+                employeeModel.Phone = employee.Phone;
+            }
+            return employeeModel;
 
         }
 
@@ -43,21 +54,7 @@ namespace EmployeeManagement_Business
             await employeeRepository.Delete(Id);
             return HttpStatusCode.OK;
         }
-
-        public async Task<List<EmployeeGetModel>> GetAllEmployeesByIdAsync(int CompanyId)
-        {
-            var employees = employeeRepository.GetAllEmployeesListAsync(CompanyId);
-            var employeeModel = new List<EmployeeGetModel>();
-            foreach (var employee in employees)
-            {
-                var emp = new EmployeeGetModel();
-                emp.FirstName = employee.FirstName;
-                emp.LastName = employee.LastName;
-                employeeModel.Add(emp);
-
-            }
-            return employeeModel;
-        }
+      
 
         public async Task<List<EmployeeFilterModel>> FetchAllEmployeesAsync(String gender)
         {
@@ -77,7 +74,40 @@ namespace EmployeeManagement_Business
             }
             return employeesModel;
         }
+        //public async Task<List<EmployeeViewModel>> GetAllEmployeesAsync()
+        //{
+        //    var employees = employeeRepository.GetAllEmployees();
+
+        //    var employeeModel = new List<EmployeeViewModel>();
+        //    foreach (var employee in employees)
+        //    {
+        //        var emp = new EmployeeViewModel();
+        //        emp.FirstName = employee.FirstName;
+        //        emp.LastName = employee.LastName;
+        //        emp.Gender = employee.Gender;
+        //        emp.Phone = employee.Phone;
+        //        emp.Email = employee.Email;
+        //        emp.CompanyName = employee.Company.CompanyName;
+        //        emp.CompanyAddress = employee.Company.CompanyAddress;
+        //        employeeModel.Add(emp);
+        //    }
+        //    return employeeModel;
+        //}
+
+        public async Task<List<EmployeeGetModel>> GetAllEmployeesByIdAsync(int CompanyId)
+        {
+            var employees = employeeRepository.GetAllEmployeesListAsync(CompanyId);
+            var employeeModel = new List<EmployeeGetModel>();
+            foreach (var employee in employees)
+            {
+                var emp = new EmployeeGetModel();
+                emp.FirstName = employee.FirstName;
+                emp.LastName = employee.LastName;
+                employeeModel.Add(emp);
+
+
+            }
+            return employeeModel;
+        }
     }
 }
-
-

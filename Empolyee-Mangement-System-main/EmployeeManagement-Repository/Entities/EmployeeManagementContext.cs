@@ -20,6 +20,7 @@ namespace EmployeeManagement_Repository.Entities
         public virtual DbSet<Company> Companies { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -100,21 +101,30 @@ namespace EmployeeManagement_Repository.Entities
                     .HasConstraintName("FK_Employee_Company");
             });
 
-            modelBuilder.Entity<Roll>(entity =>
+            modelBuilder.Entity<User>(entity =>
             {
-                entity.ToTable("Roll");
+                entity.HasNoKey();
 
-                entity.Property(e => e.RollId).HasColumnName("roll_id");
+                entity.ToTable("User");
 
-                entity.Property(e => e.DateCreated)
-                    .HasColumnType("datetime")
-                    .HasColumnName("date_created");
+                entity.Property(e => e.RoleId).HasColumnName("Role_Id");
 
-                entity.Property(e => e.RollName)
+                entity.Property(e => e.UserEmail)
                     .IsRequired()
                     .HasMaxLength(10)
-                    .HasColumnName("roll_name")
-                    .IsFixedLength(true);
+                    .HasColumnName("User_Email");
+
+                entity.Property(e => e.UserFirstName)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .HasColumnName("User_First_Name");
+
+                entity.Property(e => e.UserLastName)
+                    .IsRequired()
+                    .HasMaxLength(10)
+                    .HasColumnName("User_Last_Name");
+
+                entity.Property(e => e.UserPhone).HasColumnName("User_Phone");
             });
 
             OnModelCreatingPartial(modelBuilder);

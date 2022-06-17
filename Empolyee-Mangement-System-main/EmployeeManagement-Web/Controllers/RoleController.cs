@@ -1,4 +1,5 @@
-﻿using EmployeeManagement_Business;
+﻿using Microsoft.AspNetCore.Mvc;
+using EmployeeManagement_Business;
 using EmployeeManagement_Repository.Entities;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -19,7 +20,7 @@ namespace EmployeeManagement_Web.Controllers
         }
         [HttpPost("SaveCompany")]
         public async Task<HttpStatusCode> SaveCompany(Role role)
-        {
+    {
             return await RoleBusiness.SaveCompanyAsync(role);
         }
     }

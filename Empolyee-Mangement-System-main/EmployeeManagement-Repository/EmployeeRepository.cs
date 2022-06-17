@@ -16,7 +16,7 @@ namespace EmployeeManagement_Repository
         {
             try
             {
-                dbContext.Employees.Add(new Employee
+                dbContext.Employees.Add( new Employee
                 {
                     FirstName = employee.FirstName,
                     LastName = employee.LastName,
@@ -59,29 +59,10 @@ namespace EmployeeManagement_Repository
             }
             return false;
         }
-
         public async Task<Employee> GetById(int Id)
         {
-            var result = from employee in dbContext.Employees
-                         from company in dbContext.Companies
-                         where employee.Id == Id
-                         orderby employee.FirstName descending
-                         select new Employee
-                         {
-                             Id = employee.Id,
-                             FirstName = employee.FirstName,
-                             LastName = employee.LastName,
-                             Gender = employee.Gender,
-                             Email = employee.Email,
-                             Phone = employee.Phone,
-                             DateCreated = employee.DateCreated,
-                             DateModified = employee.DateModified,
-                             CompanyId = employee.CompanyId,
-                             Company = employee.Company,
-                         };
-            return result.FirstOrDefault();
+            return dbContext.Employees.FirstOrDefault(x => x.Id == Id);
         }
-
         public List<Employee> GetAllEmployeesAsync(string gender)
 
         {
@@ -89,21 +70,25 @@ namespace EmployeeManagement_Repository
             return employees;
         }
 
+        public List<Employee> GetAllEmployees()
+
+        {
+            var employees = dbContext.Employees.Include(a => a.Company).ToList();
+            return employees;
+        }
         public async Task Delete(int employeeId)
         {
             var employee = await GetById(employeeId);
             if (employee != null)
             {
                 dbContext.Employees.Remove(employee);
-                await this.dbContext.SaveChangesAsync();
+                this.dbContext.SaveChangesAsync();
             }
         }
-
         public List<Employee> GetAllEmployeesListAsync(int CompanyId)
         {
             return dbContext.Employees.Where(x => x.CompanyId == CompanyId).ToList();
         }
-
         public async Task<List<Employee>> FetchAllEmployeeByGenderAsync(String gender)
         {
             var result = from employee in dbContext.Employees.Where(a => a.Gender == gender)
@@ -125,6 +110,7 @@ namespace EmployeeManagement_Repository
                          };
             return result.ToList();
         }
+
     }
 
 }
