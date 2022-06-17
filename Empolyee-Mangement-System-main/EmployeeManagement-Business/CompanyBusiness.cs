@@ -29,7 +29,7 @@ namespace EmployeeManagement_Business
             return company;
         }
 
-        
+
         public async Task<HttpStatusCode> UpdateCompanyAsync(Company company)
         {
             var status = await companyRepository.Update(company);

@@ -37,15 +37,15 @@ namespace EmployeeManagement_Business
         }
         public async Task<HttpStatusCode> DeleteEmployeeAsync(int Id)
         {
-             await employeeRepository.Delete(Id);
+            await employeeRepository.Delete(Id);
             return HttpStatusCode.OK;
         }
         public async Task<List<EmployeeViewModel>> GetAllEmployeesAsync()
         {
-            var employees= employeeRepository.GetAllEmployeesAsync();
-            
+            var employees = employeeRepository.GetAllEmployeesAsync();
+
             var employeeModel = new List<EmployeeViewModel>();
-            foreach(var employee in employees)
+            foreach (var employee in employees)
             {
                 var emp = new EmployeeViewModel();
                 emp.FirstName = employee.FirstName;
@@ -58,8 +58,8 @@ namespace EmployeeManagement_Business
                 employeeModel.Add(emp);
             }
             return employeeModel;
-        }      
-        
+        }
+
         public async Task<List<Employee>> FetchAllEmployeesAsync(String gender)
         {
             return await employeeRepository.FetchAllEmployeeByGenderAsync(gender);
