@@ -16,7 +16,7 @@ namespace EmployeeManagement_Repository
         {
             try
             {
-                dbContext.Employees.Add(new Employee
+                dbContext.Employees.Add( new Employee
                 {
                     FirstName = employee.FirstName,
                     LastName = employee.LastName,
@@ -89,6 +89,12 @@ namespace EmployeeManagement_Repository
             return employees;
         }
 
+        public List<Employee> GetAllEmployees()
+
+        {
+            var employees = dbContext.Employees.Include(a => a.Company).ToList();
+            return employees;
+        }
         public async Task Delete(int employeeId)
         {
             var employee = await GetById(employeeId);

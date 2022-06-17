@@ -12,7 +12,7 @@ namespace EmployeeManagement_Repository
         private readonly EmployeeManagementContext _dbContext;
         public UserRepository()
         {
-            this._dbContext = new EmployeeManagementContext;
+            this._dbContext = new EmployeeManagementContext();
         }
     }
 }

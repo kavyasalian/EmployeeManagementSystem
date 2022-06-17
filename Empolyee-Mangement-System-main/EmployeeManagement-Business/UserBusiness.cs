@@ -13,7 +13,7 @@ namespace EmployeeManagement_Business
 
         public UserBusiness()
         {
-            this.userRepository = new UserRepository;
+            this.userRepository = new UserRepository();
         }
     }
 }

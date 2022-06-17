@@ -8,6 +8,7 @@ namespace EmployeeManagement.Data
 {
     public class EmployeeCreateModel
     {
+
         public String FirstName { get; set; } = null!;
         public String LastName { get; set; } = null!;
         public String Gender { get; set; } = null!;
