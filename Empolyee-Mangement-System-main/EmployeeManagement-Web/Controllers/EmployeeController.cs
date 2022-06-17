@@ -10,7 +10,6 @@ namespace EmployeeManagement_Web.Controllers
     [Route("[controller]")]
     public class EmployeeController : Controller
     {
-
         private readonly ILogger<EmployeeController> _logger;
         private readonly EmployeeBuisness employeeBusiness;
 
@@ -19,18 +18,28 @@ namespace EmployeeManagement_Web.Controllers
             _logger = logger;
             employeeBusiness = new EmployeeBuisness();
         }
-
-        [HttpGet("GetAllEmployee")]
-        public async Task<List<Employee>> GetAllEmployee()
+        [HttpGet("FetchAllEmployeeById")]
+        public async Task<IActionResult> GetAllEmployeeAsync(int CompanyId)
         {
-             return await employeeBusiness.GetAllEmployeesAsync();
+            var employees = await employeeBusiness.GetAllEmployeesByIdAsync(CompanyId);
+
+            if (employees != null)
+            {
+                return Ok(employees);
+            }
+            else
+            {
+
+                return BadRequest(employees);
+            }
         }
+
         [HttpGet(Name = "GetEmployee")]
         public async Task<IActionResult> GetById(int employeeId)
         {
-            var employee = await employeeBusiness.GetEmployeeAsync(employeeId);
-            
-            if(employee != null)
+            var employee = await employeeBusiness.GetAllEmployeesByIdAsync(employeeId);
+
+            if (employee != null)
             {
                 return Ok(employee);
             }
@@ -39,12 +48,11 @@ namespace EmployeeManagement_Web.Controllers
                 return BadRequest(employee);
             }
         }
-
         [HttpGet("FetchAllEmployeeByGender")]
         public async Task<IActionResult> FetchAllEmployeeByGender(String gender)
         {
             var employees = await employeeBusiness.FetchAllEmployeesAsync(gender);
-          
+
             if (employees != null)
             {
                 return Ok(employees);
@@ -60,7 +68,7 @@ namespace EmployeeManagement_Web.Controllers
             return await employeeBusiness.SaveEmployeeAsync(employee);
         }
         [HttpPut(Name = "UpdateEmployee")]
-        public async Task<HttpStatusCode> UpdateEmployee(Employee employee)
+        public async Task<HttpStatusCode> UpdateEmployee(UpdateModelView employee)
         {
             return await employeeBusiness.UpdateEmployeeAsync(employee);
         }

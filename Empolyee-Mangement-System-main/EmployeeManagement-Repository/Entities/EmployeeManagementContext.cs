@@ -19,13 +19,14 @@ namespace EmployeeManagement_Repository.Entities
 
         public virtual DbSet<Company> Companies { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
+        public virtual DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=.;Database=EmployeeManagement;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=LAPTOP-Q3NBVS43\\SQLEXPRESS01;Database=EmployeeManagement;Trusted_Connection=True;");
             }
         }
 
@@ -97,6 +98,32 @@ namespace EmployeeManagement_Repository.Entities
                     .HasForeignKey(d => d.CompanyId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Employee_Company");
+            });
+
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("User");
+
+                entity.Property(e => e.RoleId).HasColumnName("Role_Id");
+
+                entity.Property(e => e.UserEmail)
+                    .IsRequired()
+                    .HasMaxLength(10)
+                    .HasColumnName("User_Email");
+
+                entity.Property(e => e.UserFirstName)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .HasColumnName("User_First_Name");
+
+                entity.Property(e => e.UserLastName)
+                    .IsRequired()
+                    .HasMaxLength(10)
+                    .HasColumnName("User_Last_Name");
+
+                entity.Property(e => e.UserPhone).HasColumnName("User_Phone");
             });
 
             OnModelCreatingPartial(modelBuilder);
