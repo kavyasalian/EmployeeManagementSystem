@@ -19,7 +19,7 @@ namespace EmployeeManagement_Repository.Entities
 
         public virtual DbSet<Company> Companies { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
-        public virtual DbSet<Roll> Rolls { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
