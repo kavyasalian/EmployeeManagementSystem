@@ -18,10 +18,6 @@ namespace EmployeeManagement_Web.Controllers
             _logger = logger;
             RoleBusiness = new RoleBusiness();
         }
-        [HttpPost("SaveCompany")]
-        public async Task<HttpStatusCode> SaveCompany(Role role)
-    {
-            return await RoleBusiness.SaveCompanyAsync(role);
-        }
+
     }
 }
