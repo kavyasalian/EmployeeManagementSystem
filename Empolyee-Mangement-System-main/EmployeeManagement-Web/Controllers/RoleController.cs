@@ -5,8 +5,8 @@ namespace EmployeeManagement_Web.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class RoleController : Controller
+    public class RoleController :ControllerBase
     {
-        private readonly RoleBusiness RoleBusiness;
+        private readonly RoleBusiness roleBusiness;
     }
 }

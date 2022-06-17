@@ -34,10 +34,10 @@ namespace EmployeeManagement_Web.Controllers
             }
         }
 
-        [HttpGet(Name = "GetEmployee")]
-        public async Task<IActionResult> GetById(int employeeId)
+        [HttpGet(Name = "GetEmployeeById")]
+        public async Task<IActionResult> GetById(int Id)
         {
-            var employee = await employeeBusiness.GetAllEmployeesByIdAsync(employeeId);
+            var employee = await employeeBusiness.GetEmployeeAsync(Id);
 
             if (employee != null)
             {
@@ -78,5 +78,6 @@ namespace EmployeeManagement_Web.Controllers
             var employee = await employeeBusiness.DeleteEmployeeAsync(employeeId);
             return Ok(employee);
         }
+
     }
 }
