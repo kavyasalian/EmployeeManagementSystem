@@ -12,5 +12,3 @@
     CONSTRAINT [FK_Employee_Company] FOREIGN KEY ([CompanyId]) REFERENCES [dbo].[Company] ([CompanyId])
 );
 
-
-
