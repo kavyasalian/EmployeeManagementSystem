@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using EmployeeManagement_Repository.Entities;
 using System.Threading.Tasks;
+using EmployeeManagement.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace EmployeeManagement_Repository
 {
@@ -14,5 +16,31 @@ namespace EmployeeManagement_Repository
         {
             this.dbContext = new EmployeeManagementContext();
         }
+        public async Task<bool> Create(RoleCreateModel role)
+        {
+            try
+            {
+                dbContext.Roles.Add(new Role
+                {
+                    RoleId = role.RoleId,
+                    RoleName = role.RoleName,
+                    DateCreated = role.DateCreated
+                });
+
+                await dbContext.SaveChangesAsync();
+                return true;
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        public async Task<List<Role>> GetAllRolesAsync()
+        {
+            return dbContext.Roles.Include(x => x.RoleId).ToList();
+        }
+
     }
-}
+    }
+

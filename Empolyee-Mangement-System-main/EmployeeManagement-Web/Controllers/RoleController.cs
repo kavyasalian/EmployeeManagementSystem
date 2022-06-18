@@ -3,6 +3,7 @@ using EmployeeManagement_Business;
 using EmployeeManagement_Repository.Entities;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
+using EmployeeManagement.Data;
 
 namespace EmployeeManagement_Web.Controllers
 {
@@ -17,6 +18,23 @@ namespace EmployeeManagement_Web.Controllers
         {
             _logger = logger;
             RoleBusiness = new RoleBusiness();
+        }
+        [HttpPost(Name = "SaveRole")]
+        public async Task<HttpStatusCode> SaveEmployee(RoleCreateModel role)
+        {
+            return await RoleBusiness.SaveRoleAsync(role);
+        }
+
+
+        [HttpGet("GetAllRoles")]
+        public async Task<IActionResult> GetAllRoles()
+        {
+            var roles = await RoleBusiness.GetAllRoleAsync();
+            if (roles != null)
+            {
+                return Ok(roles);
+            }
+            return NoContent();
         }
 
     }
