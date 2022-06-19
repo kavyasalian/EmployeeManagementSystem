@@ -1,18 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+
 using EmployeeManagement_Repository;
+using EmployeeManagement_Repository.Entities;
+using System.Net;
 
 namespace EmployeeManagement_Business
 {
     public class RoleBusiness
     {
-     private readonly RoleRepository roleRepository;
+        private readonly RoleRepository RoleRepository;
         public RoleBusiness()
         {
-            roleRepository = new RoleRepository();  
+            this.RoleRepository = new RoleRepository();
         }
     }
 }
