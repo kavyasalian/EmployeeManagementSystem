@@ -1,4 +1,5 @@
-﻿using EmployeeManagement_Repository.Entities;
+﻿using EmployeeManagement.Data;
+using EmployeeManagement_Repository.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,30 @@ namespace EmployeeManagement_Repository
         public UserRepository()
         {
             this._dbContext = new EmployeeManagementContext();
+        }
+        public async Task<bool> Create(UserCreateModel user)
+        {
+            try
+            {
+                _dbContext.Users.Add(new User
+                {
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    Email=user.Email,
+                    Password=user.Password,
+                    Phone = user.Phone,
+                    RoleId = user.RoleId,
+                });
+
+                await _dbContext.SaveChangesAsync();
+                return true;
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
         }
     }
 }
