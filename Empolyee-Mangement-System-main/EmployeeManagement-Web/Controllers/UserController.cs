@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using EmployeeManagement_Business;
+using EmployeeManagement.Data;
+using System.Net;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,7 +11,14 @@ namespace EmployeeManagement_Web.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        // GET: api/<UserController>
+        private readonly ILogger<UserController> _logger;
+        private readonly UserBusiness userBusiness;
+        public UserController(ILogger<UserController> logger)
+        {
+            _logger = logger;
+            userBusiness = new UserBusiness();
+        }
+
         [HttpGet]
         public IEnumerable<string> Get()
         {
@@ -30,15 +40,18 @@ namespace EmployeeManagement_Web.Controllers
         }
 
         // PUT api/<UserController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut(Name = "UpdateUser")]
+        public async Task<HttpStatusCode> UpdateEmployee(UserUpdateModel user)
         {
+            return await userBusiness.UpdateUserAsync(user);
         }
 
         // DELETE api/<UserController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete(Name = "DeleteUser")]
+        public async Task<IActionResult> DeleteById(int UserId)
         {
+            var user = await userBusiness.DeleteUserAsync(UserId);
+            return Ok(user);
         }
     }
 }
