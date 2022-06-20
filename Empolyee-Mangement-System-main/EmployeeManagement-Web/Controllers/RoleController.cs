@@ -1,7 +1,7 @@
-﻿using EmployeeManagement_Business;
+﻿using EmployeeManagement.Data;
+using EmployeeManagement_Business;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
-using EmployeeManagement.Data;
 
 namespace EmployeeManagement_Web.Controllers
 {
@@ -37,5 +37,10 @@ namespace EmployeeManagement_Web.Controllers
             return NoContent();
         }
 
+        [HttpPut("UpdateRole")]
+        public async Task<HttpStatusCode> UpdateRole(RoleViewModel roleView)
+        {
+            return await RoleBusiness.UpdateRoleAsync(roleView);
+        }
     }
 }
