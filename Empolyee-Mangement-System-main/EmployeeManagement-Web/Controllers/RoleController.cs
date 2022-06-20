@@ -7,6 +7,7 @@ using EmployeeManagement.Data;
 
 namespace EmployeeManagement_Web.Controllers
 {
+
     [ApiController]
     [Route("[controller]")]
     public class RoleController : ControllerBase
@@ -19,6 +20,7 @@ namespace EmployeeManagement_Web.Controllers
             _logger = logger;
             RoleBusiness = new RoleBusiness();
         }
+
         [HttpPost("SaveRoles")]
         public async Task<HttpStatusCode> SaveEmployee(RoleGetModel role)
         {

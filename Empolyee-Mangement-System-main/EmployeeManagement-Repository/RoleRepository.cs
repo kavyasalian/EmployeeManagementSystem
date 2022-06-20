@@ -18,7 +18,7 @@ namespace EmployeeManagement_Repository
         }
         public async Task<bool> Create(RoleGetModel role)
         {
-            try
+           try
             {
                 dbContext.Roles.Add(new Role
                 {
