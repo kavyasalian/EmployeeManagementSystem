@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using EmployeeManagement_Business;
-using EmployeeManagement_Repository.Entities;
+﻿using EmployeeManagement_Business;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using EmployeeManagement.Data;
