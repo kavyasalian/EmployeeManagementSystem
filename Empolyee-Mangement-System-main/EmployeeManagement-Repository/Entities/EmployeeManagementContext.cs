@@ -101,30 +101,52 @@ namespace EmployeeManagement_Repository.Entities
                     .HasConstraintName("FK_Employee_Company");
             });
 
-            modelBuilder.Entity<User>(entity =>
+            modelBuilder.Entity<Role>(entity =>
             {
-                entity.HasNoKey();
+                entity.ToTable("Role");
 
-                entity.ToTable("User");
+                entity.Property(e => e.DateCreated).HasColumnType("date");
 
-                entity.Property(e => e.RoleId).HasColumnName("Role_Id");
-
-                entity.Property(e => e.UserEmail)
-                    .IsRequired()
-                    .HasMaxLength(10)
-                    .HasColumnName("User_Email");
-
-                entity.Property(e => e.UserFirstName)
+                entity.Property(e => e.RoleName)
                     .IsRequired()
                     .HasMaxLength(50)
-                    .HasColumnName("User_First_Name");
+                    .IsUnicode(false);
+            });
 
-                entity.Property(e => e.UserLastName)
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.ToTable("User");
+
+                entity.Property(e => e.Email)
                     .IsRequired()
-                    .HasMaxLength(10)
-                    .HasColumnName("User_Last_Name");
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
-                entity.Property(e => e.UserPhone).HasColumnName("User_Phone");
+                entity.Property(e => e.FirstName)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.LastName)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Password)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Phone)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.Role)
+                    .WithMany(p => p.Users)
+                    .HasForeignKey(d => d.RoleId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_User_Role");
             });
 
             OnModelCreatingPartial(modelBuilder);

@@ -1,14 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using EmployeeManagement_Business;
-using EmployeeManagement_Repository.Entities;
+﻿using EmployeeManagement_Business;
 using Microsoft.AspNetCore.Mvc;
-using System.Net;
 
 namespace EmployeeManagement_Web.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class RoleController : Controller
+    public class RoleController : ControllerBase
     {
 
         private readonly ILogger<RoleController> _logger;
@@ -17,6 +14,28 @@ namespace EmployeeManagement_Web.Controllers
         {
             _logger = logger;
             RoleBusiness = new RoleBusiness();
+        }
+
+        [HttpGet("GetCompanyById")]
+        public async Task<IActionResult> GetById(int Id)
+        {
+            var role = await RoleBusiness.GetRoleAsync(Id);
+
+            if (role != null)
+            {
+                return Ok(role);
+            }
+            else
+            {
+                return BadRequest(role);
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteById(int Id)
+        {
+            var role = await RoleBusiness.DeleteRoleAsync(Id);
+            return Ok(role);
         }
 
     }
