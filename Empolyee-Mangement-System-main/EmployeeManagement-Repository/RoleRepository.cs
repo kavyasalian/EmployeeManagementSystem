@@ -14,5 +14,18 @@ namespace EmployeeManagement_Repository
         {
             this.dbContext = new EmployeeManagementContext();
         }
+        public async Task<Role> GetById(int Id)
+        {
+            return dbContext.Roles.FirstOrDefault(a => a.RoleId == Id);
+        }
+        public async Task Delete(int roleId)
+        {
+            var role = await GetById(roleId);
+            if (role != null)
+            {
+                dbContext.Roles.Remove(role);
+                this.dbContext.SaveChangesAsync();
+            }
+        }
     }
 }
