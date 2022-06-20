@@ -19,11 +19,11 @@ namespace EmployeeManagement_Business
 
             foreach (Role role in roles)
             {
-                    roleList.Add(new RoleGetModel
+                roleList.Add(new RoleGetModel
                 {
                     RoleId = role.RoleId,
                     RoleName = role.RoleName,
-                    DateCreated=role.DateCreated,
+                    DateCreated = role.DateCreated,
 
                 });
             }
@@ -37,7 +37,7 @@ namespace EmployeeManagement_Business
             {
                 return HttpStatusCode.OK;
             }
-          return HttpStatusCode.BadRequest;
+            return HttpStatusCode.BadRequest;
         }
     }
 }
