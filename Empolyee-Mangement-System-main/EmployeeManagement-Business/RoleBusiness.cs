@@ -31,5 +31,24 @@ namespace EmployeeManagement_Business
             await RoleRepository.Delete(Id);
             return HttpStatusCode.OK;
         }
+
+        public async Task<HttpStatusCode> UpdateRoleAsync(RoleViewModel roleView)
+        {
+            var role = new Role
+            {
+                RoleId = roleView.Id,
+                RoleName = roleView.RoleName,
+                DateCreated = roleView.DateCreated,
+            };
+            var status = await RoleRepository.Update(role);
+            if (status)
+            {
+                return HttpStatusCode.OK;
+            }
+            else
+            {
+                return HttpStatusCode.BadRequest;
+            }
+        }
     }
 }
