@@ -1,6 +1,4 @@
-﻿
-
-using EmployeeManagement.Data;
+﻿using EmployeeManagement.Data;
 using EmployeeManagement_Repository;
 using EmployeeManagement_Repository.Entities;
 using System.Net;
@@ -25,12 +23,12 @@ namespace EmployeeManagement_Business
                 {
                     RoleId = role.RoleId,
                     RoleName = role.RoleName,
-                  
+
                 });
             }
             return roleList;
         }
-        public async Task<HttpStatusCode> SaveRoleAsync(RoleCreateModel role)
+        public async Task<HttpStatusCode> SaveRoleAsync(RoleGetModel role)
         {
             var status = await RoleRepository.Create(role);
 

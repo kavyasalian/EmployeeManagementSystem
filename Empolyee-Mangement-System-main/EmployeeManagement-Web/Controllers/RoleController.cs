@@ -9,7 +9,7 @@ namespace EmployeeManagement_Web.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class RoleController : Controller
+    public class RoleController : ControllerBase
     {
 
         private readonly ILogger<RoleController> _logger;
@@ -19,8 +19,8 @@ namespace EmployeeManagement_Web.Controllers
             _logger = logger;
             RoleBusiness = new RoleBusiness();
         }
-        [HttpPost(Name = "SaveRole")]
-        public async Task<HttpStatusCode> SaveEmployee(RoleCreateModel role)
+        [HttpPost("SaveRole")]
+        public async Task<HttpStatusCode> SaveEmployee(RoleGetModel role)
         {
             return await RoleBusiness.SaveRoleAsync(role);
         }

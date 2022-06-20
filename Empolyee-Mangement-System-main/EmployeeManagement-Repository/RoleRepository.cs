@@ -16,7 +16,7 @@ namespace EmployeeManagement_Repository
         {
             this.dbContext = new EmployeeManagementContext();
         }
-        public async Task<bool> Create(RoleCreateModel role)
+        public async Task<bool> Create(RoleGetModel role)
         {
             try
             {
@@ -38,9 +38,9 @@ namespace EmployeeManagement_Repository
         }
         public async Task<List<Role>> GetAllRolesAsync()
         {
-            return dbContext.Roles.Include(x => x.RoleId).ToList();
+            return dbContext.Roles.ToList();
         }
 
     }
-    }
+}
 
