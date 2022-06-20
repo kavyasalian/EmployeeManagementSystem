@@ -1,14 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using EmployeeManagement_Business;
-using EmployeeManagement_Repository.Entities;
-using Microsoft.AspNetCore.Mvc;
 using System.Net;
+using EmployeeManagement.Data;
 
 namespace EmployeeManagement_Web.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class RoleController : Controller
+    public class RoleController : ControllerBase
     {
 
         private readonly ILogger<RoleController> _logger;
@@ -19,5 +18,10 @@ namespace EmployeeManagement_Web.Controllers
             RoleBusiness = new RoleBusiness();
         }
 
+        [HttpPut("UpdateRole")]
+        public async Task<HttpStatusCode> UpdateRole(RoleViewModel roleView)
+        {
+            return await RoleBusiness.UpdateRoleAsync(roleView);
+        }
     }
 }
