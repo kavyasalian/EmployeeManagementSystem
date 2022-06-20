@@ -1,4 +1,5 @@
-﻿using EmployeeManagement_Business;
+﻿using EmployeeManagement.Data;
+using EmployeeManagement_Business;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -43,6 +44,19 @@ namespace EmployeeManagement_Web.Controllers
             {
                 return BadRequest(user);
             }
+        }
+
+        [HttpPut("UpdateUser")]
+        public async Task<HttpStatusCode> UpdateEmployee(UserUpdateModel user)
+        {
+            return await userBusiness.UpdateUserAsync(user);
+        }
+
+        [HttpDelete("DeleteUser")]
+        public async Task<IActionResult> DeleteById(int UserId)
+        {
+            var user = await userBusiness.DeleteUserAsync(UserId);
+            return Ok(user);
         }
     }
 }
