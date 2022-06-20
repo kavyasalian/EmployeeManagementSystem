@@ -19,7 +19,7 @@ namespace EmployeeManagement_Web.Controllers
             _logger = logger;
             RoleBusiness = new RoleBusiness();
         }
-        [HttpPost("SaveRole")]
+        [HttpPost("SaveRoles")]
         public async Task<HttpStatusCode> SaveEmployee(RoleGetModel role)
         {
             return await RoleBusiness.SaveRoleAsync(role);
