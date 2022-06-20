@@ -1,9 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using EmployeeManagement.Data;
 using EmployeeManagement_Business;
-using EmployeeManagement.Data;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using System.Net;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace EmployeeManagement_Web.Controllers
 {
@@ -18,36 +17,42 @@ namespace EmployeeManagement_Web.Controllers
             _logger = logger;
             userBusiness = new UserBusiness();
         }
-
-        [HttpGet]
-        public IEnumerable<string> Get()
+        [HttpGet("GetUser")]
+        public async Task<IActionResult> GetAllUsersAsync()
         {
-            return new string[] { "value1", "value2" };
+            var users = await userBusiness.GetUsersListByIdAsync();
+
+            if (users != null)
+            {
+                return Ok(users);
+            }
+            else
+            {
+                return BadRequest(users);
+            }
+        }
+        [HttpGet("GetUserById")]
+        public async Task<IActionResult> GetUserById(int Id)
+        {
+            var user = await userBusiness.GetUserByIdAsync(Id);
+
+            if (user != null)
+            {
+                return Ok(user);
+            }
+            else
+            {
+                return BadRequest(user);
+            }
         }
 
-        // GET api/<UserController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-
-            return "value";
-        }
-
-        // POST api/<UserController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT api/<UserController>/5
-        [HttpPut(Name = "UpdateUser")]
+        [HttpPut("UpdateUser")]
         public async Task<HttpStatusCode> UpdateEmployee(UserUpdateModel user)
         {
             return await userBusiness.UpdateUserAsync(user);
         }
 
-        // DELETE api/<UserController>/5
-        [HttpDelete(Name = "DeleteUser")]
+        [HttpDelete("DeleteUser")]
         public async Task<IActionResult> DeleteById(int UserId)
         {
             var user = await userBusiness.DeleteUserAsync(UserId);

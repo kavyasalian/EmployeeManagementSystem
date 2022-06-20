@@ -1,24 +1,34 @@
-﻿using EmployeeManagement_Repository.Entities;
+﻿using EmployeeManagement.Data;
+using EmployeeManagement_Repository.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using EmployeeManagement.Data;
 using System.Threading.Tasks;
 
 namespace EmployeeManagement_Repository
 {
     public class UserRepository
     {
-        private readonly EmployeeManagementContext _dbContext;
+        private readonly EmployeeManagementContext dbContext;
         public UserRepository()
         {
-            this._dbContext = new EmployeeManagementContext();
+            this.dbContext = new EmployeeManagementContext();
+        }
+        public List<User> GetAllUsersAsync()
+        {
+            return dbContext.Users.ToList();
+
+        }
+        public async Task<User> GetUserById(int Id)
+        {
+            return dbContext.Users.FirstOrDefault(x => x.UserId == Id);
         }
         public async Task<bool> Update(UserUpdateModel user)
         {
 
-            var existingUser = _dbContext.Users.Where(a => a.UserId == user.UserId).FirstOrDefault();
+            var existingUser = dbContext.Users.Where(a => a.UserId == user.UserId).FirstOrDefault();
 
             if (existingUser != null)
             {
@@ -27,7 +37,7 @@ namespace EmployeeManagement_Repository
                 existingUser.Email = user.UserEmail;
                 existingUser.Phone = user.UserPhone;
                 existingUser.RoleId = user.RoleId;
-                await this._dbContext.SaveChangesAsync();
+                await this.dbContext.SaveChangesAsync();
                 return true;
             }
             return false;
@@ -37,17 +47,17 @@ namespace EmployeeManagement_Repository
             var user = await GetById(UserId);
             if (user != null)
             {
-                _dbContext.Users.Remove(user);
-                await _dbContext.SaveChangesAsync();
+                dbContext.Users.Remove(user);
+                await dbContext.SaveChangesAsync();
                 return true;
             }
             return false;
 
         }
-
         private async Task<User> GetById(int UserId)
         {
-            return _dbContext.Users.FirstOrDefault(x => x.UserId == UserId);
+            return dbContext.Users.FirstOrDefault(x => x.UserId == UserId);
         }
+
     }
 }
