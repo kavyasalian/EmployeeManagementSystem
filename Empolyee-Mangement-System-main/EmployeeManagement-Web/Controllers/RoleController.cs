@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using EmployeeManagement.Data;
 using EmployeeManagement_Business;
+using Microsoft.AspNetCore.Mvc;
 using System.Net;
-using EmployeeManagement.Data;
 
 namespace EmployeeManagement_Web.Controllers
 {
@@ -16,6 +16,28 @@ namespace EmployeeManagement_Web.Controllers
         {
             _logger = logger;
             RoleBusiness = new RoleBusiness();
+        }
+
+        [HttpGet("GetCompanyById")]
+        public async Task<IActionResult> GetById(int Id)
+        {
+            var role = await RoleBusiness.GetRoleAsync(Id);
+
+            if (role != null)
+            {
+                return Ok(role);
+            }
+            else
+            {
+                return BadRequest(role);
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteById(int Id)
+        {
+            var role = await RoleBusiness.DeleteRoleAsync(Id);
+            return Ok(role);
         }
 
         [HttpPut("UpdateRole")]
