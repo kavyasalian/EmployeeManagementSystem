@@ -20,7 +20,7 @@ namespace EmployeeManagement_Repository
         {
            try
             {
-                dbContext.Roles.Add(new Role
+                _ = dbContext.Roles.Add(new Role
                 {
                     RoleId = role.RoleId,
                     RoleName = role.RoleName,
