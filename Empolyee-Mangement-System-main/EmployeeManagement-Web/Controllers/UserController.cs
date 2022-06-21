@@ -1,7 +1,9 @@
 ﻿using EmployeeManagement.Data;
 using EmployeeManagement_Business;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System.Net;
 
 namespace EmployeeManagement_Web.Controllers
@@ -17,6 +19,7 @@ namespace EmployeeManagement_Web.Controllers
             _logger = logger;
             userBusiness = new UserBusiness();
         }
+
         [HttpGet("GetUser")]
         public async Task<IActionResult> GetAllUsersAsync()
         {
@@ -31,6 +34,7 @@ namespace EmployeeManagement_Web.Controllers
                 return BadRequest(users);
             }
         }
+
         [HttpGet("GetUserById")]
         public async Task<IActionResult> GetUserById(int Id)
         {
@@ -57,6 +61,27 @@ namespace EmployeeManagement_Web.Controllers
         {
             var user = await userBusiness.DeleteUserAsync(UserId);
             return Ok(user);
+        }
+
+        [AllowAnonymous]
+        [HttpPost("Login")]
+        public async Task<IActionResult> Login(LoginModel loginmodel)
+        {
+
+            var login = await userBusiness.Login(loginmodel);
+            if (login != null)
+            {
+                await userBusiness.PopulateJwtTokenAsync(login);
+                var data = JsonConvert.SerializeObject(login);
+                Response.Cookies.Append("ss", data);
+                return Ok(login);
+            }
+            else
+            {
+                return BadRequest();
+            }
+
+
         }
     }
 }
