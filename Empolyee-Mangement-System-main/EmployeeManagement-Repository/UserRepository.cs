@@ -59,6 +59,31 @@ namespace EmployeeManagement_Repository
             return dbContext.Users.FirstOrDefault(x => x.UserId == UserId);
         }
 
+        public async Task<bool> Create(UserCreateModel user)
+        {
+            try
+            {
+                dbContext.Users.Add(new User
+                {
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    Email = user.Email,
+                    Password = user.Password,
+                    Phone = user.Phone,
+                    RoleId = user.RoleId,
+                });
+
+                await dbContext.SaveChangesAsync();
+                return true;
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
+        }
+
         public async Task<User> Login(string userEmail, string password)
         {
             var user = dbContext.Users.SingleOrDefault(x => x.Email == userEmail && x.Password == password);

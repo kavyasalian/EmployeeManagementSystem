@@ -80,6 +80,16 @@ namespace EmployeeManagement_Business
             var status = await userRepository.Delete(userId);
             return status ? HttpStatusCode.OK : HttpStatusCode.BadRequest;
         }
+        public async Task<HttpStatusCode> SaveUserAsync(UserCreateModel user)
+        {
+            var status = await userRepository.Create(user);
+
+            if (status)
+            {
+                return HttpStatusCode.OK;
+            }
+            return HttpStatusCode.BadRequest;
+        }
 
         public async Task<AuthenticationModel> Login(LoginModel loginmodel)
         {
@@ -96,6 +106,7 @@ namespace EmployeeManagement_Business
 
             return null;
         }
+
         public async Task PopulateJwtTokenAsync(AuthenticationModel authModel)
         {
             var tokenHandler = new JwtSecurityTokenHandler();

@@ -54,7 +54,7 @@ namespace EmployeeManagement_Business
             await employeeRepository.Delete(Id);
             return HttpStatusCode.OK;
         }
-      
+
 
         public async Task<List<EmployeeFilterModel>> FetchAllEmployeesAsync(String gender)
         {
