@@ -46,6 +46,13 @@ namespace EmployeeManagement_Web.Controllers
             }
         }
 
+        // POST api/<UserController>
+        [HttpPost]
+        public async Task<HttpStatusCode> SaveUser(UserCreateModel user)
+        {
+            return await userBusiness.SaveUserAsync(user);
+        }
+
         [HttpPut("UpdateUser")]
         public async Task<HttpStatusCode> UpdateEmployee(UserUpdateModel user)
         {
