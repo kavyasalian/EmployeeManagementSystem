@@ -44,7 +44,6 @@ namespace EmployeeManagement_Web.Controllers
             {
                 return BadRequest(user);
             }
-            return "value";
         }
 
         // POST api/<UserController>

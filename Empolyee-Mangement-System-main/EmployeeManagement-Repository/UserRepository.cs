@@ -63,17 +63,17 @@ namespace EmployeeManagement_Repository
         {
             try
             {
-                _dbContext.Users.Add(new User
+                dbContext.Users.Add(new User
                 {
                     FirstName = user.FirstName,
                     LastName = user.LastName,
-                    Email=user.Email,
-                    Password=user.Password,
+                    Email = user.Email,
+                    Password = user.Password,
                     Phone = user.Phone,
                     RoleId = user.RoleId,
                 });
 
-                await _dbContext.SaveChangesAsync();
+                await dbContext.SaveChangesAsync();
                 return true;
 
             }
