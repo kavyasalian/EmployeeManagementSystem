@@ -12,24 +12,32 @@ namespace EmployeeManagement_Business
         {
             this.RoleRepository = new RoleRepository();
         }
-
-        public async Task<RoleGetByIdModel> GetRoleAsync(int Id)
+        public async Task<List<RoleGetModel>> GetAllRoleAsync()
         {
-            var role = await RoleRepository.GetById(Id);
-            var roleModel = new RoleGetByIdModel();
+            var roles = await RoleRepository.GetAllRolesAsync();
+            var roleList = new List<RoleGetModel>();
 
-            if (role != null)
+            foreach (Role role in roles)
             {
-                roleModel.RoleId = role.RoleId;
-                roleModel.RoleName = role.RoleName;
-                roleModel.DateCreated = role.DateCreated;
+                roleList.Add(new RoleGetModel
+                {
+                    RoleId = role.RoleId,
+                    RoleName = role.RoleName,
+                    DateCreated = role.DateCreated,
+
+                });
             }
-            return roleModel;
+            return roleList;
         }
-        public async Task<HttpStatusCode> DeleteRoleAsync(int Id)
+        public async Task<HttpStatusCode> SaveRoleAsync(RoleGetModel role)
         {
-            await RoleRepository.Delete(Id);
-            return HttpStatusCode.OK;
+            var status = await RoleRepository.Create(role);
+
+            if (status)
+            {
+                return HttpStatusCode.OK;
+            }
+            return HttpStatusCode.BadRequest;
         }
 
         public async Task<HttpStatusCode> UpdateRoleAsync(RoleViewModel roleView)

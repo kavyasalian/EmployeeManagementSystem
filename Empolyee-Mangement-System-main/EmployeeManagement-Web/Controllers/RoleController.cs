@@ -5,6 +5,7 @@ using System.Net;
 
 namespace EmployeeManagement_Web.Controllers
 {
+
     [ApiController]
     [Route("[controller]")]
     public class RoleController : ControllerBase
@@ -18,26 +19,22 @@ namespace EmployeeManagement_Web.Controllers
             RoleBusiness = new RoleBusiness();
         }
 
-        [HttpGet("GetCompanyById")]
-        public async Task<IActionResult> GetById(int Id)
+        [HttpPost("SaveRoles")]
+        public async Task<HttpStatusCode> SaveEmployee(RoleGetModel role)
         {
-            var role = await RoleBusiness.GetRoleAsync(Id);
-
-            if (role != null)
-            {
-                return Ok(role);
-            }
-            else
-            {
-                return BadRequest(role);
-            }
+            return await RoleBusiness.SaveRoleAsync(role);
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteById(int Id)
+
+        [HttpGet("GetAllRoles")]
+        public async Task<IActionResult> GetAllRoles()
         {
-            var role = await RoleBusiness.DeleteRoleAsync(Id);
-            return Ok(role);
+            var roles = await RoleBusiness.GetAllRoleAsync();
+            if (roles != null)
+            {
+                return Ok(roles);
+            }
+            return NoContent();
         }
 
         [HttpPut("UpdateRole")]
