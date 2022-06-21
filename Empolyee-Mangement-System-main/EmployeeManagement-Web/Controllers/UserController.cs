@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+﻿using EmployeeManagement.Data;
+using EmployeeManagement_Business;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace EmployeeManagement_Web.Controllers
 {
@@ -8,37 +10,53 @@ namespace EmployeeManagement_Web.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        // GET: api/<UserController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        private readonly ILogger<UserController> _logger;
+        private readonly UserBusiness userBusiness;
+        public UserController(ILogger<UserController> logger)
         {
-            return new string[] { "value1", "value2" };
+            _logger = logger;
+            userBusiness = new UserBusiness();
+        }
+        [HttpGet("GetUser")]
+        public async Task<IActionResult> GetAllUsersAsync()
+        {
+            var users = await userBusiness.GetUsersListByIdAsync();
+
+            if (users != null)
+            {
+                return Ok(users);
+            }
+            else
+            {
+                return BadRequest(users);
+            }
+        }
+        [HttpGet("GetUserById")]
+        public async Task<IActionResult> GetUserById(int Id)
+        {
+            var user = await userBusiness.GetUserByIdAsync(Id);
+
+            if (user != null)
+            {
+                return Ok(user);
+            }
+            else
+            {
+                return BadRequest(user);
+            }
         }
 
-        // GET api/<UserController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpPut("UpdateUser")]
+        public async Task<HttpStatusCode> UpdateEmployee(UserUpdateModel user)
         {
-
-            return "value";
+            return await userBusiness.UpdateUserAsync(user);
         }
 
-        // POST api/<UserController>
-        [HttpPost]
-        public void Post([FromBody] string value)
+        [HttpDelete("DeleteUser")]
+        public async Task<IActionResult> DeleteById(int UserId)
         {
-        }
-
-        // PUT api/<UserController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<UserController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            var user = await userBusiness.DeleteUserAsync(UserId);
+            return Ok(user);
         }
     }
 }
