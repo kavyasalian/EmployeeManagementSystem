@@ -83,5 +83,18 @@ namespace EmployeeManagement_Repository
             }
 
         }
+
+        public async Task<User> Login(string userEmail, string password)
+        {
+            var user = dbContext.Users.SingleOrDefault(x => x.Email == userEmail && x.Password == password);
+            if (user != null)
+            {
+                return user;
+            }
+            else
+            {
+                return user;
+            }
+        }
     }
 }

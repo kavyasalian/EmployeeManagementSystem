@@ -1,10 +1,13 @@
 ﻿using EmployeeManagement.Data;
 using EmployeeManagement_Repository;
 using EmployeeManagement_Repository.Entities;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Net;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -86,6 +89,42 @@ namespace EmployeeManagement_Business
                 return HttpStatusCode.OK;
             }
             return HttpStatusCode.BadRequest;
+        }
+
+        public async Task<AuthenticationModel> Login(LoginModel loginmodel)
+        {
+            var login = await userRepository.Login(loginmodel.UserEmail, loginmodel.Password);
+
+            var authmodel = new AuthenticationModel();
+            if (login != null)
+            {
+                authmodel.Name = login.FirstName;
+                authmodel.UserId = login.UserId;
+                authmodel.Email = login.Email;
+                return authmodel;
+            }
+
+            return null;
+        }
+
+        public async Task PopulateJwtTokenAsync(AuthenticationModel authModel)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes("!@#$%^&*()!@#$%^&*()");
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(new Claim[]
+                {
+                        new Claim(ClaimTypes.NameIdentifier, authModel.UserId.ToString()),
+                        new Claim(ClaimTypes.Email, authModel.Email.ToString()),
+                        new Claim(ClaimTypes.Name, authModel.Name.ToString())
+                }),
+                Expires = authModel.TokenExpiryDate = DateTime.UtcNow.AddMinutes(50),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
+            };
+
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            authModel.Token = tokenHandler.WriteToken(token);
         }
     }
 }
