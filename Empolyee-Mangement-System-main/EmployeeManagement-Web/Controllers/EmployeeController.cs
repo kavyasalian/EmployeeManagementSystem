@@ -7,7 +7,7 @@ using System.Net;
 namespace EmployeeManagement_Web.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class EmployeeController : Controller
     {
         private readonly ILogger<EmployeeController> _logger;
@@ -18,20 +18,12 @@ namespace EmployeeManagement_Web.Controllers
             _logger = logger;
             employeeBusiness = new EmployeeBuisness();
         }
-        [HttpGet("FetchAllEmployeeById")]
-        public async Task<IActionResult> GetAllEmployeeAsync(int CompanyId)
+
+        [HttpGet("GetAllEmployees")]
+        public async Task<List<EmployeeGetModel>> GetAllEmployeeAsync()
         {
-            var employees = await employeeBusiness.GetAllEmployeesByIdAsync(CompanyId);
-
-            if (employees != null)
-            {
-                return Ok(employees);
-            }
-            else
-            {
-
-                return BadRequest(employees);
-            }
+            var employees = await employeeBusiness.GetAllEmployeesByIdAsync();
+           return employees;
         }
 
         [HttpGet(Name = "GetEmployeeById")]
@@ -48,6 +40,7 @@ namespace EmployeeManagement_Web.Controllers
                 return BadRequest(employee);
             }
         }
+
         [HttpGet("FetchAllEmployeeByGender")]
         public async Task<IActionResult> FetchAllEmployeeByGender(String gender)
         {
@@ -62,16 +55,19 @@ namespace EmployeeManagement_Web.Controllers
                 return BadRequest(employees);
             }
         }
+
         [HttpPost(Name = "SaveEmployee")]
         public async Task<HttpStatusCode> SaveEmployee(EmployeeCreateModel employee)
         {
             return await employeeBusiness.SaveEmployeeAsync(employee);
         }
+
         [HttpPut(Name = "UpdateEmployee")]
         public async Task<HttpStatusCode> UpdateEmployee(UpdateModelView employee)
         {
             return await employeeBusiness.UpdateEmployeeAsync(employee);
         }
+
         [HttpDelete(Name = "DeeleteEmployee")]
         public async Task<IActionResult> DeleteById(int employeeId)
         {
