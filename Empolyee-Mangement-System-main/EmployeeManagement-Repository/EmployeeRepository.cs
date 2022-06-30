@@ -85,9 +85,9 @@ namespace EmployeeManagement_Repository
                 this.dbContext.SaveChangesAsync();
             }
         }
-        public List<Employee> GetAllEmployeesListAsync(int CompanyId)
+        public async Task<List<Employee>> GetAllEmployeesListAsync()
         {
-            return dbContext.Employees.Where(x => x.CompanyId == CompanyId).ToList();
+            return  dbContext.Employees.Include(x=>x.Company).ToList();
         }
         public async Task<List<Employee>> FetchAllEmployeeByGenderAsync(String gender)
         {
