@@ -11,15 +11,15 @@ import { EmployeeViewModel } from '../Model/employee.model';
 export class EmployeeComponent implements OnInit {
 
   employeeList!:EmployeeViewModel[];
-  constructor(private adminService:AdminService, private route:Router) { }
+  constructor(private adminService:AdminService,private router:Router) { }
 
   ngOnInit(): void {
       this.adminService.getAllEmployees().subscribe((data) =>{
       this.employeeList = data;      
     });
   }
-  deleteEmployee(id:number){
-    console.log("Delete id: " + id);
-    this.route.navigateByUrl('/Company');
+  deleteEmployee(id: number) {
+    //DemoRouter
+    this.router.navigate(['admin/Company']);
   }
 }
