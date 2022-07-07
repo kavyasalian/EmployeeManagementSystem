@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AdminService } from '../admin.service';
 import { EmployeeViewModel } from '../Model/employee.model';
 
@@ -10,11 +11,15 @@ import { EmployeeViewModel } from '../Model/employee.model';
 export class EmployeeComponent implements OnInit {
 
   employeeList!:EmployeeViewModel[];
-  constructor(private adminService:AdminService) { }
+  constructor(private adminService:AdminService, private route:Router) { }
 
   ngOnInit(): void {
       this.adminService.getAllEmployees().subscribe((data) =>{
       this.employeeList = data;      
     });
+  }
+  deleteEmployee(id:number){
+    console.log("Delete id: " + id);
+    this.route.navigateByUrl('/Company');
   }
 }

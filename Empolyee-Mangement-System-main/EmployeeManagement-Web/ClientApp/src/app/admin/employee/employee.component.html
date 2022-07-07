@@ -82,7 +82,10 @@
                       <td class=" "> {{employee.phone}} </td>
                       <td class="a-right a-right "> {{employee.companyName}} </td>
                       <td class="a-right a-right "> {{employee.companyAddress}} </td>
-                      <td class=" last"><a href="#">View</a>
+                      <td class=" last">
+                        <a href="#" class="marginSE view"><i class="fa fa-eye fa-lg" aria-hidden="true"></i></a>
+                        <a href="#" class="marginSE edit"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
+                        <a (click)="deleteEmployee(employee.id)" class="marginSE delete"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a>
                       </td>
                     </tr>
 

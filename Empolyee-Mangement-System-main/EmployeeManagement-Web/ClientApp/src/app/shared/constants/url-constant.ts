@@ -9,4 +9,5 @@ export class USERURLConstants {
 }
 export class EmployeeURLConstants {
   static GET_ALL_EMPLOYEES = apiUrl + '/Employee/GetAllEmployees';
+  static DELETE_EMPLOYEES = apiUrl + '/Employee/DeleteEmployee';
 }
