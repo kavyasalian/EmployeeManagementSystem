@@ -22,4 +22,7 @@ export class EmployeeComponent implements OnInit {
     //DemoRouter
     this.router.navigate(['admin/Company']);
   }
+  viewEmployee(id:number){
+    this.router.navigate(['admin/EmployeeView'])
+  }
 }
