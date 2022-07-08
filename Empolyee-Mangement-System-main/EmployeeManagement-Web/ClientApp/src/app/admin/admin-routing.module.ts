@@ -25,7 +25,7 @@ const routes: Routes = [
 {
   path: 'EditEmployee/id',
   component: EditEmployeeComponent
-}
+},
 {
   path: 'EmployeeView',
  component: EmployeeViewComponent
