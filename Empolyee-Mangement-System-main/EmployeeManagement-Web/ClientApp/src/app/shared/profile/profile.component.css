@@ -1,0 +1,55 @@
+.profileCard{
+    position: relative;
+    height: 350px;
+    min-width: 350px;
+    max-width: 800px;
+    background: #3f4e4fb4;
+    border-radius: 15px;
+    backdrop-filter: blur(5px);
+    color: #fff;
+    box-shadow: 60px 30px 50px rgba(33, 32, 32, 0.692);
+    margin: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+}
+img {
+    max-width:300px;
+    max-height:165px;
+    margin-top: 15px;
+    float: left;
+    width: auto;
+    height: auto;
+    border-radius: 20%;
+}
+.profileTitle{
+    float: left;
+    margin-left: 55px;
+    padding: 25px;
+}
+.profileTitle > *{
+    margin: 25px 0;;
+}
+.fa{
+    margin-right: 5px;
+}
+.fa-envelope{
+    color: aquamarine;
+}
+.fa-envelope:hover{
+    color: hotpink;
+    cursor: pointer;
+}
+.fa-phone{
+    color: lightblue;
+}
+.fa-phone:hover{
+    color: hotpink;
+    cursor: pointer;
+}
+.fa-map-marker{
+    margin-left: 35px;
+}
+a{
+    color: inherit;
+}
