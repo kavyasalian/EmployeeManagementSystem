@@ -5,6 +5,7 @@ import { AdminComponent } from './admin.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { CompanyComponent } from './company/company.component';
+import { EmployeeViewComponent } from './employee-view/employee-view.component';
 import { ProfileComponent } from '../shared/profile/profile.component';
 const routes: Routes = [
  
@@ -21,9 +22,10 @@ const routes: Routes = [
   component: CompanyComponent
 },
 {
-  path: 'profile',
-  component: ProfileComponent
-},
+  path: 'EmployeeView',
+ component: EmployeeViewComponent
+
+}
 ];
 
 @NgModule({
