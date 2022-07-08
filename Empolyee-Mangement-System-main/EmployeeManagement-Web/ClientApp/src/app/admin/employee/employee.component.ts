@@ -16,5 +16,6 @@ export class EmployeeComponent implements OnInit {
       this.adminService.getAllEmployees().subscribe((data) =>{
       this.employeeList = data;      
     });
+    this.adminService.deleteEmployees().
   }
 }

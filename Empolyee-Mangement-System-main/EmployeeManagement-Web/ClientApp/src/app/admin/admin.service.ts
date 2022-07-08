@@ -12,4 +12,7 @@ export class AdminService{
     getAllEmployees(){
         return this.http.get<EmployeeViewModel[]>(EmployeeURLConstants.GET_ALL_EMPLOYEES);
       }
+    deleteEmployees(){
+        
+    }
 }
