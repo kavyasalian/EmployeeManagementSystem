@@ -25,6 +25,11 @@ const routes: Routes = [
   path: 'EmployeeView',
  component: EmployeeViewComponent
 
+},
+{
+  path: 'profile',
+ component: ProfileComponent
+
 }
 ];
 
