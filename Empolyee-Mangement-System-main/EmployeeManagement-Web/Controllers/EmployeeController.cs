@@ -68,7 +68,7 @@ namespace EmployeeManagement_Web.Controllers
             return await employeeBusiness.UpdateEmployeeAsync(employee);
         }
 
-        [HttpDelete(Name = "DeleteEmployee")]
+        [HttpDelete("DeleteEmployee")]
         public async Task<IActionResult> DeleteById(int employeeId)
         {
             var employee = await employeeBusiness.DeleteEmployeeAsync(employeeId);
