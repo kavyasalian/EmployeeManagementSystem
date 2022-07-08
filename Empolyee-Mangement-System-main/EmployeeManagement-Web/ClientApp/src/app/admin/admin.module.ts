@@ -8,6 +8,7 @@ import { TopnavComponent } from '../shared/topnav/topnav.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { CompanyComponent } from './company/company.component';
+import { EditEmployeeComponent } from './edit-employee/edit-employee.component';
 import { EmployeeViewComponent } from './employee-view/employee-view.component';
 
 
@@ -20,7 +21,8 @@ import { EmployeeViewComponent } from './employee-view/employee-view.component';
     DashboardComponent,
     EmployeeComponent,
     CompanyComponent,
-    EmployeeViewComponent
+        EditEmployeeComponent,
+        EmployeeViewComponent
   ],
   imports: [
     CommonModule,
