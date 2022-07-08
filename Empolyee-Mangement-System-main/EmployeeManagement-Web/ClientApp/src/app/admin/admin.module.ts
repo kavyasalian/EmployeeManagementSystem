@@ -9,6 +9,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { CompanyComponent } from './company/company.component';
 import { EditEmployeeComponent } from './edit-employee/edit-employee.component';
+import { EmployeeViewComponent } from './employee-view/employee-view.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { EditEmployeeComponent } from './edit-employee/edit-employee.component';
     DashboardComponent,
     EmployeeComponent,
     CompanyComponent,
-    EditEmployeeComponent
+        EditEmployeeComponent,
+        EmployeeViewComponent
   ],
   imports: [
     CommonModule,

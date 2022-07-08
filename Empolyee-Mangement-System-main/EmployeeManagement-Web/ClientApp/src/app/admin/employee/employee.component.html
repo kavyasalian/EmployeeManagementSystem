@@ -82,7 +82,10 @@
                       <td class=" "> {{employee.phone}} </td>
                       <td class="a-right a-right "> {{employee.companyName}} </td>
                       <td class="a-right a-right "> {{employee.companyAddress}} </td>
-                      <td class=" last"><a href="#">View</a>
+                      <td>
+                        <span (click)="viewEmployee(employee.id)">
+                          <i class="fa fa-eye" aria-hidden="true"></i>
+                        </span>
                       </td>
                     </tr>
 
