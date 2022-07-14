@@ -8,7 +8,11 @@
     [DateCreated]  VARCHAR (50) NOT NULL,
     [DateModified] VARCHAR (50) NOT NULL,
     [CompanyId]    INT          NOT NULL,
+    [ProjectId]    INT          NULL,
     CONSTRAINT [PK_Employee] PRIMARY KEY CLUSTERED ([Id] ASC),
-    CONSTRAINT [FK_Employee_Company] FOREIGN KEY ([CompanyId]) REFERENCES [dbo].[Company] ([CompanyId])
+    CONSTRAINT [FK_Employee_Company] FOREIGN KEY ([CompanyId]) REFERENCES [dbo].[Company] ([CompanyId]),
+    CONSTRAINT [FK_Employee_Project] FOREIGN KEY ([ProjectId]) REFERENCES [dbo].[Project] ([ProjectId])
 );
+
+
 
