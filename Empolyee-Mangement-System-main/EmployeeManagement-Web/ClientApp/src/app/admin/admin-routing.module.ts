@@ -22,9 +22,9 @@ const routes: Routes = [
   component: CompanyComponent
 },
 {
-  path: 'EditEmployee/id',
+  path: 'EditEmployee',
   component: EditEmployeeComponent
-}
+},
 {
   path: 'EmployeeView',
  component: EmployeeViewComponent
