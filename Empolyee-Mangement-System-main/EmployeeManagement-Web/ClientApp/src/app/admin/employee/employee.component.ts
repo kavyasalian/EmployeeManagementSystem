@@ -25,4 +25,7 @@ export class EmployeeComponent implements OnInit {
   viewEmployee(id:number){
     this.router.navigate(['admin/EmployeeView'])
   }
+  editEmployee(id:number){
+    this.router.navigate(['admin/EditEmployee'])
+  } 
 }

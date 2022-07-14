@@ -28,6 +28,11 @@ const routes: Routes = [
 {
   path: 'Company/Add/:id',
   component : AddcompanyComponent
+  
+ },
+ {
+  path: 'EditEmployee',
+  component: EditEmployeeComponent
 },
 
 ];
