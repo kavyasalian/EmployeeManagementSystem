@@ -24,6 +24,20 @@ const routes: Routes = [
   path: 'Company',
   component: CompanyComponent
 },
+{
+  path: 'EditEmployee/id',
+  component: EditEmployeeComponent
+},
+{
+  path: 'EmployeeView',
+ component: EmployeeViewComponent
+
+},
+{
+  path: 'profile',
+ component: ProfileComponent
+
+}
 ];
 
 @NgModule({
