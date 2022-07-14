@@ -1,0 +1,12 @@
+
+
+input[type="radio"] {
+  -webkit-transform: scale(1.5);
+  transform: scale(1.5);
+}
+
+.genderBtn{
+  font-size: 16px;
+  padding-top: 7px;
+}
+
