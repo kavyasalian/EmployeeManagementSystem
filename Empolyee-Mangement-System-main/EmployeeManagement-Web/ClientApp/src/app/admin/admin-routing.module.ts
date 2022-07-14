@@ -5,6 +5,7 @@ import { AdminComponent } from './admin.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { CompanyComponent } from './company/company.component';
+import { AddemployeeComponent } from './employee/addemployee/addemployee.component';
 const routes: Routes = [
  
 {
@@ -14,6 +15,10 @@ const routes: Routes = [
 {
   path: 'Empolyee',
   component: EmployeeComponent
+},
+{
+  path: 'Empolyee/Add/:id',
+  component: AddemployeeComponent
 },
 {
   path: 'Company',

@@ -20,14 +20,18 @@
       <div class="clearfix"></div>
 
       <div class="row">
+        
 
         <div class="clearfix"></div>
+        
+
 
         <div class="col-md-12 col-sm-12 col-xs-12">
           <div class="x_panel">
             <div class="x_title">
               <h2>Employee <small>Full details</small></h2>
               <ul class="nav navbar-right panel_toolbox">
+                <li [routerLink]="['Add', 1]"> <i class="fa fa-plus" aria-hidden="true"></i> </li>
                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                 </li>
                 <li class="dropdown">
@@ -52,9 +56,6 @@
                 <table class="table table-striped jambo_table bulk_action">
                   <thead>
                     <tr class="headings">
-                      <th>
-                        <input type="checkbox" id="check-all" class="flat">
-                      </th>
                       <th class="column-title">First Name </th>
                       <th class="column-title">Last Name </th>
                       <th class="column-title">Gender </th>
@@ -71,10 +72,7 @@
                   </thead>
 
                   <tbody>
-                    <tr class="even pointer" *ngFor="let employee of employeeList">
-                      <td class="a-center ">
-                        <input type="checkbox" class="flat" name="table_records">
-                      </td>
+                    <tr class="even pointer" *ngFor="let employee of employeeList">                      
                       <td class=" "> {{employee.firstName}} </td>
                       <td class=" "> {{employee.lastName}} </td>
                       <td class=" "> {{employee.gender}} </td>
