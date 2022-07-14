@@ -5,7 +5,8 @@ import { AdminComponent } from './admin.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { CompanyComponent } from './company/company.component';
-import { AddemployeeComponent } from './employee/addemployee/addemployee.component';
+import { AddcompanyComponent } from './company/addcompany/addcompany.component';
+
 const routes: Routes = [
  
 {
@@ -25,19 +26,15 @@ const routes: Routes = [
   component: CompanyComponent
 },
 {
+  path: 'Company/Add/:id',
+  component : AddcompanyComponent
+  
+ },
+ {
   path: 'EditEmployee',
   component: EditEmployeeComponent
 },
-{
-  path: 'EmployeeView',
- component: EmployeeViewComponent
 
-},
-{
-  path: 'profile',
- component: ProfileComponent
-
-}
 ];
 
 @NgModule({
