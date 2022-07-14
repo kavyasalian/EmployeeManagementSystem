@@ -6,6 +6,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { CompanyComponent } from './company/company.component';
 import { EmployeeViewComponent } from './employee-view/employee-view.component';
+import { EmployeeDeleteComponent } from './employee-delete/employee-delete.component';
 const routes: Routes = [
  
 {
@@ -23,6 +24,11 @@ const routes: Routes = [
 {
   path: 'EmployeeView',
  component: EmployeeViewComponent
+
+},
+{
+  path: 'DeleteEmployee',
+ component: EmployeeDeleteComponent
 
 }
 ];

@@ -20,7 +20,7 @@ export class EmployeeComponent implements OnInit {
   }
   deleteEmployee(id: number) {
     //DemoRouter
-    this.router.navigate(['admin/Company']);
+    this.router.navigate(['admin/DeleteEmployee']);
   }
   viewEmployee(id:number){
     this.router.navigate(['admin/EmployeeView'])
