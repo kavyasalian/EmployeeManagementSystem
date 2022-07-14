@@ -101,6 +101,7 @@ namespace EmployeeManagement_Business
             foreach (var employee in employees)
             {
                 var emp = new EmployeeGetModel();
+                emp.Id = employee.Id;
                 emp.FirstName = employee.FirstName;
                 emp.LastName = employee.LastName;
                 emp.Phone = employee.Phone;
