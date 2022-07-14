@@ -64,5 +64,6 @@
     <Build Include="dbo\Tables\Role.sql" />
     <Build Include="dbo\Tables\Employee.sql" />
     <Build Include="dbo\Tables\Company.sql" />
+    <Build Include="dbo\Tables\Project.sql" />
   </ItemGroup>
 </Project>

@@ -5,6 +5,7 @@ import { AdminComponent } from './admin.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { CompanyComponent } from './company/company.component';
+import { AddemployeeComponent } from './employee/addemployee/addemployee.component';
 import { EditEmployeeComponent } from './edit-employee/edit-employee.component';
 import { EmployeeViewComponent } from './employee-view/employee-view.component';
 import { EmployeeDeleteComponent } from './employee-delete/employee-delete.component';
@@ -19,21 +20,20 @@ const routes: Routes = [
   component: EmployeeComponent
 },
 {
+  path: 'Empolyee/Add/:id',
+  component: AddemployeeComponent
+},
+{
   path: 'Company',
   component: CompanyComponent
 },
 {
   path: 'EditEmployee/id',
   component: EditEmployeeComponent
-}
+},
 {
   path: 'EmployeeView',
  component: EmployeeViewComponent
-
-},
-{
-  path: 'DeleteEmployee',
- component: EmployeeDeleteComponent
 
 }
 ];
