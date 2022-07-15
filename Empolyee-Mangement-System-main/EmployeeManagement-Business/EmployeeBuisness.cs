@@ -115,5 +115,25 @@ namespace EmployeeManagement_Business
             }
             return employeeModel;
         }
+          public async Task<SearchByNameModel> SearchNameAsync(string employeeName)
+        {
+            var employee = employeeRepository.SearchByName(employeeName);
+            var employeeModel = new SearchByNameModel();
+            if (employee != null)
+            {
+              
+                employeeModel.Id = employee.Id;
+                employeeModel.FirstName = employee.FirstName;
+                employeeModel.LastName = employee.LastName;
+                employeeModel.Gender = employee.Gender;
+                employeeModel.Email = employee.Email;
+                employeeModel.Phone = employee.Phone;
+                employeeModel.companyName=employee.Company.CompanyName;
+                employeeModel.companyAddress=employee.Company.CompanyAddress;   
+               
+            }
+            return employeeModel;
+
+        }
     }
 }

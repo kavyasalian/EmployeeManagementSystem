@@ -19,4 +19,7 @@ export class AdminService {
    return this.http.delete<any>(
     EmployeeURLConstants.DELETE_EMPLOYEES , {params:{employeeId:id}}
   );}
+  searchByEmployeeName(name:string){
+    EmployeeURLConstants.SEARCH_EMPLOYEE_BY_NAME,{params:{employeeName:name}}
+  }
 }

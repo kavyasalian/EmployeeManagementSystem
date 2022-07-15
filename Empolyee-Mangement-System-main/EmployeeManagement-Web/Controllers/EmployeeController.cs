@@ -74,6 +74,19 @@ namespace EmployeeManagement_Web.Controllers
             var employee = await employeeBusiness.DeleteEmployeeAsync(employeeId);
             return Ok(employee);
         }
+        [HttpGet("SearchByEmployeeName")]
+        public async Task<IActionResult> SearchByEmployeeName(string employeeName)
+        {
+            var employee = await employeeBusiness.SearchNameAsync(employeeName);
 
+            if (employee != null)
+            {
+                return Ok(employee);
+            }
+            else
+            {
+                return BadRequest(employee);
+            }
+        }
     }
 }
