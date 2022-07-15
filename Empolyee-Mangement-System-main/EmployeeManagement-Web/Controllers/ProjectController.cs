@@ -10,11 +10,11 @@ namespace EmployeeManagement_Web.Controllers
     public class ProjectController : ControllerBase
     {
         private readonly ILogger<ProjectController> _logger;
-        private readonly ProjectBuisness projectBusiness;
+        private readonly ProjectBusiness projectBusiness;
         public ProjectController(ILogger<ProjectController> logger)
         {
             _logger = logger;
-            projectBusiness = new ProjectBuisness();
+            projectBusiness = new ProjectBusiness();
         }
 
         // GET: api/<ProjectController>

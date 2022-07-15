@@ -4,10 +4,10 @@ using EmployeeManagement_Repository.Entities;
 
 namespace EmployeeManagement_Business
 {
-    public class ProjectBuisness
+    public class ProjectBusiness
     {
         private readonly ProjectRepository projectRepository;
-        public ProjectBuisness()
+        public ProjectBusiness()
         {
             this.projectRepository = new ProjectRepository();
         }
