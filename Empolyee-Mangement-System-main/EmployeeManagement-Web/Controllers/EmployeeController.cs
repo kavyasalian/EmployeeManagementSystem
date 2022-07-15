@@ -20,25 +20,23 @@ namespace EmployeeManagement_Web.Controllers
         }
 
         [HttpGet("GetAllEmployees")]
-        public async Task<List<EmployeeGetModel>> GetAllEmployeeAsync()
+        public async Task<IActionResult> GetAllEmployee()
         {
-            var employees = await employeeBusiness.GetAllEmployeesByIdAsync();
-           return employees;
+           var employees = await employeeBusiness.GetAllEmployeeAsync();
+           return Ok(employees);
         }
 
-        [HttpGet(Name = "GetEmployeeById")]
-        public async Task<IActionResult> GetById(int Id)
+        [HttpGet("GetEmployeeById/{Id}")]
+        public async Task<IActionResult> GetEmployeeById(int Id)
         {
-            var employee = await employeeBusiness.GetEmployeeAsync(Id);
+            var employee = await employeeBusiness.GetEmployeeByIdAsync(Id);
 
             if (employee != null)
             {
                 return Ok(employee);
             }
-            else
-            {
-                return BadRequest(employee);
-            }
+
+            return BadRequest(employee);
         }
 
         [HttpGet("FetchAllEmployeeByGender")]
@@ -50,29 +48,43 @@ namespace EmployeeManagement_Web.Controllers
             {
                 return Ok(employees);
             }
-            else
+
+            return BadRequest(employees);
+        }
+
+        [HttpPost("SaveEmployee")]
+        public async Task<IActionResult> SaveEmployee(EmployeeCreateModel employee)
+        {
+            var status = await employeeBusiness.SaveEmployeeAsync(employee);
+
+            if (status == HttpStatusCode.OK)
             {
-                return BadRequest(employees);
+                return Ok(status);
             }
+            return BadRequest(status);
         }
 
-        [HttpPost(Name = "SaveEmployee")]
-        public async Task<HttpStatusCode> SaveEmployee(EmployeeCreateModel employee)
+        [HttpPut("UpdateEmployee")]
+        public async Task<IActionResult> UpdateEmployee(UpdateModelView employee)
         {
-            return await employeeBusiness.SaveEmployeeAsync(employee);
+            var status = await employeeBusiness.UpdateEmployeeAsync(employee);
+
+            if (status == HttpStatusCode.OK)
+            {
+                return Ok(status);
+            }
+            return BadRequest(status);
         }
 
-        [HttpPut(Name = "UpdateEmployee")]
-        public async Task<HttpStatusCode> UpdateEmployee(UpdateModelView employee)
-        {
-            return await employeeBusiness.UpdateEmployeeAsync(employee);
-        }
-
-        [HttpDelete("DeleteEmployee")]
+        [HttpDelete("DeleteEmployeeById/{employeeId}")]
         public async Task<IActionResult> DeleteById(int employeeId)
         {
-            var employee = await employeeBusiness.DeleteEmployeeAsync(employeeId);
-            return Ok(employee);
+            var status = await employeeBusiness.DeleteEmployeeAsync(employeeId);
+            if (status == HttpStatusCode.OK)
+            {
+                return Ok(status);
+            }
+            return BadRequest(status);
         }
 
     }

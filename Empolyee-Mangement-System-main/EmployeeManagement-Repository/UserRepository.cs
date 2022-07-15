@@ -1,11 +1,5 @@
 ﻿using EmployeeManagement.Data;
 using EmployeeManagement_Repository.Entities;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EmployeeManagement_Repository
 {
@@ -25,6 +19,7 @@ namespace EmployeeManagement_Repository
         {
             return dbContext.Users.FirstOrDefault(x => x.UserId == Id);
         }
+
         public async Task<bool> Update(UserUpdateModel user)
         {
 
@@ -41,22 +36,6 @@ namespace EmployeeManagement_Repository
                 return true;
             }
             return false;
-        }
-        public async Task<bool> Delete(int UserId)
-        {
-            var user = await GetById(UserId);
-            if (user != null)
-            {
-                dbContext.Users.Remove(user);
-                await dbContext.SaveChangesAsync();
-                return true;
-            }
-            return false;
-
-        }
-        private async Task<User> GetById(int UserId)
-        {
-            return dbContext.Users.FirstOrDefault(x => x.UserId == UserId);
         }
 
         public async Task<bool> Create(UserCreateModel user)
@@ -81,6 +60,19 @@ namespace EmployeeManagement_Repository
             {
                 return false;
             }
+
+        }
+
+        public async Task<bool> Delete(int UserId)
+        {
+            var user = await GetUserById(UserId);
+            if (user != null)
+            {
+                dbContext.Users.Remove(user);
+                await dbContext.SaveChangesAsync();
+                return true;
+            }
+            return false;
 
         }
 

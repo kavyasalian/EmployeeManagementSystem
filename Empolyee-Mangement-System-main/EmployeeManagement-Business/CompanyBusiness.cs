@@ -12,61 +12,6 @@ namespace EmployeeManagement_Business
         {
             this.companyRepository = new CompanyRepository();
         }
-        public async Task<HttpStatusCode> SaveCompanyAsync(CompanyCreateModel company)
-        {
-            var status = await companyRepository.Create(new Company
-            {
-                CompanyName = company.CompanyName,
-                CompanyAddress = company.CompanyAddress,
-                CompanyPhone = company.CompanyPhone,
-            });
-
-            return status ? HttpStatusCode.OK : HttpStatusCode.BadRequest;
-        }
-
-        public async Task<CompanyViewModel> GetCompanyAsync(int Id)
-        {
-            var company = await companyRepository.GetById(Id);
-            if (company != null)
-            {
-                var companyView = new CompanyViewModel
-                {
-                    CompanyId = company.CompanyId,
-                    CompanyName = company.CompanyName,
-                    CompanyAddress = company.CompanyAddress,
-                    CompanyPhone = company.CompanyPhone,
-                };
-
-                return companyView;
-            }
-            return null;
-        }
-
-        public async Task<HttpStatusCode> UpdateCompanyAsync(CompanyViewModel companyView)
-        {
-            var company = new Company
-            {
-                CompanyId = companyView.CompanyId,
-                CompanyName = companyView.CompanyName,
-                CompanyAddress = companyView.CompanyAddress,
-                CompanyPhone = companyView.CompanyPhone,
-            };
-            var status = await companyRepository.Update(company);
-            if (status)
-            {
-                return HttpStatusCode.OK;
-            }
-            else
-            {
-                return HttpStatusCode.BadRequest;
-            }
-        }
-
-        public async Task<HttpStatusCode> DeleteCompanyAsync(int CompanyId)
-        {
-            var status = await companyRepository.Delete(CompanyId);
-            return status ? HttpStatusCode.OK : HttpStatusCode.BadRequest;
-        }
 
         public async Task<List<CompanyViewModel>> GetAllComapnyAsync()
         {
@@ -84,6 +29,59 @@ namespace EmployeeManagement_Business
                 });
             }
             return comapnyList;
+        }
+
+        public async Task<CompanyViewModel> GetCompanyByIdAsync(int Id)
+        {
+            var company = await companyRepository.GetById(Id);
+            if (company != null)
+            {
+                var companyView = new CompanyViewModel
+                {
+                    CompanyId = company.CompanyId,
+                    CompanyName = company.CompanyName,
+                    CompanyAddress = company.CompanyAddress,
+                    CompanyPhone = company.CompanyPhone,
+                };
+
+                return companyView;
+            }
+            return null;
+        }
+
+        public async Task<HttpStatusCode> SaveCompanyAsync(CompanyCreateModel company)
+        {
+            var status = await companyRepository.Create(new Company
+            {
+                CompanyName = company.CompanyName,
+                CompanyAddress = company.CompanyAddress,
+                CompanyPhone = company.CompanyPhone,
+            });
+
+            return status ? HttpStatusCode.OK : HttpStatusCode.BadRequest;
+        }
+
+        public async Task<HttpStatusCode> UpdateCompanyAsync(CompanyViewModel companyView)
+        {
+            var company = new Company
+            {
+                CompanyId = companyView.CompanyId,
+                CompanyName = companyView.CompanyName,
+                CompanyAddress = companyView.CompanyAddress,
+                CompanyPhone = companyView.CompanyPhone,
+            };
+            var status = await companyRepository.Update(company);
+            if (status)
+            {
+                return HttpStatusCode.OK;
+            }
+            return HttpStatusCode.BadRequest;
+        }
+
+        public async Task<HttpStatusCode> DeleteCompanyAsync(int CompanyId)
+        {
+            var status = await companyRepository.Delete(CompanyId);
+            return status ? HttpStatusCode.OK : HttpStatusCode.BadRequest;
         }
 
     }

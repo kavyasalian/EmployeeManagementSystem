@@ -7,10 +7,9 @@ namespace EmployeeManagement_Web.Controllers
 {
 
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class RoleController : ControllerBase
     {
-
         private readonly ILogger<RoleController> _logger;
         private readonly RoleBusiness RoleBusiness;
         public RoleController(ILogger<RoleController> logger)
@@ -18,13 +17,6 @@ namespace EmployeeManagement_Web.Controllers
             _logger = logger;
             RoleBusiness = new RoleBusiness();
         }
-
-        [HttpPost("SaveRoles")]
-        public async Task<HttpStatusCode> SaveEmployee(RoleGetModel role)
-        {
-            return await RoleBusiness.SaveRoleAsync(role);
-        }
-
 
         [HttpGet("GetAllRoles")]
         public async Task<IActionResult> GetAllRoles()
@@ -37,10 +29,28 @@ namespace EmployeeManagement_Web.Controllers
             return NoContent();
         }
 
-        [HttpPut("UpdateRole")]
-        public async Task<HttpStatusCode> UpdateRole(RoleViewModel roleView)
+        [HttpPost("SaveRoles")]
+        public async Task<IActionResult> SaveEmployee(RoleCreateModel role)
         {
-            return await RoleBusiness.UpdateRoleAsync(roleView);
+            var status = await RoleBusiness.SaveRoleAsync(role);
+
+            if (status == HttpStatusCode.OK)
+            {
+                return Ok(status);
+            }
+            return BadRequest(status);
+        }
+
+        [HttpPut("UpdateRole")]
+        public async Task<IActionResult> UpdateRole(RoleGetModel roleView)
+        {
+            var status = await RoleBusiness.UpdateRoleAsync(roleView);
+
+            if (status == HttpStatusCode.OK)
+            {
+                return Ok(status);
+            }
+            return BadRequest(status);
         }
     }
 }
