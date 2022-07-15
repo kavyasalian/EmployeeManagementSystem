@@ -16,7 +16,9 @@ namespace EmployeeManagement_Repository.Entities
         public string DateCreated { get; set; }
         public string DateModified { get; set; }
         public int CompanyId { get; set; }
+        public int? ProjectId { get; set; }
 
         public virtual Company Company { get; set; }
+        public virtual Project Project { get; set; }
     }
 }
