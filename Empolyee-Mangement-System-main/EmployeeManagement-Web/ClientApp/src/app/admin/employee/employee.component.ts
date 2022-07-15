@@ -17,10 +17,17 @@ export class EmployeeComponent implements OnInit {
       this.adminService.getAllEmployees().subscribe((data) =>{
       this.employeeList = data;      
     });
+    
   }
-  deleteEmployee(id: number) {
-    //DemoRouter
-    this.router.navigate(['admin/Company']);
+  deleteEmployee(id:number){
+    this.adminService.deleteEmployee(id).subscribe((data)=>{
+      if(data==200)
+      {
+        this.adminService.getAllEmployees().subscribe((data)=>{
+          this.employeeList=data;
+        });
+      }
+    })
   }
   viewEmployee(id:number){
     this.router.navigate(['admin/EmployeeView'])
