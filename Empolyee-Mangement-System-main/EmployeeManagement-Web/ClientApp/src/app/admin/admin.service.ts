@@ -15,8 +15,11 @@ export class AdminService {
       EmployeeURLConstants.GET_ALL_EMPLOYEES
     );
   }
-//   deleteEmployee(id:number){
-//     console.log("Delete : " + id);
-    
-//   }
+  deleteEmployee(id: number) {
+   return this.http.delete<any>(
+    EmployeeURLConstants.DELETE_EMPLOYEES , {params:{employeeId:id}}
+  );}
+  searchByEmployeeName(name:string){
+    EmployeeURLConstants.SEARCH_EMPLOYEE_BY_NAME,{params:{employeeName:name}}
+  }
 }

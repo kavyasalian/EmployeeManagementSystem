@@ -9,6 +9,9 @@ import { AddemployeeComponent } from './employee/addemployee/addemployee.compone
 import { EditEmployeeComponent } from './edit-employee/edit-employee.component';
 import { EmployeeViewComponent } from './employee-view/employee-view.component';
 import { ProfileComponent } from '../shared/profile/profile.component';
+import { AddcompanyComponent } from './company/addcompany/addcompany.component';
+
+
 const routes: Routes = [
  
 {
@@ -28,19 +31,15 @@ const routes: Routes = [
   component: CompanyComponent
 },
 {
+  path: 'Company/Add/:id',
+  component : AddcompanyComponent
+  
+ },
+ {
   path: 'EditEmployee',
   component: EditEmployeeComponent
 },
-{
-  path: 'EmployeeView',
- component: EmployeeViewComponent
 
-},
-{
-  path: 'profile',
- component: ProfileComponent
-
-}
 ];
 
 @NgModule({
