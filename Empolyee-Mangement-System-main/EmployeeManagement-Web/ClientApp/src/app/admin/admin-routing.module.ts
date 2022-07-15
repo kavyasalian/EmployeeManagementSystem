@@ -10,6 +10,9 @@ import { EditEmployeeComponent } from './edit-employee/edit-employee.component';
 import { EmployeeViewComponent } from './employee-view/employee-view.component';
 import { ProfileComponent } from '../shared/profile/profile.component';
 import { AddcompanyComponent } from './company/addcompany/addcompany.component';
+import { AddemployeeComponent } from './employee/addemployee/addemployee.component';
+import { EditEmployeeComponent } from './edit-employee/edit-employee.component';
+import { ProfileComponent } from '../shared/profile/profile.component';
 
 
 const routes: Routes = [
@@ -39,7 +42,11 @@ const routes: Routes = [
   path: 'EditEmployee',
   component: EditEmployeeComponent
 },
+{
+  path: 'profile',
+ component: ProfileComponent
 
+}
 ];
 
 @NgModule({

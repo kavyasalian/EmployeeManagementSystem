@@ -29,6 +29,7 @@ namespace EmployeeManagement_Business
             foreach (var employee in users)
             {
                 var user = new UserGetModel();
+                user.Id = employee.UserId;
                 user.FirstName = employee.FirstName;
                 user.LastName = employee.LastName;
                 user.Email = employee.Email;
@@ -44,26 +45,21 @@ namespace EmployeeManagement_Business
             var userModel = new UserGetModel();
             if (user != null)
             {
+                userModel.Id = Id;
                 userModel.FirstName = user.FirstName;
                 userModel.LastName = user.LastName;
                 userModel.Email = user.Email;
                 userModel.Phone = user.Phone;
 
+                return userModel;
             }
-            return userModel;
+            return null;
         }
 
         public  async Task<HttpStatusCode> UpdateUserAsync(UserUpdateModel userView)
         {
-            var user = new UserUpdateModel
-            {
-                UserId = userView.UserId,
-                UserFirstName = userView.UserFirstName,
-                UserLastName = userView.UserLastName,
-                UserEmail = userView.UserEmail,
-                UserPhone = userView.UserPhone,
-            };
-            var status = await userRepository.Update(user);
+            
+            var status = await userRepository.Update(userView);
             if (status)
             {
                 return HttpStatusCode.OK;
