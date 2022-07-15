@@ -2,7 +2,6 @@
 using EmployeeManagement_Business;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Net;
 
@@ -20,54 +19,62 @@ namespace EmployeeManagement_Web.Controllers
             userBusiness = new UserBusiness();
         }
 
-        [HttpGet("GetUser")]
+        [HttpGet("GetAllUser")]
         public async Task<IActionResult> GetAllUsersAsync()
         {
             var users = await userBusiness.GetUsersListByIdAsync();
-
             if (users != null)
             {
                 return Ok(users);
             }
-            else
-            {
-                return BadRequest(users);
-            }
+            return NoContent();
         }
 
-        [HttpGet("GetUserById")]
+        [HttpGet("GetUserById/{Id}")]
         public async Task<IActionResult> GetUserById(int Id)
         {
             var user = await userBusiness.GetUserByIdAsync(Id);
-
             if (user != null)
             {
                 return Ok(user);
             }
-            else
-            {
-                return BadRequest(user);
-            }
+            return BadRequest();
         }
 
-        // POST api/<UserController>
-        [HttpPost]
-        public async Task<HttpStatusCode> SaveUser(UserCreateModel user)
+        [HttpPost("AddUser")]
+        public async Task<IActionResult> SaveUser(UserCreateModel user)
         {
-            return await userBusiness.SaveUserAsync(user);
+            var status = await userBusiness.SaveUserAsync(user);
+
+            if(status == HttpStatusCode.OK)
+            {
+                return Ok(status);
+            }
+            return BadRequest(status);
         }
 
         [HttpPut("UpdateUser")]
-        public async Task<HttpStatusCode> UpdateEmployee(UserUpdateModel user)
+        public async Task<IActionResult> UpdateEmployee(UserUpdateModel user)
         {
-            return await userBusiness.UpdateUserAsync(user);
-        }
+            var status = await userBusiness.UpdateUserAsync(user);
 
-        [HttpDelete("DeleteUser")]
+            if (status == HttpStatusCode.OK)
+            {
+                return Ok(status);
+            }
+            return BadRequest(status);
+        }
+        
+        [HttpDelete("DeleteUser/{UserId}")]
         public async Task<IActionResult> DeleteById(int UserId)
         {
-            var user = await userBusiness.DeleteUserAsync(UserId);
-            return Ok(user);
+            var status = await userBusiness.DeleteUserAsync(UserId);
+
+            if (status == HttpStatusCode.OK)
+            {
+                return Ok(status);
+            }
+            return BadRequest(status);
         }
 
         [AllowAnonymous]
@@ -87,7 +94,6 @@ namespace EmployeeManagement_Web.Controllers
             {
                 return BadRequest();
             }
-
 
         }
     }
