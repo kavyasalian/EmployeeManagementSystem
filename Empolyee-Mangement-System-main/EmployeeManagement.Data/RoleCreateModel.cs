@@ -8,8 +8,7 @@ namespace EmployeeManagement.Data
 {
     public class RoleCreateModel
     {
-        public int RoleId { get; set; }
-        public string RoleName { get; set; }
+        public String RoleName { get; set; } = null!;
         public DateTime DateCreated { get; set; }
     }
 }

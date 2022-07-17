@@ -29,9 +29,13 @@ namespace EmployeeManagement_Business
             }
             return roleList;
         }
-        public async Task<HttpStatusCode> SaveRoleAsync(RoleGetModel role)
+        public async Task<HttpStatusCode> SaveRoleAsync(RoleCreateModel roleModel)
         {
-            var status = await RoleRepository.Create(role);
+            var status = await RoleRepository.Create(new Role
+            {
+                RoleName = roleModel.RoleName,
+                DateCreated=roleModel.DateCreated,
+            });
 
             if (status)
             {
@@ -40,23 +44,26 @@ namespace EmployeeManagement_Business
             return HttpStatusCode.BadRequest;
         }
 
-        public async Task<HttpStatusCode> UpdateRoleAsync(RoleViewModel roleView)
+        public async Task<HttpStatusCode> UpdateRoleAsync(RoleGetModel roleView)
         {
             var role = new Role
             {
-                RoleId = roleView.Id,
+                RoleId = roleView.RoleId,
                 RoleName = roleView.RoleName,
                 DateCreated = roleView.DateCreated,
             };
             var status = await RoleRepository.Update(role);
+            
             if (status)
             {
                 return HttpStatusCode.OK;
             }
-            else
-            {
-                return HttpStatusCode.BadRequest;
-            }
+            return HttpStatusCode.BadRequest;
+        }
+        public async Task<HttpStatusCode> DeleteUserAsync(int roleId)
+        {
+            var status = await RoleRepository.Delete(roleId);
+            return status ? HttpStatusCode.OK : HttpStatusCode.BadRequest;
         }
     }
 }
