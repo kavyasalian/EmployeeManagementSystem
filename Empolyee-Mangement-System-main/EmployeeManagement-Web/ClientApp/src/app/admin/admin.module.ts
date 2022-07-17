@@ -11,6 +11,7 @@ import { CompanyComponent } from './company/company.component';
 import { EditEmployeeComponent } from './edit-employee/edit-employee.component';
 import { EmployeeViewComponent } from './employee-view/employee-view.component';
 import { EmployeeDeleteComponent } from './employee-delete/employee-delete.component';
+import { ProjectComponent } from './project/project.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { EmployeeDeleteComponent } from './employee-delete/employee-delete.compo
     EmployeeComponent,
     CompanyComponent,
         EditEmployeeComponent,
-        EmployeeViewComponent
+        EmployeeViewComponent,
+        ProjectComponent
   ],
   imports: [
     CommonModule,

@@ -10,17 +10,13 @@ import { EditEmployeeComponent } from './edit-employee/edit-employee.component';
 import { EmployeeViewComponent } from './employee-view/employee-view.component';
 import { ProfileComponent } from '../shared/profile/profile.component';
 import { AddcompanyComponent } from './company/addcompany/addcompany.component';
-import { AddemployeeComponent } from './employee/addemployee/addemployee.component';
-import { EditEmployeeComponent } from './edit-employee/edit-employee.component';
-import { ProfileComponent } from '../shared/profile/profile.component';
 
 
-import { AddemployeeComponent } from './employee/addemployee/addemployee.component';
-import { EditEmployeeComponent } from './edit-employee/edit-employee.component';
-import { EmployeeViewComponent } from './employee-view/employee-view.component';
+
+
 import { EmployeeDeleteComponent } from './employee-delete/employee-delete.component';
-const routes: Routes = [
- 
+import { ProjectComponent } from './project/project.component';
+const routes: Routes = [ 
 {
   path: '',
   component: DashboardComponent
@@ -50,6 +46,14 @@ const routes: Routes = [
   path: 'profile',
  component: ProfileComponent
 
+},
+{
+  path:'EmployeeView',
+  component: EmployeeViewComponent
+},
+{
+  path:'Project',
+  component: ProjectComponent
 }
 ];
 
