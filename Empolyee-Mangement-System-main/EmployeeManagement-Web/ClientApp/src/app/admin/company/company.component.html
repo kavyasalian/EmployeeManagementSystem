@@ -60,6 +60,20 @@
                   </tr>
                 </thead>
                 <tbody>
+                  <tr class="even pointer" *ngFor="let company of companyList">
+                    
+                      
+                    <td class=" "> {{company.companyName}} </td>
+                    <td class=" "> {{company.companyAddress}} </td>
+                    <td class=" "> {{company.companyPhone}} </td>
+                    <td>
+                      <span (click)="viewCompany(company.id)">
+                        <i class="fa fa-eye" aria-hidden="true"></i>
+                      </span>
+                      <span (click)="deleteCompany(company.id)">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                      </span>
+                    </td>
                   
                 </tbody>
               </table>
