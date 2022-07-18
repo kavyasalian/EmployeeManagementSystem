@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { EmployeeURLConstants } from '../shared/constants/url-constant';
+import { Observable, retry } from 'rxjs';
+import { CompanyURLConstant, EmployeeURLConstants } from '../shared/constants/url-constant';
+import { CompanyViewModel } from './Model/company.model';
 import { EmployeeViewModel } from './Model/employee.model';
 
 @Injectable({
@@ -18,5 +19,11 @@ export class AdminService {
   deleteEmployee(id: number) {
    return this.http.delete<any>(
     EmployeeURLConstants.DELETE_EMPLOYEES , {params:{employeeId:id}}
-  );}
+  );
+}
+  getAllCompany(): Observable<CompanyViewModel[]> {
+   return this.http.get<CompanyViewModel[]>(
+    CompanyURLConstant.GET_ALL_COMPANY
+   );
+  }
 }
