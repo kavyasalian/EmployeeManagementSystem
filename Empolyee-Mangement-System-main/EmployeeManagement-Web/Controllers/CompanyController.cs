@@ -7,7 +7,7 @@ using EmployeeManagement.Data;
 namespace EmployeeManagement_Web.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class CompanyController : Controller
     {
         private readonly ILogger<CompanyController> _logger;
@@ -18,16 +18,21 @@ namespace EmployeeManagement_Web.Controllers
             companyBusiness = new CompanyBusiness();
         }
 
-        [HttpPost("SaveCompany")]
-        public async Task<HttpStatusCode> SaveCompany(CompanyCreateModel company)
+        [HttpGet("GetAllCompany")]
+        public async Task<IActionResult> GetAllCompany()
         {
-            return await companyBusiness.SaveCompanyAsync(company);
+            var companies = await companyBusiness.GetAllComapnyAsync();
+            if (companies != null)
+            {
+                return Ok(companies);
+            }
+            return NoContent();
         }
 
-        [HttpGet("GetCompanyById")]
-        public async Task<IActionResult> GetById(int companyId)
+        [HttpGet("GetCompanyById/{companyId}")]
+        public async Task<IActionResult> GetCompanyById(int companyId)
         {
-            var company = await companyBusiness.GetCompanyAsync(companyId);
+            var company = await companyBusiness.GetCompanyByIdAsync(companyId);
             if (company != null)
             {
                 return Ok(company);
@@ -35,28 +40,36 @@ namespace EmployeeManagement_Web.Controllers
             return BadRequest();
         }
 
+        [HttpPost("SaveCompany")]
+        public async Task<HttpStatusCode> SaveCompany(CompanyCreateModel company)
+        {
+            return await companyBusiness.SaveCompanyAsync(company);
+        }
 
         [HttpPut("UpdateCompany")]
-        public async Task<HttpStatusCode> UpdateCompany(CompanyViewModel company)
+        public async Task<IActionResult> UpdateCompany(CompanyViewModel company)
         {
-            return await this.companyBusiness.UpdateCompanyAsync(company);
+            var status = await this.companyBusiness.UpdateCompanyAsync(company);
+
+            if (status == HttpStatusCode.OK)
+            {
+                return Ok(status);
+            }
+            return BadRequest(status);
+
+
         }
 
-        // DELETE api/<CompanyController>/5
-        [HttpDelete("{id}")]
-        public async Task<HttpStatusCode> DeleteById(int id)
+        [HttpDelete("DeleteCompanyById/{Id}")]
+        public async Task<IActionResult> DeleteById(int Id)
         {
-            return await companyBusiness.DeleteCompanyAsync(id);
-        }
-        [HttpGet("GetAllCompany")]
-        public async Task<IActionResult> GetAllCompany()
-        {
-            var companies =  await companyBusiness.GetAllComapnyAsync();
-            if (companies != null)
+            var status = await companyBusiness.DeleteCompanyAsync(Id);
+
+            if (status == HttpStatusCode.OK)
             {
-                return Ok(companies);
+                return Ok(status);
             }
-            return NoContent();
+            return BadRequest(status);
         }
     }
 }
