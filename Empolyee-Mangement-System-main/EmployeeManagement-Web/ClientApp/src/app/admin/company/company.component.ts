@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AdminService } from '../admin.service';
+import { CompanyViewModel } from '../Model/company.model';
 
 @Component({
   selector: 'app-company',
@@ -7,9 +10,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompanyComponent implements OnInit {
 
-  constructor() { }
+  companyList!: CompanyViewModel[];
+  constructor(private adminService:AdminService,private router:Router) { }
 
   ngOnInit(): void {
-  }
+    this.adminService.getAllCompany().subscribe((data) =>{
+    this.companyList = data;      
+  });
+  
+}
+deleteCompany(id:number){
+  this.adminService.deleteCompany(id).subscribe((data)=>{
+    if(data==200)
+    {
+      this.adminService.getAllCompany().subscribe((data)=>{
+        this.companyList=data;
+      });
+      alert("Cannot delete company as there is Employee associated with it.");
+    }
+  })
+}
+viewCompany(id:number){
+  this.router.navigate(['admin/CompanyView'])
+}
 
 }
