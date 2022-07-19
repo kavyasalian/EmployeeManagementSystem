@@ -73,6 +73,8 @@ namespace EmployeeManagement_Business
 
         public async Task<HttpStatusCode> SaveEmployeeAsync(EmployeeCreateModel employee)
         {
+            employee.DateCreated = DateTime.Now.ToString();
+            employee.DateModified = DateTime.Now.ToString();
             var status = await employeeRepository.Create(employee);
 
             if (status)
