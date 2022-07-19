@@ -57,7 +57,7 @@ export class EditEmployeeComponent implements OnInit {
     employee.email = this.editEmployee.controls['email'].value;
     employee.companyId = this.editEmployee.controls['companyId'].value;
     this.adminService.updateEmployee(employee).subscribe((data) => {
-      alert('Saved');
+      alert('Updated');
       this.location.back();
     });
   }
