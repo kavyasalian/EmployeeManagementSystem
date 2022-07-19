@@ -11,9 +11,6 @@ import { AddcompanyComponent } from './company/addcompany/addcompany.component';
 import { EditEmployeeComponent } from './edit-employee/edit-employee.component';
 import { AddemployeeComponent } from './employee/addemployee/addemployee.component';
 
-
-
-import { EmployeeDeleteComponent } from './employee-delete/employee-delete.component';
 import { ProjectComponent } from './project/project.component';
 const routes: Routes = [ 
 {

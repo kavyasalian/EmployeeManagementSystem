@@ -10,7 +10,6 @@ import { EmployeeComponent } from './employee/employee.component';
 import { CompanyComponent } from './company/company.component';
 import { EditEmployeeComponent } from './edit-employee/edit-employee.component';
 import { EmployeeViewComponent } from './employee-view/employee-view.component';
-import { EmployeeDeleteComponent } from './employee-delete/employee-delete.component';
 import { ProjectComponent } from './project/project.component';
 
 
