@@ -2,6 +2,7 @@ import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { AddemployeeComponent } from './admin/employee/addemployee/addemployee.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,13 +13,13 @@ import { ProfileComponent } from './shared/profile/profile.component';
 @NgModule({
   declarations: [
     AppComponent,
-    ProfileComponent,
+    ProfileComponent
+    
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule,
     ReactiveFormsModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],

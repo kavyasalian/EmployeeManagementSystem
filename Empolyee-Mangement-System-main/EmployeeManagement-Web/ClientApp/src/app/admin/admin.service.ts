@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CompanyURLConstants, EmployeeURLConstants } from '../shared/constants/url-constant';
 import { CompanyViewModel } from './Model/company.model';
-import { EmployeeViewModel } from './Model/employee.model';
+import { EmployeeCreateModel, EmployeeViewModel } from './Model/employee.model';
 
 @Injectable({
   providedIn: 'root',
@@ -23,7 +23,7 @@ export class AdminService {
   }
   deleteEmployee(id: number) {
    return this.http.delete<any>(
-    EmployeeURLConstants.DELETE_EMPLOYEES , {params:{employeeId:id}}
+    EmployeeURLConstants.DELETE_EMPLOYEES +id
   );}
   deleteCompany(id: number) {
     return this.http.delete<any>(
@@ -31,5 +31,8 @@ export class AdminService {
    );}
   searchByEmployeeName(name:string){
     EmployeeURLConstants.SEARCH_EMPLOYEE_BY_NAME,{params:{employeeName:name}}
+  }
+  createEmployee(createEmployeeModel:EmployeeCreateModel){
+    return this.http.post(EmployeeURLConstants.CREATE_EMPLOYEES,createEmployeeModel);
   }
 }
