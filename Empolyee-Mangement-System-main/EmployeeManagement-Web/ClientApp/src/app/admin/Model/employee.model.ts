@@ -9,6 +9,7 @@ export class EmployeeViewModel {
     companyAddress!: string;
   }
   export class EmployeeCreateModel {
+   id?:number;
     firstName!: string;
     lastName!: string;
     gender!: string;

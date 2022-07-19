@@ -32,7 +32,18 @@ export class AdminService {
   searchByEmployeeName(name:string){
     EmployeeURLConstants.SEARCH_EMPLOYEE_BY_NAME,{params:{employeeName:name}}
   }
+
   createEmployee(createEmployeeModel:EmployeeCreateModel){
     return this.http.post(EmployeeURLConstants.CREATE_EMPLOYEES,createEmployeeModel);
+  }
+
+  updateEmployee(createEmployeeModel:EmployeeCreateModel){
+    return this.http.put(EmployeeURLConstants.UPDATE_EMPLOYEES,createEmployeeModel);
+  }
+  
+  getAllEmployeeById(id:number): Observable<EmployeeCreateModel> {
+    return this.http.get<EmployeeCreateModel>(
+      EmployeeURLConstants.GET_EMPLOYEE_BYID+id
+    );
   }
 }
