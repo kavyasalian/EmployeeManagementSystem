@@ -9,10 +9,10 @@ import { CompanyViewModel } from '../Model/company.model';
   styleUrls: ['./company.component.css']
 })
 export class CompanyComponent implements OnInit {
-
   companyList!: CompanyViewModel[];
-  constructor(private adminService:AdminService,private router:Router) { }
+   constructor(private adminService:AdminService,private router:Router) { }
 
+ 
   ngOnInit(): void {
     this.adminService.getAllCompany().subscribe((data) =>{
     this.companyList = data;      
