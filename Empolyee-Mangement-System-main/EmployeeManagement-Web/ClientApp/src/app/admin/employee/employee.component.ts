@@ -33,7 +33,7 @@ export class EmployeeComponent implements OnInit {
     this.router.navigate(['admin/EmployeeView'])
   }
   editEmployee(id:number){
-    this.router.navigate(['admin/EditEmployee'])
+    this.router.navigate(['admin/EditEmployee',id])
   } 
   addEmployee() {
     this.router.navigateByUrl('admin/addEmployee');

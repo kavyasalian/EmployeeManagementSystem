@@ -14,8 +14,8 @@ namespace EmployeeManagement.Data
         public string Gender { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
-        public string DateCreated { get; set; }
-        public string DateModified { get; set; }
+        public string? DateCreated { get; set; }
+        public string? DateModified { get; set; }
         public int CompanyId { get; set; }
     }
 }

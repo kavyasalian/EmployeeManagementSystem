@@ -26,7 +26,7 @@ namespace EmployeeManagement_Repository
 
         public async Task<Employee> GetById(int Id)
         {
-            return dbContext.Employees.FirstOrDefault(x => x.Id == Id);
+            return dbContext.Employees.Include(x=>x.Company).FirstOrDefault(x => x.Id == Id);
         }
 
         public async Task<bool> Create(EmployeeCreateModel employee)

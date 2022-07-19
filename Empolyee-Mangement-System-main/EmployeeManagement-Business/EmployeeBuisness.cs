@@ -47,6 +47,7 @@ namespace EmployeeManagement_Business
                 employeeModel.Gender = employee.Gender;
                 employeeModel.Email = employee.Email;
                 employeeModel.Phone = employee.Phone;
+                employeeModel.CompanyId = employee.CompanyId;
             }
             return employeeModel;
 
@@ -86,6 +87,8 @@ namespace EmployeeManagement_Business
 
         public async Task<HttpStatusCode> UpdateEmployeeAsync(UpdateModelView employee)
         {
+            employee.DateCreated = DateTime.Now.ToString();
+            employee.DateModified = DateTime.Now.ToString();
             await employeeRepository.Update(employee);
             return HttpStatusCode.OK;
 
