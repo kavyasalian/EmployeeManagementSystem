@@ -22,7 +22,7 @@ const routes: Routes = [
   component: EmployeeComponent
 },
 {
-  path: 'Empolyee/Add/:id',
+  path: 'addEmployee',
   component: AddemployeeComponent
 },
 {

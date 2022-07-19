@@ -1,5 +1,5 @@
 export class CompanyViewModel{
-    id!:number;
+    companyId!:number;
     companyName!:string;
     companyAddress!:string;
     companyPhone!:string;
