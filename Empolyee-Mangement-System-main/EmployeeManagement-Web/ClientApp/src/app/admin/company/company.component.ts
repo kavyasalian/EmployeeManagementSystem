@@ -12,14 +12,26 @@ export class CompanyComponent implements OnInit {
   companyList!: CompanyViewModel[];
    constructor(private adminService:AdminService,private router:Router) { }
 
-  ngOnInit(): void {
-    this.adminService.getAllCompany().subscribe((data)=>{
-      this.companyList =data;
-    });
-  }
-  viewCompany(id:number){
-    this.router.navigate(['admin/CompanyView'])
-  }
  
+  ngOnInit(): void {
+    this.adminService.getAllCompany().subscribe((data) =>{
+    this.companyList = data;      
+  });
+  
+}
+deleteCompany(id:number){
+  this.adminService.deleteCompany(id).subscribe((data)=>{
+    if(data==200)
+    {
+      this.adminService.getAllCompany().subscribe((data)=>{
+        this.companyList=data;
+      });
+      alert("Cannot delete company as there is Employee associated with it.");
+    }
+  })
+}
+viewCompany(id:number){
+  this.router.navigate(['admin/CompanyView'])
+}
 
 }
