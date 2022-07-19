@@ -12,6 +12,7 @@ import { EditEmployeeComponent } from './edit-employee/edit-employee.component';
 import { EmployeeViewComponent } from './employee-view/employee-view.component';
 import { AddemployeeComponent } from './employee/addemployee/addemployee.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ProjectComponent } from './project/project.component';
 
 
 @NgModule({
