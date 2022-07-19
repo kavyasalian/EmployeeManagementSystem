@@ -10,11 +10,10 @@ import { JwtInterceptor } from './core/service/jwt.interceptor';
 import { ProfileComponent } from './shared/profile/profile.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
-    ProfileComponent
-    
   ],
   imports: [
     BrowserModule,

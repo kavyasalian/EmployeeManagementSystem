@@ -11,8 +11,8 @@ import { AddcompanyComponent } from './company/addcompany/addcompany.component';
 import { EditEmployeeComponent } from './edit-employee/edit-employee.component';
 import { AddemployeeComponent } from './employee/addemployee/addemployee.component';
 
-const routes: Routes = [
- 
+import { ProjectComponent } from './project/project.component';
+const routes: Routes = [ 
 {
   path: '',
   component: DashboardComponent
@@ -35,13 +35,21 @@ const routes: Routes = [
   
  },
  {
-  path: 'EditEmployee',
+  path: 'EditEmployee/:id',
   component: EditEmployeeComponent
 },
 {
   path: 'profile',
  component: ProfileComponent
 
+},
+{
+  path:'EmployeeView',
+  component: EmployeeViewComponent
+},
+{
+  path:'Project',
+  component: ProjectComponent
 }
 ];
 
