@@ -1,5 +1,7 @@
-﻿using EmployeeManagement_Business;
+﻿using EmployeeManagement.Data;
+using EmployeeManagement_Business;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -27,6 +29,20 @@ namespace EmployeeManagement_Web.Controllers
                 return Ok(projects);
             }
             return NoContent();
+        }
+
+        [HttpPut("UpdateProject")]
+        public async Task<IActionResult> UpdateProject(ProjectGetModel project)
+        {
+            var status = await this.projectBusiness.UpdateProjectAsync(project);
+
+            if (status == HttpStatusCode.OK)
+            {
+                return Ok(status);
+            }
+            return BadRequest(status);
+
+
         }
     }
 }

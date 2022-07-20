@@ -1,5 +1,5 @@
-﻿using EmployeeManagement_Repository.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using EmployeeManagement.Data;
+using EmployeeManagement_Repository.Entities;
 
 namespace EmployeeManagement_Repository
 {
@@ -14,6 +14,21 @@ namespace EmployeeManagement_Repository
         public async Task<List<Project>> GetAllProjectAsync()
         {
             return _dbContext.Projects.ToList();
+        }
+
+        public async Task<bool> Update(Project project)
+        {
+            var existingProject = _dbContext.Projects.Where(c => c.ProjectId == project.ProjectId).FirstOrDefault();
+            if (existingProject != null)
+            {
+                existingProject.ProjectName = project.ProjectName;
+                existingProject.ProjectDesc = project.ProjectDesc;
+                existingProject.StartDate = project.StartDate;
+                existingProject.EndDate = project.EndDate;
+                var effectedRows = await _dbContext.SaveChangesAsync();
+                return effectedRows > 0;
+            }
+            return false;
         }
     }
 }

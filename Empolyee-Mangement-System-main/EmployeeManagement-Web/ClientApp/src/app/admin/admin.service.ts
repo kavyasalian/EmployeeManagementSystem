@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CompanyURLConstants, EmployeeURLConstants } from '../shared/constants/url-constant';
+import { CompanyURLConstants, EmployeeURLConstants, ProjectURLConstants } from '../shared/constants/url-constant';
 import { CompanyViewModel } from './Model/company.model';
 import { EmployeeCreateModel, EmployeeViewModel } from './Model/employee.model';
+import { ProjectViewModel } from './Model/project.model';
 
 @Injectable({
   providedIn: 'root',
@@ -53,5 +54,10 @@ export class AdminService {
   }
   updateCompany(updateCompanyModel: CompanyViewModel) {
     return this.http.put<CompanyViewModel>(CompanyURLConstants.UPDATE_COMPANY, updateCompanyModel);
+  }
+  getAllProject(): Observable<ProjectViewModel[]> {
+    return this.http.get<ProjectViewModel[]>(
+      ProjectURLConstants.GET_ALL_PROJECT
+    );
   }
 }
