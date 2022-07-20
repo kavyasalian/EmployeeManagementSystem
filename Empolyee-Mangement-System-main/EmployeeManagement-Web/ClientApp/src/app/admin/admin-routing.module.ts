@@ -13,6 +13,7 @@ import { AddemployeeComponent } from './employee/addemployee/addemployee.compone
 
 import { ProjectComponent } from './project/project.component';
 import { EditCompanyComponent } from './company/edit-company/edit-company.component';
+import { AddprojectComponent } from './project/addproject/addproject.component';
 const routes: Routes = [ 
 {
   path: '',
@@ -55,6 +56,10 @@ const routes: Routes = [
 {
   path: 'EditCompany/:compayId',
   component: EditCompanyComponent
+},
+{
+  path:'addProject',
+  component:AddprojectComponent
 },
 ];
 

@@ -15,6 +15,32 @@ namespace EmployeeManagement_Repository
         {
             return _dbContext.Projects.ToList();
         }
+        public async Task<bool> Create(ProjectCreateModel project)
+        {
+            try
+            {
+                _dbContext.Projects.Add(new Project
+                {
+                    
+                    ProjectName=project.ProjectName,
+                    ProjectDesc=project.ProjectDesc,
+                    StartDate= (DateTime)project.StartDate,
+                    EndDate= (DateTime)project.EndDate,
+
+                  
+                    
+                });
+
+                await _dbContext.SaveChangesAsync();
+                return true;
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
+        }
 
         public async Task<bool> Update(Project project)
         {

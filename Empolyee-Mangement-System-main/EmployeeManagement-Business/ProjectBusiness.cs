@@ -31,14 +31,32 @@ namespace EmployeeManagement_Business
             }
             return projectList;
         }
+        public async Task<HttpStatusCode> SaveProjectAsync(ProjectCreateModel project)
+        {
+            project.StartDate = DateTime.Now;
+            project.EndDate = DateTime.Now;
+            var status = await projectRepository.Create(project);
+
+            if (status)
+            {
+                return HttpStatusCode.OK;
+            }
+            return HttpStatusCode.BadRequest;
+        }
+
+        public Task SaveProjectAsync(ProjectGetModel project)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<HttpStatusCode> UpdateProjectAsync(ProjectGetModel projectView)
         {
             var project = new Project
             {   ProjectId = projectView.ProjectId,
                 ProjectName = projectView.ProjectName,
                 ProjectDesc = projectView.ProjectDesc,
-                StartDate = projectView.StartDate,
-                EndDate = projectView.EndDate,
+                StartDate = (DateTime)projectView.StartDate,
+                EndDate = (DateTime)projectView.EndDate,
             };
             var status = await projectRepository.Update(project);
             if (status)
