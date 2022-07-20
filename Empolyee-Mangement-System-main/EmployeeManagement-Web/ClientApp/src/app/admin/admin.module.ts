@@ -15,7 +15,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ProjectComponent } from './project/project.component';
 import { EditCompanyComponent } from './company/edit-company/edit-company.component';
 
-
 @NgModule({
   declarations: [
     AdminComponent,
@@ -25,16 +24,12 @@ import { EditCompanyComponent } from './company/edit-company/edit-company.compon
     DashboardComponent,
     EmployeeComponent,
     CompanyComponent,
-        EditEmployeeComponent,
-        EmployeeViewComponent,
-        AddemployeeComponent,
-        EditCompanyComponent,
-        ProjectComponent
+    EditEmployeeComponent,
+    EmployeeViewComponent,
+    AddemployeeComponent,
+    EditCompanyComponent,
+    ProjectComponent,
   ],
-  imports: [
-    CommonModule,
-    AdminRoutingModule,
-    ReactiveFormsModule
-  ]
+  imports: [CommonModule, AdminRoutingModule, ReactiveFormsModule],
 })
-export class AdminModule { }
+export class AdminModule {}
