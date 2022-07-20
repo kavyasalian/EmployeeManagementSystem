@@ -26,7 +26,6 @@ export class EmployeeViewComponent implements OnInit {
     });
 
     this.adminService.getAllEmployeeById(this.employeeId).subscribe((data) => {
-      debugger
       this.employee = data;
     });
   }
