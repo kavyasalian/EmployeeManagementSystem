@@ -17,7 +17,6 @@ import { EditCompanyComponent } from './company/edit-company/edit-company.compon
 import { UserComponent } from './user/user.component';
 import { AddUserComponent } from './user/add-user/add-user.component';
 
-
 @NgModule({
   declarations: [
     AdminComponent,
@@ -35,10 +34,6 @@ import { AddUserComponent } from './user/add-user/add-user.component';
         UserComponent,
         AddUserComponent
   ],
-  imports: [
-    CommonModule,
-    AdminRoutingModule,
-    ReactiveFormsModule
-  ]
+  imports: [CommonModule, AdminRoutingModule, ReactiveFormsModule],
 })
-export class AdminModule { }
+export class AdminModule {}

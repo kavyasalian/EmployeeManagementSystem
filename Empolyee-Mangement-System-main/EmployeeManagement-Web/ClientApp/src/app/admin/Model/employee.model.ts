@@ -16,5 +16,7 @@ export class EmployeeViewModel {
     email!: string;
     phone!: string;
     companyId!: number;
+    companyName!:string;
+    companyAddress!:string;
   }
   
