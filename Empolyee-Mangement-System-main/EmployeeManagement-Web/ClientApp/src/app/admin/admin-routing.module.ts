@@ -12,6 +12,7 @@ import { EditEmployeeComponent } from './edit-employee/edit-employee.component';
 import { AddemployeeComponent } from './employee/addemployee/addemployee.component';
 
 import { ProjectComponent } from './project/project.component';
+import { EditCompanyComponent } from './company/edit-company/edit-company.component';
 const routes: Routes = [ 
 {
   path: '',
@@ -50,7 +51,11 @@ const routes: Routes = [
 {
   path:'Project',
   component: ProjectComponent
-}
+},
+{
+  path: 'EditCompany/:compayId',
+  component: EditCompanyComponent
+},
 ];
 
 @NgModule({
