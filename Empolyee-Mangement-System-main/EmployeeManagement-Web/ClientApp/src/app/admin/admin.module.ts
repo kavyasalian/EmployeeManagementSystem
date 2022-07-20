@@ -28,7 +28,8 @@ import { EditCompanyComponent } from './company/edit-company/edit-company.compon
         EditEmployeeComponent,
         EmployeeViewComponent,
         AddemployeeComponent,
-        EditCompanyComponent
+        EditCompanyComponent,
+        ProjectComponent
   ],
   imports: [
     CommonModule,

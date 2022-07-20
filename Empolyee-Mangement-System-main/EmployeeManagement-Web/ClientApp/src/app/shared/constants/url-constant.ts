@@ -22,5 +22,8 @@ export class CompanyURLConstants{
   static GET_COMPANY_BY_ID=apiUrl +'/Company/GetCompanyById/';
   static UPDATE_COMPANY=apiUrl +'/Company/UpdateCompany';
   static DELETE_COMPANY=apiUrl +'/Company/DeleteCompany';
+}
 
+export class ProjectURLConstants{
+  static GET_ALL_PROJECT=apiUrl +'/Project/GetAllProjects';
 }

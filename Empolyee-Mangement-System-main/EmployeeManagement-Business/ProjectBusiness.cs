@@ -1,6 +1,7 @@
 ﻿using EmployeeManagement.Data;
 using EmployeeManagement_Repository;
 using EmployeeManagement_Repository.Entities;
+using System.Net;
 
 namespace EmployeeManagement_Business
 {
@@ -29,6 +30,22 @@ namespace EmployeeManagement_Business
                 });
             }
             return projectList;
+        }
+        public async Task<HttpStatusCode> UpdateProjectAsync(ProjectGetModel projectView)
+        {
+            var project = new Project
+            {   ProjectId = projectView.ProjectId,
+                ProjectName = projectView.ProjectName,
+                ProjectDesc = projectView.ProjectDesc,
+                StartDate = projectView.StartDate,
+                EndDate = projectView.EndDate,
+            };
+            var status = await projectRepository.Update(project);
+            if (status)
+            {
+                return HttpStatusCode.OK;
+            }
+            return HttpStatusCode.BadRequest;
         }
     }
 }
