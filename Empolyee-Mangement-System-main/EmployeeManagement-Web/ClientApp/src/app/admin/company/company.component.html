@@ -33,6 +33,18 @@
           <div class="x_title">
             <h2>Company <small>Full details</small></h2>
             <ul class="nav navbar-right panel_toolbox">
+              <li [routerLink]="['Add',1]"> <i class="fa fa-plus" aria-hidden="true"></i></li>
+              <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="#">Settings 1</a>
+                  </li>
+                  <li><a href="#">Settings 2</a>
+                  </li>
+                </ul>
+              </li>
               <li>
                 <a class="close-link"><i class="fa fa-close"></i></a>
               </li>
@@ -52,14 +64,30 @@
                       <span class="nobr">Action</span>
                     </th>
                     <th class="bulk-actions" colspan="7">
-                      <a class="antoo" style="color: #fff; font-weight: 500"
-                        >Bulk Actions ( <span class="action-cnt"> </span> )
+                      <a class="antoo" style="color: #fff; font-weight: 500">Bulk Actions ( <span class="action-cnt"> </span> )
                         <i class="fa fa-chevron-down"></i
                       ></a>
                     </th>
                   </tr>
                 </thead>
                 <tbody>
+                  <tr class="even pointer" *ngFor="let company of companyList">
+                    
+                      
+                    <td class=" "> {{company.companyName}} </td>
+                    <td class=" "> {{company.companyAddress}} </td>
+                    <td class=" "> {{company.companyPhone}} </td>
+                    <td>
+                      <span class="padding" (click)="viewCompany(company.companyId)">
+                        <i class="fa fa-eye" aria-hidden="true"></i>
+                      </span>
+                      <span class="padding edit" (click)="editCompany(company.companyId)">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                      </span>
+                      <span class="padding" (click)="deleteCompany(company.companyId)">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                      </span>
+                    </td>
                   
                 </tbody>
               </table>

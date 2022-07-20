@@ -2,7 +2,7 @@
   <div class="">
     <div class="page-title">
       <div class="title_left">
-        <h3>Employee <small></small></h3>
+        <h3>Project <small></small></h3>
       </div>
 
       <div class="title_right">
@@ -31,16 +31,10 @@
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
           <div class="x_title">
-            <h2>Employee <small>Full details</small></h2>
+            <h2>Project <small>Full details</small></h2>
             <ul class="nav navbar-right panel_toolbox">
               <li>
-                <button
-                  class="btn btn-primary"
-                  type="button"
-                  (click)="addEmployee()"
-                >
-                  <i class="fa fa-plus" aria-hidden="true"> Add</i>
-                </button>
+                <a class="close-link"><i class="fa fa-close"></i></a>
               </li>
             </ul>
             <div class="clearfix"></div>
@@ -51,13 +45,10 @@
               <table class="table table-striped jambo_table bulk_action">
                 <thead>
                   <tr class="headings">
-                    <th class="column-title">First Name</th>
-                    <th class="column-title">Last Name</th>
-                    <th class="column-title">Gender</th>
-                    <th class="column-title">Email</th>
-                    <th class="column-title">Phone</th>
-                    <th class="column-title">Company Name</th>
-                    <th class="column-title">Company Address</th>
+                    <th class="column-title">Project Name</th>
+                    <th class="column-title">Project Description</th>
+                    <th class="column-title">Start Date</th>
+                    <th class="column-title">End Date</th>
                     <th class="column-title no-link last">
                       <span class="nobr">Action</span>
                     </th>
@@ -69,32 +60,20 @@
                     </th>
                   </tr>
                 </thead>
-
                 <tbody>
-                  <tr
-                    class="even pointer"
-                    *ngFor="let employee of employeeList"
-                  >
-                    <td class=" ">{{ employee.firstName }}</td>
-                    <td class=" ">{{ employee.lastName }}</td>
-                    <td class=" ">{{ employee.gender }}</td>
-                    <td class=" ">{{ employee.email }}</td>
-                    <td class=" ">{{ employee.phone }}</td>
-                    <td class="a-right a-right">{{ employee.companyName }}</td>
-                    <td class="a-right a-right">
-                      {{ employee.companyAddress }}
-                    </td>
+                  <tr class="even pointer" *ngFor="let project of projectList">
+                    <td class=" ">{{ project.projectName }}</td>
+                    <td class=" ">{{ project.projectDesc }}</td>
+                    <td class=" ">{{ project.startDate }}</td>
+                    <td class=" ">{{ project.endDate }}</td>
                     <td>
-                      <span class="padding" (click)="viewEmployee(employee.id)">
+                      <span class="padding" (click)="viewProject(project.id)">
                         <i class="fa fa-eye" aria-hidden="true"></i>
                       </span>
-                      <span class="padding" (click)="editEmployee(employee.id)">
+                      <span class="padding" (click)="editProject(project.id)">
                         <i class="fa fa-pencil" aria-hidden="true"></i>
                       </span>
-                      <span
-                        class="padding"
-                        (click)="deleteEmployee(employee.id)"
-                      >
+                      <span class="padding" (click)="deleteProject(project.id)">
                         <i class="fa fa-trash" aria-hidden="true"></i>
                       </span>
                     </td>

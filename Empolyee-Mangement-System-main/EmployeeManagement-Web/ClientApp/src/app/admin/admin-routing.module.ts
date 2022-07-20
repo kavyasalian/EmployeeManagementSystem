@@ -5,18 +5,17 @@ import { AdminComponent } from './admin.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { CompanyComponent } from './company/company.component';
-import { AddemployeeComponent } from './employee/addemployee/addemployee.component';
-import { EditEmployeeComponent } from './edit-employee/edit-employee.component';
 import { EmployeeViewComponent } from './employee-view/employee-view.component';
 import { ProfileComponent } from '../shared/profile/profile.component';
 import { AddcompanyComponent } from './company/addcompany/addcompany.component';
-import { AddemployeeComponent } from './employee/addemployee/addemployee.component';
 import { EditEmployeeComponent } from './edit-employee/edit-employee.component';
-import { ProfileComponent } from '../shared/profile/profile.component';
+import { AddemployeeComponent } from './employee/addemployee/addemployee.component';
 
-
-const routes: Routes = [
- 
+import { ProjectComponent } from './project/project.component';
+import { EditCompanyComponent } from './company/edit-company/edit-company.component';
+import { UserComponent } from './user/user.component';
+import { AddUserComponent } from './user/add-user/add-user.component';
+const routes: Routes = [ 
 {
   path: '',
   component: DashboardComponent
@@ -26,7 +25,7 @@ const routes: Routes = [
   component: EmployeeComponent
 },
 {
-  path: 'Empolyee/Add/:id',
+  path: 'addEmployee',
   component: AddemployeeComponent
 },
 {
@@ -39,14 +38,34 @@ const routes: Routes = [
   
  },
  {
-  path: 'EditEmployee',
+  path: 'EditEmployee/:id',
   component: EditEmployeeComponent
 },
 {
   path: 'profile',
  component: ProfileComponent
 
-}
+},
+{
+  path:'EmployeeView',
+  component: EmployeeViewComponent
+},
+{
+  path:'Project',
+  component: ProjectComponent
+},
+{
+  path: 'EditCompany/:compayId',
+  component: EditCompanyComponent
+},
+{
+  path:'User',
+  component: UserComponent
+},
+{
+  path:'User/:userId',
+  component: AddUserComponent
+},
 ];
 
 @NgModule({
