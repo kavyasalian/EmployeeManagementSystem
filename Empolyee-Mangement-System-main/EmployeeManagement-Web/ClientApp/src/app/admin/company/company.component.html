@@ -78,10 +78,13 @@
                     <td class=" "> {{company.companyAddress}} </td>
                     <td class=" "> {{company.companyPhone}} </td>
                     <td>
-                      <span (click)="viewCompany(company.companyId)">
+                      <span class="padding" (click)="viewCompany(company.companyId)">
                         <i class="fa fa-eye" aria-hidden="true"></i>
                       </span>
-                      <span (click)="deleteCompany(company.companyId)">
+                      <span class="padding edit" (click)="editCompany(company.companyId)">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                      </span>
+                      <span class="padding" (click)="deleteCompany(company.companyId)">
                         <i class="fa fa-trash" aria-hidden="true"></i>
                       </span>
                     </td>
