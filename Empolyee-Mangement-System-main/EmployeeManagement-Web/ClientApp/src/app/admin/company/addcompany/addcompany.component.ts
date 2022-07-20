@@ -9,18 +9,16 @@ import { EmployeeCreateModel } from '../../Model/employee.model';
 @Component({
   selector: 'app-addcompany',
   templateUrl: './addcompany.component.html',
-  //styleUrls: ['./addcompany.component.css']
+  styleUrls: ['./addcompany.component.css']
 })
 export class AddcompanyComponent implements OnInit {
    addCompany!:FormGroup;
-    // companies!:CompanyCreateModel[];
   
  
-   constructor(private adminService:AdminService, private location:Location) {}
+   constructor(private formBuilder: FormBuilder,private adminService:AdminService, private location:Location) {}
 
   ngOnInit(): void {
-    this.addCompany= new FormGroup({
-            // id:new FormControl(""),
+    this.addCompany= this.formBuilder.group({
             companyName: new FormControl(""),
             companyAddress:new FormControl(""),
             companyPhone:new FormControl(""),
