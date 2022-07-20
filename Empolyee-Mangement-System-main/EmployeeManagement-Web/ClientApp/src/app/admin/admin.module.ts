@@ -17,7 +17,6 @@ import { EditCompanyComponent } from './company/edit-company/edit-company.compon
 import { AddprojectComponent } from './project/addproject/addproject.component';
 //import { AddprojectComponent } from './project/addproject/addproject.component';
 
-
 @NgModule({
   declarations: [
     AdminComponent,
@@ -36,10 +35,6 @@ import { AddprojectComponent } from './project/addproject/addproject.component';
 
         
   ],
-  imports: [
-    CommonModule,
-    AdminRoutingModule,
-    ReactiveFormsModule
-  ]
+  imports: [CommonModule, AdminRoutingModule, ReactiveFormsModule],
 })
-export class AdminModule { }
+export class AdminModule {}
