@@ -2,13 +2,19 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CompanyURLConstants, EmployeeURLConstants } from '../shared/constants/url-constant';
-import { CompanyViewModel } from './Model/company.model';
+import { CompanyCreateModel, CompanyViewModel } from './Model/company.model';
 import { EmployeeCreateModel, EmployeeViewModel } from './Model/employee.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AdminService {
+  saveCompany(comaddmodel: { companyName: any; companyAddress: any; companyphone: any; }) {
+    throw new Error('Method not implemented.');
+  }
+  // createCompany(comapny: CompanyCreateModel) {
+  //   throw new Error('Method not implemented.');
+  // }
   constructor(private http: HttpClient) { }
 
   getAllEmployees(): Observable<EmployeeViewModel[]> {
@@ -53,5 +59,11 @@ export class AdminService {
   }
   updateCompany(updateCompanyModel: CompanyViewModel) {
     return this.http.put<CompanyViewModel>(CompanyURLConstants.UPDATE_COMPANY, updateCompanyModel);
+  }
+  // createCompany(createCompanyModel: EmployeeCreateModel) {
+  //   return this.http.post(EmployeeURLConstants.CREATE_EMPLOYEES, createEmployeeModel);
+  // }
+  createCompany(createCompanyModel:CompanyCreateModel) {
+    return this.http.post(CompanyURLConstants.CREATE_COMPANY,createCompanyModel);
   }
 }

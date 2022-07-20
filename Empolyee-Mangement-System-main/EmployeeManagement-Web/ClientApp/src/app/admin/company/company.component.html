@@ -33,7 +33,16 @@
           <div class="x_title">
             <h2>Company <small>Full details</small></h2>
             <ul class="nav navbar-right panel_toolbox">
-              <li [routerLink]="['Add',1]"> <i class="fa fa-plus" aria-hidden="true"></i></li>
+              <!-- <li [routerLink]="['Add',1]"> <i class="fa fa-plus" aria-hidden="true"></i></li> -->
+              <li>
+                <button
+                  class="btn btn-primary"
+                  type="button"
+                  (click)="addCompany()"
+                >
+                  <i class="fa fa-plus" aria-hidden="true"> Add</i>
+                </button>
+              </li>
               <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
               </li>
               <li class="dropdown">

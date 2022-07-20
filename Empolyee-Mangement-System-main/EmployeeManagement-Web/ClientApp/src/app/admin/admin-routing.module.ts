@@ -31,6 +31,10 @@ const routes: Routes = [
   component: CompanyComponent
 },
 {
+  path: 'addCompany',
+  component: AddcompanyComponent
+},
+{
   path: 'Company/Add/:id',
   component : AddcompanyComponent
   
