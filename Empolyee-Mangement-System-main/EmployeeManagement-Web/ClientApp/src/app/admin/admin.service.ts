@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { CompanyURLConstants, EmployeeURLConstants } from '../shared/constants/url-constant';
 import { CompanyCreateModel, CompanyViewModel } from './Model/company.model';
 import { EmployeeCreateModel, EmployeeViewModel } from './Model/employee.model';
+import { ProjectViewModel } from './Model/project.model';
 
 @Injectable({
   providedIn: 'root',

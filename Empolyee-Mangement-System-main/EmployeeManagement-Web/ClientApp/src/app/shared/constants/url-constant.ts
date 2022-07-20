@@ -24,4 +24,6 @@ export class CompanyURLConstants{
   static DELETE_COMPANY=apiUrl +'/Company/DeleteCompany';
   static CREATE_COMPANY = apiUrl +'/Company/SaveCompany';
 
+export class ProjectURLConstants{
+  static GET_ALL_PROJECT=apiUrl +'/Project/GetAllProjects';
 }
