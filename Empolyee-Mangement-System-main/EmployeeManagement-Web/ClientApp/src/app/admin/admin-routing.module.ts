@@ -10,8 +10,6 @@ import { ProfileComponent } from '../shared/profile/profile.component';
 import { AddcompanyComponent } from './company/addcompany/addcompany.component';
 import { EditEmployeeComponent } from './edit-employee/edit-employee.component';
 import { AddemployeeComponent } from './employee/addemployee/addemployee.component';
-
-import { ProjectComponent } from './project/project.component';
 import { EditCompanyComponent } from './company/edit-company/edit-company.component';
 import { UserComponent } from './user/user.component';
 import { AddUserComponent } from './user/add-user/add-user.component';
@@ -53,10 +51,6 @@ const routes: Routes = [
 {
   path:'EmployeeView',
   component: EmployeeViewComponent
-},
-{
-  path:'Project',
-  component: ProjectComponent
 },
 {
   path: 'EditCompany/:compayId',

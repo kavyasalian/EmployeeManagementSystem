@@ -10,12 +10,8 @@ import { ProjectViewModel } from './Model/project.model';
   providedIn: 'root',
 })
 export class AdminService {
-  saveCompany(comaddmodel: { companyName: any; companyAddress: any; companyphone: any; }) {
-    throw new Error('Method not implemented.');
-  }
-  // createCompany(comapny: CompanyCreateModel) {
-  //   throw new Error('Method not implemented.');
-  // }
+  
+  
   constructor(private http: HttpClient) { }
 
   getAllEmployees(): Observable<EmployeeViewModel[]> {
@@ -61,9 +57,7 @@ export class AdminService {
   updateCompany(updateCompanyModel: CompanyViewModel) {
     return this.http.put<CompanyViewModel>(CompanyURLConstants.UPDATE_COMPANY, updateCompanyModel);
   }
-  // createCompany(createCompanyModel: EmployeeCreateModel) {
-  //   return this.http.post(EmployeeURLConstants.CREATE_EMPLOYEES, createEmployeeModel);
-  // }
+  
   createCompany(createCompanyModel:CompanyCreateModel) {
     return this.http.post(CompanyURLConstants.CREATE_COMPANY,createCompanyModel);
   }
