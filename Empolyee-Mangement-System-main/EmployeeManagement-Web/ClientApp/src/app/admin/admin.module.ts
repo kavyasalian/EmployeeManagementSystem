@@ -14,6 +14,8 @@ import { AddemployeeComponent } from './employee/addemployee/addemployee.compone
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProjectComponent } from './project/project.component';
 import { EditCompanyComponent } from './company/edit-company/edit-company.component';
+import { UserComponent } from './user/user.component';
+import { AddUserComponent } from './user/add-user/add-user.component';
 
 
 @NgModule({
@@ -29,7 +31,9 @@ import { EditCompanyComponent } from './company/edit-company/edit-company.compon
         EmployeeViewComponent,
         AddemployeeComponent,
         EditCompanyComponent,
-        ProjectComponent
+        ProjectComponent,
+        UserComponent,
+        AddUserComponent
   ],
   imports: [
     CommonModule,
