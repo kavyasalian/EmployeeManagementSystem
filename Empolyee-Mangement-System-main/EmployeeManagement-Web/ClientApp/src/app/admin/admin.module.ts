@@ -33,6 +33,7 @@ import { AddprojectComponent } from './project/addproject/addproject.component';
         EditCompanyComponent,
         ProjectComponent,
         AddprojectComponent
+
         
   ],
   imports: [
