@@ -22,7 +22,7 @@ namespace EmployeeManagement_Business
             this.userRepository = new UserRepository();
         }
 
-        public async Task<List<UserGetModel>> GetUsersListByIdAsync()
+        public async Task<List<UserGetModel>> GetAllUsersAsync()
         {
             var users = userRepository.GetAllUsersAsync();
             var userModel = new List<UserGetModel>();
