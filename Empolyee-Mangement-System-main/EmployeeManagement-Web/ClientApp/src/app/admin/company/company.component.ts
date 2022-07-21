@@ -35,11 +35,14 @@ export class CompanyComponent implements OnInit {
     );
   }
   viewCompany(id: number) {
-    this.router.navigate(['admin/CompanyView'])
+    this.router.navigate(['admin/CompanyView',id])
   }
 
   editCompany(compayId: number) {
     this.router.navigate(['admin/EditCompany', compayId]);
+  }
+  addCompany() {
+    this.router.navigateByUrl('admin/addCompany');
   }
 
 }
