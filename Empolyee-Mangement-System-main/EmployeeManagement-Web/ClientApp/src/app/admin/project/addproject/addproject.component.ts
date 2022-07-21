@@ -34,7 +34,7 @@ createProject(){
   project.projectDesc=this.addProject.controls['projectDesc'].value;
   project.startDate=this.addProject.controls['startDate'].value;
   project.endDate=this.addProject.controls['endDate'].value;
-  
+  console.log(project);
   this.adminService.createProject(project).subscribe((data) =>{
      alert("Saved")    ;
      this.location.back();

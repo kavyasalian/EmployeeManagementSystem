@@ -15,6 +15,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ProjectComponent } from './project/project.component';
 import { EditCompanyComponent } from './company/edit-company/edit-company.component';
 import { AddprojectComponent } from './project/addproject/addproject.component';
+import { UserComponent } from './user/user.component';
+import { AddUserComponent } from './user/add-user/add-user.component';
 //import { AddprojectComponent } from './project/addproject/addproject.component';
 
 @NgModule({
@@ -31,7 +33,9 @@ import { AddprojectComponent } from './project/addproject/addproject.component';
         AddemployeeComponent,
         EditCompanyComponent,
         ProjectComponent,
-        AddprojectComponent
+        AddprojectComponent,
+        UserComponent,
+        AddUserComponent,
 
         
   ],

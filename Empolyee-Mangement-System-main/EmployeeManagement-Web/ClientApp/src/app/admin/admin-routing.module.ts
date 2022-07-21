@@ -14,6 +14,8 @@ import { AddemployeeComponent } from './employee/addemployee/addemployee.compone
 import { ProjectComponent } from './project/project.component';
 import { EditCompanyComponent } from './company/edit-company/edit-company.component';
 import { AddprojectComponent } from './project/addproject/addproject.component';
+import { AddUserComponent } from './user/add-user/add-user.component';
+import { UserComponent } from './user/user.component';
 const routes: Routes = [ 
 {
   path: '',
@@ -61,6 +63,15 @@ const routes: Routes = [
   path:'addProject',
   component:AddprojectComponent
 },
+{
+  path:'User',
+  component:UserComponent
+},
+{
+  path:'User/:userId',
+  component:AddUserComponent
+}
+
 ];
 
 @NgModule({
