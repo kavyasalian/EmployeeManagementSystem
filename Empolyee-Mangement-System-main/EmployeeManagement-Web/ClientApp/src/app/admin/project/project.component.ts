@@ -18,12 +18,17 @@ export class ProjectComponent implements OnInit {
       this.projectList = data;
     });
   }
+  addProject() {
+    this.router.navigateByUrl('admin/addProject');
+  }
 
   viewProject(id: number) {
-    // this.router.navigate(['admin/ProjectView'])
+    //this.router.navigate(['admin/ProjectView'])
   }
   editProject(id: number) {
-    // this.router.navigate(['admin/EditProject',id])
+     this.router.navigate(['admin/EditProject',id])
   }
-  deleteProject(id: number) {}
+  deleteProject(id: number){
+    
+  }
 }

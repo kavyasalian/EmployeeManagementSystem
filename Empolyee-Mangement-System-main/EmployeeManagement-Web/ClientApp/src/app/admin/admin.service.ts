@@ -2,14 +2,16 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CompanyURLConstants, EmployeeURLConstants, ProjectURLConstants } from '../shared/constants/url-constant';
-import { CompanyViewModel } from './Model/company.model';
+import { CompanyCreateModel, CompanyViewModel } from './Model/company.model';
 import { EmployeeCreateModel, EmployeeViewModel } from './Model/employee.model';
-import { ProjectViewModel } from './Model/project.model';
+import { ProjectCreateModel, ProjectViewModel } from './Model/project.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AdminService {
+  
+  
   constructor(private http: HttpClient) { }
 
   getAllEmployees(): Observable<EmployeeViewModel[]> {
@@ -39,6 +41,9 @@ export class AdminService {
   createEmployee(createEmployeeModel: EmployeeCreateModel) {
     return this.http.post(EmployeeURLConstants.CREATE_EMPLOYEES, createEmployeeModel);
   }
+  createProject(createProjectModel:ProjectCreateModel){
+    return this.http.post(ProjectURLConstants.CREATE_PROJECTS,createProjectModel)
+  }
 
   updateEmployee(createEmployeeModel: EmployeeCreateModel) {
     return this.http.put(EmployeeURLConstants.UPDATE_EMPLOYEES, createEmployeeModel);
@@ -55,9 +60,14 @@ export class AdminService {
   updateCompany(updateCompanyModel: CompanyViewModel) {
     return this.http.put<CompanyViewModel>(CompanyURLConstants.UPDATE_COMPANY, updateCompanyModel);
   }
+  
+  createCompany(createCompanyModel:CompanyCreateModel) {
+    return this.http.post(CompanyURLConstants.CREATE_COMPANY,createCompanyModel);
+  }
   getAllProject(): Observable<ProjectViewModel[]> {
     return this.http.get<ProjectViewModel[]>(
       ProjectURLConstants.GET_ALL_PROJECT
     );
   }
+
 }
