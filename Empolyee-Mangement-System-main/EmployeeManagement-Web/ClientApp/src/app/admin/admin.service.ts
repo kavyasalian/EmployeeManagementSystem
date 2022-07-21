@@ -61,4 +61,5 @@ export class AdminService {
   createCompany(createCompanyModel:CompanyCreateModel) {
     return this.http.post(CompanyURLConstants.CREATE_COMPANY,createCompanyModel);
   }
+
 }

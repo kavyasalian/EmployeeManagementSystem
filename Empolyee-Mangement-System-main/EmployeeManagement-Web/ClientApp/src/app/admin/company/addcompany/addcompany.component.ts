@@ -40,4 +40,5 @@ export class AddcompanyComponent implements OnInit {
      goBack(){
       this.location.back();
     }
+    
   }
