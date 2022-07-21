@@ -1,16 +1,20 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { CompanyURLConstants, EmployeeURLConstants, ProjectURLConstants } from '../shared/constants/url-constant';
+import { CompanyCreateModel, CompanyViewModel } from './Model/company.model';
 import { CommanURLConstants, CompanyURLConstants, EmployeeURLConstants, ProjectURLConstants } from '../shared/constants/url-constant';
 import { Statistics } from './Model/common.model';
 import { CompanyViewModel } from './Model/company.model';
 import { EmployeeCreateModel, EmployeeViewModel } from './Model/employee.model';
-import { ProjectViewModel } from './Model/project.model';
+import { ProjectCreateModel, ProjectViewModel } from './Model/project.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AdminService {
+  
+  
   constructor(private http: HttpClient) { }
 
   getAllEmployees(): Observable<EmployeeViewModel[]> {
@@ -40,27 +44,33 @@ export class AdminService {
   createEmployee(createEmployeeModel: EmployeeCreateModel) {
     return this.http.post(EmployeeURLConstants.CREATE_EMPLOYEES, createEmployeeModel);
   }
+  createProject(createProjectModel:ProjectCreateModel){
+    return this.http.post(ProjectURLConstants.CREATE_PROJECTS,createProjectModel)
+  }
 
   updateEmployee(createEmployeeModel: EmployeeCreateModel) {
     return this.http.put(EmployeeURLConstants.UPDATE_EMPLOYEES, createEmployeeModel);
   }
 
   getAllEmployeeById(id: number): Observable<EmployeeCreateModel> {
-    return this.http.get<EmployeeCreateModel>(
-      EmployeeURLConstants.GET_EMPLOYEE_BYID + id
-    );
+    return this.http.get<EmployeeCreateModel>(EmployeeURLConstants.GET_EMPLOYEE_BYID + id);
   }
   getCompanyById(compayId: number) {
-    return this.http.get<CompanyViewModel>(CompanyURLConstants.GET_COMPANY_BY_ID + compayId);
+    return this.http.get<CompanyCreateModel>(CompanyURLConstants.GET_COMPANY_BY_ID + compayId);
   }
   updateCompany(updateCompanyModel: CompanyViewModel) {
     return this.http.put<CompanyViewModel>(CompanyURLConstants.UPDATE_COMPANY, updateCompanyModel);
+  }
+  
+  createCompany(createCompanyModel:CompanyCreateModel) {
+    return this.http.post(CompanyURLConstants.CREATE_COMPANY,createCompanyModel);
   }
   getAllProject(): Observable<ProjectViewModel[]> {
     return this.http.get<ProjectViewModel[]>(
       ProjectURLConstants.GET_ALL_PROJECT
     );
   }
+
   getStatistics() {
     return this.http.get<Statistics>(
       CommanURLConstants.GET_STATISTICS

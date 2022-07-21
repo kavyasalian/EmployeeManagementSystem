@@ -48,6 +48,8 @@ namespace EmployeeManagement_Business
                 employeeModel.Email = employee.Email;
                 employeeModel.Phone = employee.Phone;
                 employeeModel.CompanyId = employee.CompanyId;
+                employeeModel.CompanyName = employee.Company.CompanyName;
+                employeeModel.CompanyAddress = employee.Company.CompanyAddress;
             }
             return employeeModel;
 

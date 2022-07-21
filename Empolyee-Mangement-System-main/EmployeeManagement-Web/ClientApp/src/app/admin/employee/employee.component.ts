@@ -6,18 +6,16 @@ import { EmployeeViewModel } from '../Model/employee.model';
 @Component({
   selector: 'app-employee',
   templateUrl: './employee.component.html',
-  styleUrls: ['./employee.component.css']
+  styleUrls: ['./employee.component.css'],
 })
 export class EmployeeComponent implements OnInit {
-
   employeeList!: EmployeeViewModel[];
-  constructor(private adminService: AdminService, private router: Router) { }
+  constructor(private adminService: AdminService, private router: Router) {}
 
   ngOnInit(): void {
     this.adminService.getAllEmployees().subscribe((data) => {
       this.employeeList = data;
     });
-
   }
   deleteEmployee(id: number) {
     this.adminService.deleteEmployee(id).subscribe((data) => {
@@ -26,13 +24,13 @@ export class EmployeeComponent implements OnInit {
           this.employeeList = data;
         });
       }
-    })
+    });
   }
   viewEmployee(id: number) {
-    this.router.navigate(['admin/EmployeeView'])
+    this.router.navigate(['admin/EmployeeView', id]);
   }
   editEmployee(id: number) {
-    this.router.navigate(['admin/EditEmployee', id])
+    this.router.navigate(['admin/EditEmployee', id]);
   }
   addEmployee() {
     this.router.navigateByUrl('admin/addEmployee');

@@ -1,5 +1,6 @@
 ﻿using EmployeeManagement.Data;
 using EmployeeManagement_Repository.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace EmployeeManagement_Repository
 {
@@ -14,6 +15,13 @@ namespace EmployeeManagement_Repository
         public async Task<List<Project>> GetAllProjectAsync()
         {
             return _dbContext.Projects.ToList();
+        }
+
+        public async Task<bool> Create(Project project)
+        {
+            var effectedRow = _dbContext.Projects.Add(project);
+            await _dbContext.SaveChangesAsync();
+            return (effectedRow != null) ? true : false;
         }
 
         public async Task<bool> Update(Project project)
