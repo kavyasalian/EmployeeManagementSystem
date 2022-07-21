@@ -36,5 +36,8 @@ export class CompanyComponent implements OnInit {
   editCompany(compayId: number) {
     this.router.navigate(['admin/EditCompany', compayId]);
   }
+  addCompany() {
+    this.router.navigateByUrl('admin/addCompany');
+  }
 
 }

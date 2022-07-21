@@ -23,10 +23,12 @@ export class ProjectComponent implements OnInit {
   }
 
   viewProject(id: number) {
-    // this.router.navigate(['admin/ProjectView'])
+    //this.router.navigate(['admin/ProjectView'])
   }
   editProject(id: number) {
-    // this.router.navigate(['admin/EditProject',id])
+     this.router.navigate(['admin/EditProject',id])
   }
-  deleteProject(id: number) {}
+  deleteProject(id: number){
+    
+  }
 }
