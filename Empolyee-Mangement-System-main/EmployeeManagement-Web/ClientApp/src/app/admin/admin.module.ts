@@ -13,7 +13,12 @@ import { EmployeeViewComponent } from './employee-view/employee-view.component';
 import { AddemployeeComponent } from './employee/addemployee/addemployee.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EditCompanyComponent } from './company/edit-company/edit-company.component';
+import { AddprojectComponent } from './project/addproject/addproject.component';
+import { UserComponent } from './user/user.component';
+import { AddUserComponent } from './user/add-user/add-user.component';
+import { ProjectComponent } from './project/project.component';
 import { AddcompanyComponent } from './company/addcompany/addcompany.component';
+
 
 @NgModule({
   declarations: [
@@ -28,7 +33,13 @@ import { AddcompanyComponent } from './company/addcompany/addcompany.component';
         EmployeeViewComponent,
         AddemployeeComponent,
         EditCompanyComponent,
-        AddcompanyComponent
+        ProjectComponent,
+        AddprojectComponent,
+        UserComponent,
+        AddUserComponent,
+        AddcompanyComponent,
+
+        
   ],
   imports: [CommonModule, AdminRoutingModule, ReactiveFormsModule],
 })
