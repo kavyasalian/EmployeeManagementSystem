@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AdminService } from '../admin.service';
+import { Statistics } from '../Model/common.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -6,10 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-
-  constructor() { }
+  statistics!:Statistics;
+  constructor(private adminService:AdminService) { }
 
   ngOnInit(): void {
+    this.adminService.getStatistics().subscribe( data =>{
+      this.statistics = data;
+      console.log("status report recieved");
+      
+    });
   }
 
 }

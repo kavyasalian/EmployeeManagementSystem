@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CompanyURLConstants, EmployeeURLConstants, ProjectURLConstants } from '../shared/constants/url-constant';
+import { CommanURLConstants, CompanyURLConstants, EmployeeURLConstants, ProjectURLConstants } from '../shared/constants/url-constant';
+import { Statistics } from './Model/common.model';
 import { CompanyViewModel } from './Model/company.model';
 import { EmployeeCreateModel, EmployeeViewModel } from './Model/employee.model';
 import { ProjectViewModel } from './Model/project.model';
@@ -33,7 +34,7 @@ export class AdminService {
     );
   }
   searchByEmployeeName(name: string) {
-    EmployeeURLConstants.SEARCH_EMPLOYEE_BY_NAME, { params: { employeeName: name } }
+    return this.http.get<EmployeeViewModel[]>(EmployeeURLConstants.SEARCH_EMPLOYEE_BY_NAME, { params: { employeeName: name } });
   }
 
   createEmployee(createEmployeeModel: EmployeeCreateModel) {
@@ -58,6 +59,11 @@ export class AdminService {
   getAllProject(): Observable<ProjectViewModel[]> {
     return this.http.get<ProjectViewModel[]>(
       ProjectURLConstants.GET_ALL_PROJECT
+    );
+  }
+  getStatistics() {
+    return this.http.get<Statistics>(
+      CommanURLConstants.GET_STATISTICS
     );
   }
 }

@@ -27,3 +27,6 @@ export class CompanyURLConstants{
 export class ProjectURLConstants{
   static GET_ALL_PROJECT=apiUrl +'/Project/GetAllProjects';
 }
+export class CommanURLConstants{
+  static GET_STATISTICS=apiUrl +'/Common/GetStatistics';
+}
