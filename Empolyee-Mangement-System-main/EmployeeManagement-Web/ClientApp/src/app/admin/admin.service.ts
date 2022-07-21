@@ -50,12 +50,10 @@ export class AdminService {
   }
 
   getAllEmployeeById(id: number): Observable<EmployeeCreateModel> {
-    return this.http.get<EmployeeCreateModel>(
-      EmployeeURLConstants.GET_EMPLOYEE_BYID + id
-    );
+    return this.http.get<EmployeeCreateModel>(EmployeeURLConstants.GET_EMPLOYEE_BYID + id);
   }
   getCompanyById(compayId: number) {
-    return this.http.get<CompanyViewModel>(CompanyURLConstants.GET_COMPANY_BY_ID + compayId);
+    return this.http.get<CompanyCreateModel>(CompanyURLConstants.GET_COMPANY_BY_ID + compayId);
   }
   updateCompany(updateCompanyModel: CompanyViewModel) {
     return this.http.put<CompanyViewModel>(CompanyURLConstants.UPDATE_COMPANY, updateCompanyModel);
@@ -69,5 +67,7 @@ export class AdminService {
       ProjectURLConstants.GET_ALL_PROJECT
     );
   }
+  
+
 
 }
