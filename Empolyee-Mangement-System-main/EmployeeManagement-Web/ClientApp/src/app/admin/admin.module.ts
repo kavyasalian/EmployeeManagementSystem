@@ -15,7 +15,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { EditCompanyComponent } from './company/edit-company/edit-company.component';
 import { AddcompanyComponent } from './company/addcompany/addcompany.component';
 
-
 @NgModule({
   declarations: [
     AdminComponent,
@@ -31,10 +30,6 @@ import { AddcompanyComponent } from './company/addcompany/addcompany.component';
         EditCompanyComponent,
         AddcompanyComponent
   ],
-  imports: [
-    CommonModule,
-    AdminRoutingModule,
-    ReactiveFormsModule
-  ]
+  imports: [CommonModule, AdminRoutingModule, ReactiveFormsModule],
 })
-export class AdminModule { }
+export class AdminModule {}

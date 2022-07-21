@@ -49,7 +49,7 @@ const routes: Routes = [
 
 },
 {
-  path:'EmployeeView',
+  path:'EmployeeView/:id',
   component: EmployeeViewComponent
 },
 {
