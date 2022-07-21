@@ -1,11 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CompanyURLConstants, EmployeeURLConstants, ProjectURLConstants } from '../shared/constants/url-constant';
 import { CompanyCreateModel, CompanyViewModel } from './Model/company.model';
 import { CommanURLConstants, CompanyURLConstants, EmployeeURLConstants, ProjectURLConstants } from '../shared/constants/url-constant';
 import { Statistics } from './Model/common.model';
-import { CompanyViewModel } from './Model/company.model';
 import { EmployeeCreateModel, EmployeeViewModel } from './Model/employee.model';
 import { ProjectCreateModel, ProjectViewModel } from './Model/project.model';
 
