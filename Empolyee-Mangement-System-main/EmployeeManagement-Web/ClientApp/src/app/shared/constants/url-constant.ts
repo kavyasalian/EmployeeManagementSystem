@@ -1,3 +1,4 @@
+import { ProjectCreateModel } from 'src/app/admin/Model/project.model';
 import { environment } from '../../../environments/environment';
 
 const apiUrl = environment.apiUrl;
@@ -23,8 +24,10 @@ export class CompanyURLConstants{
   static UPDATE_COMPANY=apiUrl +'/Company/UpdateCompany';
   static DELETE_COMPANY=apiUrl +'/Company/DeleteCompany';
   static CREATE_COMPANY = apiUrl +'/Company/SaveCompany';
+ 
 }
 
 export class ProjectURLConstants{
   static GET_ALL_PROJECT=apiUrl +'/Project/GetAllProjects';
+  static CREATE_PROJECTS=apiUrl +'/Project/SaveProject';
 }

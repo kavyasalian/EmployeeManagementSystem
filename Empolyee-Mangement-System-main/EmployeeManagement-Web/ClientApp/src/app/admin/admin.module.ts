@@ -18,6 +18,8 @@ import { UserComponent } from './user/user.component';
 import { AddUserComponent } from './user/add-user/add-user.component';
 import { ProjectComponent } from './project/project.component';
 import { AddcompanyComponent } from './company/addcompany/addcompany.component';
+import { CompanyViewComponent } from './company/company-view/company-view.component';
+
 
 
 @NgModule({
@@ -38,6 +40,8 @@ import { AddcompanyComponent } from './company/addcompany/addcompany.component';
         UserComponent,
         AddUserComponent,
         AddcompanyComponent,
+        CompanyViewComponent,
+        
 
         
   ],
