@@ -29,3 +29,7 @@ export class ProjectURLConstants{
   static GET_ALL_PROJECT=apiUrl +'/Project/GetAllProjects';
   static CREATE_PROJECTS=apiUrl +'/Project/SaveProject';
 }
+
+export class UserURLConstants{
+  static CREATE_USERS = apiUrl + '/User/AddUser';
+}

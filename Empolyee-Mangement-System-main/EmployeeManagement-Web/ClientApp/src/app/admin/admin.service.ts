@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CompanyURLConstants, EmployeeURLConstants, ProjectURLConstants } from '../shared/constants/url-constant';
+import { CompanyURLConstants, EmployeeURLConstants, ProjectURLConstants, UserURLConstants } from '../shared/constants/url-constant';
 import { CompanyCreateModel, CompanyViewModel } from './Model/company.model';
 import { EmployeeCreateModel, EmployeeViewModel } from './Model/employee.model';
 import { ProjectCreateModel, ProjectViewModel } from './Model/project.model';
+import { UserModel } from './Model/user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -69,5 +70,8 @@ export class AdminService {
       ProjectURLConstants.GET_ALL_PROJECT
     );
   }
+  createUser(userModel: UserModel) {
+    return this.http.post(UserURLConstants.CREATE_USERS, userModel);
+   }
 
 }
