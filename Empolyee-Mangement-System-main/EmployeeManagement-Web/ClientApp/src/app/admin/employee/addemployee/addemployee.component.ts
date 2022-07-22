@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AdminService } from '../../admin.service';
 import { CompanyViewModel } from '../../Model/company.model';
 import { EmployeeCreateModel } from '../../Model/employee.model';
@@ -17,12 +17,12 @@ export class AddemployeeComponent implements OnInit {
 
   ngOnInit(): void {
     this.addEmployee= this.formBuilder.group({
-      firstName: new FormControl(""),
-      lastName:new FormControl(""),
-      email:new FormControl(""),
-      gender:new FormControl(""),
-      phoneNo:new FormControl(""),
-      companyId:new FormControl(""),
+      firstName: new FormControl("",Validators.required),
+      lastName:new FormControl("",Validators.required),
+      email:new FormControl("",Validators.required),
+      gender:new FormControl("",Validators.required),
+      phoneNo:new FormControl("",Validators.required),
+      companyId:new FormControl("",Validators.required),
     });
     this.adminService.getAllCompany().subscribe((data) =>{
       this.companies = data;      
@@ -37,12 +37,20 @@ export class AddemployeeComponent implements OnInit {
     employee.phone=this.addEmployee.controls['phoneNo'].value;
     employee.email=this.addEmployee.controls['email'].value;
     employee.companyId=this.addEmployee.controls['companyId'].value;
-    this.adminService.createEmployee(employee).subscribe((data) =>{
-       alert("Saved")    ;
-       this.location.back();
-    },(error)=>{
-      alert("Please Try Again!");
-    });
+    
+    if(this.addEmployee.invalid){
+      alert("All fields are required!");
+      return;
+    }
+    else{
+      this.adminService.createEmployee(employee).subscribe((data) =>{
+        alert("Saved")    ;
+        this.location.back();
+     },(error)=>{
+       alert("Please Try Again!");
+     });
+    }
+    
   }
   goBack(){
     this.location.back();
