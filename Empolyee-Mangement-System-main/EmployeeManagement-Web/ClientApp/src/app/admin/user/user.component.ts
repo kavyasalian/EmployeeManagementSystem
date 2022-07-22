@@ -29,12 +29,12 @@ export class UserComponent implements OnInit {
 
   updateUser(id: number) {
     
-    this.route.navigate(['admin/UpdateUser/', id]);
+    this.router.navigate(['admin/UpdateUser/', id]);
   }
 
   deleteUser(id: number) {}
 
   addUser(id: number) {
-    this.route.navigate(['admin/User/', id]);
+    this.router.navigate(['admin/User/', id]);
   }
 }
