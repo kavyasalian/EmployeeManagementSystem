@@ -2,10 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CompanyCreateModel, CompanyViewModel } from './Model/company.model';
-import { CommanURLConstants, CompanyURLConstants, EmployeeURLConstants, ProjectURLConstants } from '../shared/constants/url-constant';
+import { CommanURLConstants, CompanyURLConstants, EmployeeURLConstants, ProjectURLConstants, USERURLConstants } from '../shared/constants/url-constant';
 import { Statistics } from './Model/common.model';
 import { EmployeeCreateModel, EmployeeViewModel } from './Model/employee.model';
 import { ProjectCreateModel, ProjectViewModel } from './Model/project.model';
+import { UserCreateModel } from '../shared/profile/model/user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -18,6 +19,11 @@ export class AdminService {
   getAllEmployees(): Observable<EmployeeViewModel[]> {
     return this.http.get<EmployeeViewModel[]>(
       EmployeeURLConstants.GET_ALL_EMPLOYEES
+    );
+  }
+  getAllUser():Observable<UserCreateModel[]>{
+    return this.http.get<UserCreateModel[]>(
+      USERURLConstants.GETALL
     );
   }
   getAllCompany(): Observable<CompanyViewModel[]> {
@@ -55,6 +61,9 @@ export class AdminService {
   }
   getCompanyById(compayId: number) {
     return this.http.get<CompanyCreateModel>(CompanyURLConstants.GET_COMPANY_BY_ID + compayId);
+  }
+  getUserById(id:number){
+    return this.http.get<UserCreateModel>(USERURLConstants.GET_BY_ID +id)
   }
   updateCompany(updateCompanyModel: CompanyViewModel) {
     return this.http.put<CompanyViewModel>(CompanyURLConstants.UPDATE_COMPANY, updateCompanyModel);

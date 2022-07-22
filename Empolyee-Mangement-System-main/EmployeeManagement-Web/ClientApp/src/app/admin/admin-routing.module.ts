@@ -16,6 +16,7 @@ import { AddUserComponent } from './user/add-user/add-user.component';
 import { UserComponent } from './user/user.component';
 import { ProjectComponent } from './project/project.component';
 import { CompanyViewComponent } from './company/company-view/company-view.component';
+import { UserViewComponent } from './user/user-view/user-view.component';
 const routes: Routes = [ 
 {
   path: '',
@@ -80,6 +81,10 @@ const routes: Routes = [
   path:'CompanyView/:id',
   component: CompanyViewComponent
 },
+{
+  path:'UserView/:id',
+  component:UserViewComponent
+}
 
 
 ];

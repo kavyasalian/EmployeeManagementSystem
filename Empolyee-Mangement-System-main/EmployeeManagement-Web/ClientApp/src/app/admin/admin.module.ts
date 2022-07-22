@@ -19,6 +19,8 @@ import { AddUserComponent } from './user/add-user/add-user.component';
 import { ProjectComponent } from './project/project.component';
 import { AddcompanyComponent } from './company/addcompany/addcompany.component';
 import { CompanyViewComponent } from './company/company-view/company-view.component';
+import { UserViewComponent } from './user/user-view/user-view.component';
+
 
 
 
@@ -41,6 +43,7 @@ import { CompanyViewComponent } from './company/company-view/company-view.compon
         AddUserComponent,
         AddcompanyComponent,
         CompanyViewComponent,
+        UserViewComponent,
         
 
         
