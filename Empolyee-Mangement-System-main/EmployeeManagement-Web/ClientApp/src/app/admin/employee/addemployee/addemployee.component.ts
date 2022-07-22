@@ -40,6 +40,8 @@ export class AddemployeeComponent implements OnInit {
     this.adminService.createEmployee(employee).subscribe((data) =>{
        alert("Saved")    ;
        this.location.back();
+    },(error)=>{
+      alert("Please Try Again!");
     });
   }
   goBack(){

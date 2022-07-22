@@ -7,10 +7,12 @@ import { AuthenticationService } from 'src/app/core/service/authentication.servi
   styleUrls: ['./topnav.component.css']
 })
 export class TopnavComponent implements OnInit {
-
+  userName!: string;
   constructor(private authService:AuthenticationService) { }
 
   ngOnInit(): void {
+    const user = JSON.parse(localStorage.getItem('currentUser') || '{}');
+    this.userName = user.name;
   }
   logOut(){
   this.authService.logout();
