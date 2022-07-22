@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { AuthModel } from 'src/app/login/models/login.model';
+import { UserCreateModel, UserViewModel } from 'src/app/shared/profile/model/user.model';
 import { AdminService } from '../admin.service';
 import { ViewUserModel } from '../Model/user.model';
 
@@ -37,4 +36,20 @@ export class UserComponent implements OnInit {
   addUser(id: number) {
     this.router.navigate(['admin/User/', id]);
   }
-}
+  onSearch(e: any, name: string) {
+    if( name ==''){
+      this.adminService. getAllUser().subscribe((data) => {
+        this.userList = data;
+      });
+      return;
+    }
+    
+    if( e.keyCode == 13 || e.type == 'click'){
+      this.adminService.searchByUserName(name).subscribe(data => { 
+        this.userList = data;
+        console.log(data);
+      });
+    }
+  }
+
+  }

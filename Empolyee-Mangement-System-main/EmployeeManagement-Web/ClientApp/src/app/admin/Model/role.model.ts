@@ -1,4 +1,5 @@
-export class RoleViewModel {
-    roleId!: number;
-    roleName!: string;
-  }
+export class RoleViewModel{
+    roleId!:number;
+    roleName!:string;
+    Date!:Date;
+}

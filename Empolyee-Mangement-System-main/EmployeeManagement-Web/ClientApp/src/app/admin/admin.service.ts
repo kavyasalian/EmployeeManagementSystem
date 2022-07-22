@@ -2,27 +2,27 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CompanyCreateModel, CompanyViewModel } from './Model/company.model';
-import {
-  CommanURLConstants,
-  CompanyURLConstants,
-  EmployeeURLConstants,
-  ProjectURLConstants,
-  UserURLConstants,
-  USERURLConstants,
-} from '../shared/constants/url-constant';
+import { CommanURLConstants, CompanyURLConstants, EmployeeURLConstants, ProjectURLConstants, UserURLConstants, USERURLConstants } from '../shared/constants/url-constant';
 import { Statistics } from './Model/common.model';
-import { RoleURLConstants } from '../shared/constants/url-constant';
-import { UserCreateModel } from '../shared/profile/model/user.model';
-import { RoleViewModel } from './Model/role.model';
-import { UpdateUserModel, UserModel, ViewUserModel } from './Model/user.model';
+import { CompanyURLConstants, EmployeeURLConstants, ProjectURLConstants, RoleURLConstants, USERURLConstants } from '../shared/constants/url-constant';
+import { CompanyViewModel } from './Model/company.model';
 import { EmployeeCreateModel, EmployeeViewModel } from './Model/employee.model';
 import { ProjectCreateModel, ProjectViewModel } from './Model/project.model';
+import { UserCreateModel } from '../shared/profile/model/user.model';
+import { UserModel } from './Model/user.model';
+import { ProjectViewModel } from './Model/project.model';
+import { RoleViewModel } from './Model/role.model';
+import { UserCreateModel } from './Model/user.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AdminService {
-  constructor(private http: HttpClient) {}
+ 
+  
+
+
+  constructor(private http: HttpClient) { }
 
   getAllEmployees(): Observable<EmployeeViewModel[]> {
     return this.http.get<EmployeeViewModel[]>(
@@ -130,5 +130,19 @@ export class AdminService {
   }
   getAllUserById(id: number): Observable<ViewUserModel> {
     return this.http.get<ViewUserModel>(UserURLConstants.GET_USER_BYID + id);
+  }
+
+  searchByUserName(name: string) {
+    return this.http.get<UserCreateModel[]>(USERURLConstants.SEARCH_USER_BY_NAME, { params: { userName: name } });
+  }
+
+
+  createUser(createUserModel: UserCreateModel) {
+    return this.http.post(USERURLConstants.CREATE_USER, createUserModel);
+  }
+  getAllRole(): Observable<RoleViewModel[]> {
+    return this.http.get<RoleViewModel[]>(
+      RoleURLConstants.GET_ALL_ROLE
+    );
   }
 }
