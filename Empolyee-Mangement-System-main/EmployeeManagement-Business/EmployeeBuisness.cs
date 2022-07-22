@@ -28,6 +28,7 @@ namespace EmployeeManagement_Business
                 emp.companyAddress = employee.Company.CompanyAddress;
                 emp.companyName = employee.Company.CompanyName;
                 emp.Email = employee.Email;
+                emp.ProjectId = employee.ProjectId;
 
                 employeeModel.Add(emp);
             }

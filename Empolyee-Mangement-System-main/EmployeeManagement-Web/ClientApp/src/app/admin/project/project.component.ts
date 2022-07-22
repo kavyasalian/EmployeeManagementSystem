@@ -10,10 +10,16 @@ import { ProjectViewModel } from '../Model/project.model';
 })
 export class ProjectComponent implements OnInit {
   projectList!: ProjectViewModel[];
+  isDeletable!: boolean;
+  deleteMessage!: string;
 
-  constructor(private adminService: AdminService, private router: Router) {}
+  constructor(private adminService: AdminService, private router: Router) { }
 
   ngOnInit(): void {
+    debugger
+    this.getAllProjects();
+  }
+  getAllProjects() {
     this.adminService.getAllProject().subscribe((data) => {
       this.projectList = data;
     });
@@ -22,13 +28,26 @@ export class ProjectComponent implements OnInit {
     this.router.navigateByUrl('admin/addProject');
   }
 
-  viewProject(id: number) {
-    //this.router.navigate(['admin/ProjectView'])
-  }
   editProject(id: number) {
-     this.router.navigate(['admin/EditProject',id])
+    this.router.navigate(['admin/EditProject', id])
   }
-  deleteProject(id: number){
-    
+  deleteProject(project: ProjectViewModel) {
+    debugger
+    let employeeCount: number;
+
+    this.adminService.getAllEmployees().subscribe(data => {
+      employeeCount = data.filter(e => e.projectId == project.projectId).length;
+      this.isDeletable = employeeCount == 0;
+      console.log(this.isDeletable);
+
+      if (this.isDeletable) {
+        this.adminService.deleteProjectById(project.projectId).subscribe(data => {
+          console.log("Delete status: " + data);
+          this.getAllProjects();
+          this.deleteMessage = "Project Deleted 👍";
+        });
+      }
+      this.deleteMessage = `Can not be Deleted 👾. ${employeeCount} Employees' working on it. `;
+    });
   }
 }

@@ -38,5 +38,23 @@ namespace EmployeeManagement_Repository
             }
             return false;
         }
+
+        public async Task<Project> GetById(int Id)
+        {
+            var project = _dbContext.Projects.FirstOrDefault(c => c.ProjectId == Id);
+            return project;
+        }
+
+        public async Task<bool> Delete(int companyId)
+        {
+            var project = await GetById(companyId);
+            if (project != null)
+            {
+                _dbContext.Projects.Remove(project);
+                await _dbContext.SaveChangesAsync();
+                return true;
+            }
+            return false;
+        }
     }
 }

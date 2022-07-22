@@ -31,7 +31,7 @@
                 </li>
               </ul>
               <div class="clearfix"></div>
-            </div>
+            </div>                        
             <div class="x_content">
               <div class="table-responsive">
                 <table class="table table-striped jambo_table bulk_action">
@@ -58,19 +58,31 @@
                       <td class=" ">{{ project.startDate}}</td>
                       <td class=" ">{{ project.endDate }}</td>
                       <td>
-                        <span class="padding" (click)="viewProject(project.id)">
-                          <i class="fa fa-eye" aria-hidden="true"></i>
-                        </span>
-                        <span class="padding" (click)="editProject(project.id)">
+                        <span class="padding" (click)="editProject(project.projectId)">
                           <i class="fa fa-pencil" aria-hidden="true"></i>
                         </span>
-                        <span class="padding" (click)="deleteProject(project.id)">
+                        <span class="padding delete" (click)="deleteProject(project)" data-toggle="modal" data-target="#exampleModalCenter">
                           <i class="fa fa-trash-o" aria-hidden="true"></i>
                         </span>
                       </td>
                     </tr>
                   </tbody>
                 </table>
+              </div>
+              <!-- message display -->
+              <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-body">
+                      <h2>
+                        <b>{{deleteMessage}}</b>
+                      </h2>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-primary" data-dismiss="modal">Okey</button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

@@ -17,6 +17,7 @@ namespace EmployeeManagement.Data
         public string Email { get; set; } = null!;
         public string companyName { get; set; } = null!;
         public string companyAddress { get; set; } = null!;
+        public int? ProjectId { get; set; }
 
     }
 }

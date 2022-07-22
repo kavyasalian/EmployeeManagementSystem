@@ -1,5 +1,5 @@
 export class ProjectViewModel {
-  id!: number;
+  projectId!: number;
   projectName!: string;
   projectDesc!: string;
   startDate!: string;

@@ -7,6 +7,7 @@ export class EmployeeViewModel {
     phone!: string;
     companyName!: string;
     companyAddress!: string;
+    projectId!:number;
   }
   export class EmployeeCreateModel {
    id?:number;
