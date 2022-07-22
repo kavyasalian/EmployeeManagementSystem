@@ -2,18 +2,21 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CompanyCreateModel, CompanyViewModel } from './Model/company.model';
-import { CommanURLConstants, CompanyURLConstants, EmployeeURLConstants, ProjectURLConstants, UserURLConstants, USERURLConstants } from '../shared/constants/url-constant';
-import { Statistics } from './Model/common.model';
 import {
-  RoleURLConstants,
+  CommanURLConstants,
+  CompanyURLConstants,
+  EmployeeURLConstants,
+  ProjectURLConstants,
   UserURLConstants,
+  USERURLConstants,
 } from '../shared/constants/url-constant';
+import { Statistics } from './Model/common.model';
+import { RoleURLConstants } from '../shared/constants/url-constant';
 import { UserCreateModel } from '../shared/profile/model/user.model';
 import { RoleViewModel } from './Model/role.model';
-import { UpdateUserModel, ViewUserModel } from './Model/user.model';
+import { UpdateUserModel, UserModel, ViewUserModel } from './Model/user.model';
 import { EmployeeCreateModel, EmployeeViewModel } from './Model/employee.model';
 import { ProjectCreateModel, ProjectViewModel } from './Model/project.model';
-import { UserCreateModel } from '../shared/profile/model/user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -102,7 +105,7 @@ export class AdminService {
   }
   createUser(userModel: UserModel) {
     return this.http.post(UserURLConstants.CREATE_USERS, userModel);
-   }
+  }
 
   getStatistics() {
     return this.http.get<Statistics>(CommanURLConstants.GET_STATISTICS);

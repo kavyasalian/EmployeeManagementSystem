@@ -12,42 +12,36 @@ export class USERURLConstants {
 export class EmployeeURLConstants {
   static GET_ALL_EMPLOYEES = apiUrl + '/Employee/GetAllEmployees';
   static DELETE_EMPLOYEES = apiUrl + '/Employee/DeleteEmployeeById/';
-  static SEARCH_EMPLOYEE_BY_NAME= apiUrl+'/Employee/SearchByEmployeeName';
+  static SEARCH_EMPLOYEE_BY_NAME = apiUrl + '/Employee/SearchByEmployeeName';
   static CREATE_EMPLOYEES = apiUrl + '/Employee/SaveEmployee';
   static UPDATE_EMPLOYEES = apiUrl + '/Employee/UpdateEmployee';
   static GET_EMPLOYEE_BYID = apiUrl + '/Employee/GetEmployeeById/';
 }
 
-export class CompanyURLConstants{
-  static GET_ALL_COMPANY=apiUrl +'/Company/GetAllCompany';
-  static GET_COMPANY_BY_ID=apiUrl +'/Company/GetCompanyById/';
-  static UPDATE_COMPANY=apiUrl +'/Company/UpdateCompany';
-  static DELETE_COMPANY=apiUrl +'/Company/DeleteCompany';
-  static CREATE_COMPANY = apiUrl +'/Company/SaveCompany';
- 
+export class CompanyURLConstants {
+  static GET_ALL_COMPANY = apiUrl + '/Company/GetAllCompany';
+  static GET_COMPANY_BY_ID = apiUrl + '/Company/GetCompanyById/';
+  static UPDATE_COMPANY = apiUrl + '/Company/UpdateCompany';
+  static DELETE_COMPANY = apiUrl + '/Company/DeleteCompany';
+  static CREATE_COMPANY = apiUrl + '/Company/SaveCompany';
 }
 
-export class ProjectURLConstants{
-  static GET_ALL_PROJECT=apiUrl +'/Project/GetAllProjects';
-    static CREATE_PROJECTS = apiUrl + '/Project/SaveProject';
-    static DELETE_PROJECTS = apiUrl + '/Project/DeleteProjectById/';
+export class ProjectURLConstants {
+  static GET_ALL_PROJECT = apiUrl + '/Project/GetAllProjects';
+  static CREATE_PROJECTS = apiUrl + '/Project/SaveProject';
+  static DELETE_PROJECTS = apiUrl + '/Project/DeleteProjectById/';
 }
 
-export class UserURLConstants{
+export class CommanURLConstants {
+  static GET_STATISTICS = apiUrl + '/Common/GetStatistics';
+}
+
+export class UserURLConstants {
+  static GET_ALL_USER = apiUrl + '/User/GetAllUser';
+  static UPDATE_USER = apiUrl + '/User/UpdateUser';
+  static GET_USER_BYID = apiUrl + '/User/GetUserById/';
   static CREATE_USERS = apiUrl + '/User/AddUser';
 }
-  
-
-
-export class CommanURLConstants{
-  static GET_STATISTICS=apiUrl +'/Common/GetStatistics';
-}
-
-export class UserURLConstants{
-  static GET_ALL_USER=apiUrl +'/User/GetAllUser';
-  static UPDATE_USER= apiUrl + '/User/UpdateUser';
-  static GET_USER_BYID = apiUrl + '/User/GetUserById/';
-}
-export class RoleURLConstants{
-  static GET_ALL_ROLE= apiUrl + '/Role/GetAllRoles';
+export class RoleURLConstants {
+  static GET_ALL_ROLE = apiUrl + '/Role/GetAllRoles';
 }
