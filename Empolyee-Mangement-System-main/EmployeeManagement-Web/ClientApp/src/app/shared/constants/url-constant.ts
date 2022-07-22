@@ -27,3 +27,11 @@ export class CompanyURLConstants{
 export class ProjectURLConstants{
   static GET_ALL_PROJECT=apiUrl +'/Project/GetAllProjects';
 }
+export class UserURLConstants{
+  static GET_ALL_USER=apiUrl +'/User/GetAllUser';
+  static UPDATE_USER= apiUrl + '/User/UpdateUser';
+  static GET_USER_BYID = apiUrl + '/User/GetUserById/';
+}
+export class RoleURLConstants{
+  static GET_ALL_ROLE= apiUrl + '/Role/GetAllRoles';
+}

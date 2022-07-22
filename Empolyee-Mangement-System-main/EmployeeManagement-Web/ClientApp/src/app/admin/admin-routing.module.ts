@@ -15,61 +15,64 @@ import { ProjectComponent } from './project/project.component';
 import { EditCompanyComponent } from './company/edit-company/edit-company.component';
 import { UserComponent } from './user/user.component';
 import { AddUserComponent } from './user/add-user/add-user.component';
-const routes: Routes = [ 
-{
-  path: '',
-  component: DashboardComponent
-},
-{
-  path: 'Empolyee',
-  component: EmployeeComponent
-},
-{
-  path: 'addEmployee',
-  component: AddemployeeComponent
-},
-{
-  path: 'Company',
-  component: CompanyComponent
-},
-{
-  path: 'Company/Add/:id',
-  component : AddcompanyComponent
-  
- },
- {
-  path: 'EditEmployee/:id',
-  component: EditEmployeeComponent
-},
-{
-  path: 'profile',
- component: ProfileComponent
-
-},
-{
-  path:'EmployeeView',
-  component: EmployeeViewComponent
-},
-{
-  path:'Project',
-  component: ProjectComponent
-},
-{
-  path: 'EditCompany/:compayId',
-  component: EditCompanyComponent
-},
-{
-  path:'User',
-  component: UserComponent
-},
-{
-  path:'User/:userId',
-  component: AddUserComponent
-},
+import { UpdateUserComponent } from './user/update-user/update-user.component';
+const routes: Routes = [
+  {
+    path: '',
+    component: DashboardComponent,
+  },
+  {
+    path: 'Empolyee',
+    component: EmployeeComponent,
+  },
+  {
+    path: 'addEmployee',
+    component: AddemployeeComponent,
+  },
+  {
+    path: 'Company',
+    component: CompanyComponent,
+  },
+  {
+    path: 'Company/Add/:id',
+    component: AddcompanyComponent,
+  },
+  {
+    path: 'EditEmployee/:id',
+    component: EditEmployeeComponent,
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+  },
+  {
+    path: 'EmployeeView',
+    component: EmployeeViewComponent,
+  },
+  {
+    path: 'Project',
+    component: ProjectComponent,
+  },
+  {
+    path: 'EditCompany/:compayId',
+    component: EditCompanyComponent,
+  },
+  {
+    path: 'User',
+    component: UserComponent,
+  },
+  {
+    path: 'User/:userId',
+    component: AddUserComponent,
+  },
+  {
+    path: 'UpdateUser/:userId',
+    component: UpdateUserComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AdminRoutingModule { }
+export class AdminRoutingModule {}

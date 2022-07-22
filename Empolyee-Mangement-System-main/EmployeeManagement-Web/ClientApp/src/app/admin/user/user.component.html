@@ -1,108 +1,98 @@
 <div class="right_col" role="main">
-    <div class="">
-      <div class="page-title">
-        <div class="title_left">
-          <h3>User <small></small></h3>
-        </div>
-  
-        <div class="title_right">
-          <div
-            class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search"
-          >
-            <div class="input-group">
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Search for..."
-              />
-              <span class="input-group-btn">
-                <button class="btn btn-default" type="button">Go!</button>
-              </span>
-            </div>
+  <div class="">
+    <div class="page-title">
+      <div class="title_left">
+        <h3>User <small></small></h3>
+      </div>
+
+      <div class="title_right">
+        <div
+          class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search"
+        >
+          <div class="input-group">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Search for..."
+            />
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="button">Go!</button>
+            </span>
           </div>
         </div>
       </div>
-  
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="row">
       <div class="clearfix"></div>
-  
-      <div class="row">
-        <div class="clearfix"></div>
-  
-        <div class="col-md-12 col-sm-12 col-xs-12">
-          <div class="x_panel">
-            <div class="x_title">
-              <h2>User <small> details</small></h2>
-              <ul class="nav navbar-right panel_toolbox">
-                <li>
-                  <button
-                    class="btn btn-primary"
-                    type="button"
-                    (click)="addUser(1)"
-                  >
-                    <i class="fa fa-plus" aria-hidden="true"> Add</i>
-                  </button>
-                </li>
-              </ul>
-              <div class="clearfix"></div>
-            </div>
-  
-            <div class="x_content">
-              <div class="table-responsive">
-                <table class="table table-striped jambo_table bulk_action">
-                  <thead>
-                    <tr class="headings">
-                      <th class="column-title">User ID</th>
-                      <th class="column-title">First Name</th>
-                      <th class="column-title">Last Name</th>
-                      <th class="column-title">Gender</th>
-                      <th class="column-title">Email</th>
-                      <th class="column-title">Phone</th>
-                      <th class="column-title">Roll Id</th>
-                      <th class="column-title no-link last">
-                        <span class="nobr">Action</span>
-                      </th>
-                      <th class="bulk-actions" colspan="7">
-                        <a class="antoo" style="color: #fff; font-weight: 500"
-                          >Bulk Actions ( <span class="action-cnt"> </span> )
-                          <i class="fa fa-chevron-down"></i
-                        ></a>
-                      </th>
-                    </tr>
-                  </thead>
-  
-                  <tbody><tr>
-                    <tr
-                      class="even pointer"
-                    >
-                      <td class=" "> 10 </td>
-                      <td class=" "> Ram</td>
-                      <td class=" ">  RR </td>
-                      <td class=" "> Male </td>
-                      <td class=" "> Ram@gmail.com </td>
-                      <td class=" "> 9988776655 </td>
-                      <td class="a-right a-right"> 1001 </td>
-                      <td>
-                        <span class="padding" (click)="viewUser(1)">
-                          <i class="fa fa-eye" aria-hidden="true"></i>
-                        </span>
-                        <span class="padding" (click)="updateUser(1)">
-                          <i class="fa fa-pencil" aria-hidden="true"></i>
-                        </span>
-                        <span
-                          class="padding"
-                          (click)="deleteUser(1)"
-                        >
-                          <i class="fa fa-trash" aria-hidden="true"></i>
-                        </span>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+          <div class="x_title">
+            <h2>User <small> details</small></h2>
+            <ul class="nav navbar-right panel_toolbox">
+              <li>
+                <button
+                  class="btn btn-primary"
+                  type="button"
+                  (click)="addUser(1)"
+                >
+                  <i class="fa fa-plus" aria-hidden="true"> Add</i>
+                </button>
+              </li>
+            </ul>
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="x_content">
+            <div class="table-responsive">
+              <table class="table table-striped jambo_table bulk_action">
+                <thead>
+                  <tr class="headings">
+                    <th class="column-title">First Name</th>
+                    <th class="column-title">Last Name</th>
+                    <th class="column-title">Email</th>
+                    <th class="column-title">Phone</th>
+                    <th class="column-title">Role Name</th>
+                    <th class="column-title no-link last">
+                      <span class="nobr">Action</span>
+                    </th>
+                    <th class="bulk-actions" colspan="7">
+                      <a class="antoo" style="color: #fff; font-weight: 500"
+                        >Bulk Actions ( <span class="action-cnt"> </span> )
+                        <i class="fa fa-chevron-down"></i
+                      ></a>
+                    </th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr class="even pointer" *ngFor="let user of userList">
+                    <td class=" ">{{ user.firstName }}</td>
+                    <td class=" ">{{ user.lastName }}</td>
+                    <td class=" ">{{ user.email }}</td>
+                    <td class=" ">{{ user.phone }}</td>
+                    <td class=" ">{{ user.roleName }}</td>
+                    <td>
+                      <span class="padding" (click)="viewUser(1)">
+                        <i class="fa fa-eye" aria-hidden="true"></i>
+                      </span>
+                      <span class="padding" (click)="updateUser(user.id)">
+                        <i  class="fa fa-pencil" aria-hidden="true"></i>
+                      </span>
+                      <span class="padding" (click)="deleteUser(1)">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                      </span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  
+</div>

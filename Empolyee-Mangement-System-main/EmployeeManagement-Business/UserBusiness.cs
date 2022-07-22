@@ -24,17 +24,18 @@ namespace EmployeeManagement_Business
 
         public async Task<List<UserGetModel>> GetUsersListByIdAsync()
         {
-            var users = userRepository.GetAllUsersAsync();
+            var users = await userRepository.GetAllUsersAsync();
             var userModel = new List<UserGetModel>();
-            foreach (var employee in users)
+            foreach (var item in users)
             {
                 var user = new UserGetModel();
-                user.Id = employee.UserId;
-                user.FirstName = employee.FirstName;
-                user.LastName = employee.LastName;
-                user.Email = employee.Email;
-                user.Phone = employee.Phone;
-
+                user.Id = item.UserId;
+                user.FirstName = item.FirstName;
+                user.LastName = item.LastName;
+                user.Email = item.Email;
+                user.Phone = item.Phone;
+                user.RoleName= item.Role.RoleName;
+                user.RoleId= item.RoleId;
                 userModel.Add(user);
             }
            return userModel;
@@ -50,6 +51,8 @@ namespace EmployeeManagement_Business
                 userModel.LastName = user.LastName;
                 userModel.Email = user.Email;
                 userModel.Phone = user.Phone;
+                userModel.RoleId = user.RoleId;
+                userModel.RoleName = user.Role.RoleName;
 
                 return userModel;
             }

@@ -16,6 +16,7 @@ import { ProjectComponent } from './project/project.component';
 import { EditCompanyComponent } from './company/edit-company/edit-company.component';
 import { UserComponent } from './user/user.component';
 import { AddUserComponent } from './user/add-user/add-user.component';
+import { UpdateUserComponent } from './user/update-user/update-user.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { AddUserComponent } from './user/add-user/add-user.component';
         EditCompanyComponent,
         ProjectComponent,
         UserComponent,
-        AddUserComponent
+        AddUserComponent,
+        UpdateUserComponent
   ],
   imports: [
     CommonModule,
