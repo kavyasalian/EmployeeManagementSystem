@@ -1,10 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CompanyURLConstants, EmployeeURLConstants, ProjectURLConstants } from '../shared/constants/url-constant';
+import { CompanyURLConstants, EmployeeURLConstants, ProjectURLConstants, RoleURLConstants, USERURLConstants } from '../shared/constants/url-constant';
 import { CompanyViewModel } from './Model/company.model';
 import { EmployeeCreateModel, EmployeeViewModel } from './Model/employee.model';
 import { ProjectViewModel } from './Model/project.model';
+import { RoleViewModel } from './Model/role.model';
+import { UserCreateModel } from './Model/user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -58,6 +60,14 @@ export class AdminService {
   getAllProject(): Observable<ProjectViewModel[]> {
     return this.http.get<ProjectViewModel[]>(
       ProjectURLConstants.GET_ALL_PROJECT
+    );
+  }
+  createUser(createUserModel: UserCreateModel) {
+    return this.http.post(USERURLConstants.CREATE_USER, createUserModel);
+  }
+  getAllRole(): Observable<RoleViewModel[]> {
+    return this.http.get<RoleViewModel[]>(
+      RoleURLConstants.GET_ALL_ROLE
     );
   }
 }

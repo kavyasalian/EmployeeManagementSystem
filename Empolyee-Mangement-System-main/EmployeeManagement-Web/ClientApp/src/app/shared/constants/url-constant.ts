@@ -7,6 +7,10 @@ export class LoginURLConstants {
 export class USERURLConstants {
   static GETALL = apiUrl + '/user/GetAllUser';
   static GET_BY_ID = apiUrl + '/User/GetUserById/';
+  static CREATE_USER =apiUrl + '/User/AddUser';
+}
+export class RoleURLConstants{
+  static GET_ALL_ROLE=apiUrl +'/Role/GetAllRoles/';
 }
 export class EmployeeURLConstants {
   static GET_ALL_EMPLOYEES = apiUrl + '/Employee/GetAllEmployees';
