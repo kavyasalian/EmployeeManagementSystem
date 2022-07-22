@@ -32,10 +32,10 @@ export class UpdateUserComponent implements OnInit {
     phoneNo: new FormControl(''),
     roleId: new FormControl(''),
   });
-  this.adminService.getAllRoles().subscribe((data) => {
+  this.adminService.getAllRole().subscribe((data) => {
     this.roles = data;
   });
-  this.adminService.getAllUserById(this.userId).subscribe((data) => {
+  this.adminService.getUserById(this.userId).subscribe((data) => {
     this.updateUser.controls['firstName'].setValue(data.firstName);
     this.updateUser.controls['lastName'].setValue(data.lastName);
     this.updateUser.controls['email'].setValue(data.email);

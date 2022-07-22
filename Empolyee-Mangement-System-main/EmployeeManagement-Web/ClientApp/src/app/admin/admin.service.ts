@@ -15,7 +15,7 @@ import { Statistics } from './Model/common.model';
 import { EmployeeCreateModel, EmployeeViewModel } from './Model/employee.model';
 import { ProjectCreateModel, ProjectViewModel } from './Model/project.model';
 import { AddUserModel } from '../shared/profile/model/user.model';
-import { UserCreateModel, UserModel } from './Model/user.model';
+import { UpdateUserModel, UserCreateModel, UserModel } from './Model/user.model';
 import { RoleViewModel } from './Model/role.model';
 
 @Injectable({
@@ -29,8 +29,8 @@ export class AdminService {
       EmployeeURLConstants.GET_ALL_EMPLOYEES
     );
   }
-  getAllUser(): Observable<UserCreateModel[]> {
-    return this.http.get<UserCreateModel[]>(USERURLConstants.GETALL);
+  getAllUser(): Observable<AddUserModel[]> {
+    return this.http.get<AddUserModel[]>(USERURLConstants.GETALL);
   }
   getAllCompany(): Observable<CompanyViewModel[]> {
     return this.http.get<CompanyViewModel[]>(
@@ -83,7 +83,7 @@ export class AdminService {
     );
   }
   getUserById(id:number){
-    return this.http.get<UserCreateModel>(USERURLConstants.GET_BY_ID +id)
+    return this.http.get<AddUserModel>(USERURLConstants.GET_BY_ID +id)
   }
   updateCompany(updateCompanyModel: CompanyViewModel) {
     return this.http.put<CompanyViewModel>(
@@ -127,5 +127,11 @@ export class AdminService {
   }
   getAllRole(): Observable<RoleViewModel[]> {
     return this.http.get<RoleViewModel[]>(RoleURLConstants.GET_ALL_ROLE);
+  }
+  updateUser(updateUserModel: UpdateUserModel) {
+    return this.http.put<UpdateUserModel>(
+      UserURLConstants.UPDATE_USER,
+      updateUserModel
+    );
   }
 }

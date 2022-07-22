@@ -15,4 +15,5 @@ export class AddUserModel{
     password!:string;
     phone!:string;
     roleId!:number;
+    roleName?:string;
 }
