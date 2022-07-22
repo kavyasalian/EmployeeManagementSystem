@@ -12,10 +12,16 @@ import { EditEmployeeComponent } from './edit-employee/edit-employee.component';
 import { EmployeeViewComponent } from './employee-view/employee-view.component';
 import { AddemployeeComponent } from './employee/addemployee/addemployee.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ProjectComponent } from './project/project.component';
 import { EditCompanyComponent } from './company/edit-company/edit-company.component';
+import { AddprojectComponent } from './project/addproject/addproject.component';
 import { UserComponent } from './user/user.component';
 import { AddUserComponent } from './user/add-user/add-user.component';
+import { ProjectComponent } from './project/project.component';
+import { AddcompanyComponent } from './company/addcompany/addcompany.component';
+import { CompanyViewComponent } from './company/company-view/company-view.component';
+import { UserViewComponent } from './user/user-view/user-view.component';
+
+
 
 
 @NgModule({
@@ -32,13 +38,16 @@ import { AddUserComponent } from './user/add-user/add-user.component';
         AddemployeeComponent,
         EditCompanyComponent,
         ProjectComponent,
+        AddprojectComponent,
         UserComponent,
-        AddUserComponent
+        AddUserComponent,
+        AddcompanyComponent,
+        CompanyViewComponent,
+        UserViewComponent,
+        
+
+        
   ],
-  imports: [
-    CommonModule,
-    AdminRoutingModule,
-    ReactiveFormsModule
-  ]
+  imports: [CommonModule, AdminRoutingModule, ReactiveFormsModule],
 })
-export class AdminModule { }
+export class AdminModule {}

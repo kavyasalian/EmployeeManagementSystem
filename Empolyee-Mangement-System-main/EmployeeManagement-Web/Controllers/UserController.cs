@@ -22,7 +22,7 @@ namespace EmployeeManagement_Web.Controllers
         [HttpGet("GetAllUser")]
         public async Task<IActionResult> GetAllUsersAsync()
         {
-            var users = await userBusiness.GetUsersListByIdAsync();
+            var users = await userBusiness.GetAllUsersAsync();
             if (users != null)
             {
                 return Ok(users);
@@ -41,9 +41,14 @@ namespace EmployeeManagement_Web.Controllers
             return BadRequest();
         }
 
+        [AllowAnonymous]
         [HttpPost("AddUser")]
         public async Task<IActionResult> SaveUser(UserCreateModel user)
         {
+            if (user.RoleId == null)
+            {
+                user.RoleId = 1;
+            }
             var status = await userBusiness.SaveUserAsync(user);
 
             if(status == HttpStatusCode.OK)

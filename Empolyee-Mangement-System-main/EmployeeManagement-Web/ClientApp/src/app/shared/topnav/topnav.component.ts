@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from 'src/app/core/service/authentication.service';
 
 @Component({
   selector: 'app-topnav',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./topnav.component.css']
 })
 export class TopnavComponent implements OnInit {
-
-  constructor() { }
+  userName!: string;
+  constructor(private authService:AuthenticationService) { }
 
   ngOnInit(): void {
+    const user = JSON.parse(localStorage.getItem('currentUser') || '{}');
+    this.userName = user.name;
   }
-
+  logOut(){
+  this.authService.logout();
+  }
 }

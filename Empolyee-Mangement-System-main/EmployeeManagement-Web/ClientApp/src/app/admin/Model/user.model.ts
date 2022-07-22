@@ -1,3 +1,10 @@
+export class UserModel {
+  firstName!: string;
+  lastName!: string;
+  email!: string;
+  password!: string;
+  phone!: string;
+  roleId!: number;
 export class UserViewModel{
     UserId!:number;
     UserFirstName!:string;

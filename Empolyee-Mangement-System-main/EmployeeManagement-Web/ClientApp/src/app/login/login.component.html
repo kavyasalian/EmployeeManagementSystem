@@ -17,7 +17,6 @@
               <button type="button" type="submit" class="btn btn-default submit">Log in</button>
 
               <!-- <a [routerLink]="['/admin']"  class="btn btn-default submit" href="index.html">Log in</a> -->
-              <a class="reset_pass" href="#">Lost your password?</a>
             </div>
 
             <div class="clearfix"></div>
@@ -38,25 +37,33 @@
 
       <div id="register" class="animate form registration_form">
         <section class="login_content">
-         
+          <form [formGroup]="signinForm" (ngSubmit)="createUser()">
             <h1>Create Account</h1>
             <div>
-              <input type="text" class="form-control" placeholder="Username" required="" />
+              <input type="text" class="form-control" placeholder="First Name" formControlName="firstName" required="" />
             </div>
             <div>
-              <input type="email" class="form-control" placeholder="Email" required="" />
+              <input type="text" class="form-control" placeholder="Last Name" formControlName="lastName" required="" />
             </div>
             <div>
-              <input type="password" class="form-control" placeholder="Password" required="" />
+              <input type="email" class="form-control" placeholder="Email" formControlName="email" required="" />
             </div>
             <div>
-              <a class="btn btn-default submit" href="index.html">Submit</a>
+              <input type="password" class="form-control" placeholder="Password" formControlName="password" required="" />
+            </div>
+            <div>
+              <input type="tel" class="form-control" placeholder="Phone Number" formControlName="phone" required="" />
+            </div>
+            <br/>
+            <div>
+              <input type="submit" class="btn btn-default submit" href="#signin">
             </div>
 
             <div class="clearfix"></div>
 
             <div class="separator">
               <p class="change_link">Already a member ?
+                
                 <a href="#signin" class="to_register"> Log in </a>
               </p>
 
@@ -65,7 +72,7 @@
 
              
             </div>
-        
+          </form>
         </section>
       </div>
     </div>
