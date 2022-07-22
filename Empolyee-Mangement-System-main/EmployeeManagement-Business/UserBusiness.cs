@@ -24,7 +24,7 @@ namespace EmployeeManagement_Business
 
         public async Task<List<UserGetModel>> GetAllUsersAsync()
         {
-            var users = userRepository.GetAllUsersAsync();
+            var users = await userRepository.GetAllUsersAsync();
             var userModel = new List<UserGetModel>();
             foreach (var item in users)
             {

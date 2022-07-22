@@ -75,9 +75,10 @@
                        <span class="padding" (click)="viewUser(user.id)">
                         <i class="fa fa-eye" aria-hidden="true"></i>
                       </span>
+                       <ng-template [ngIf]="currentid!=user.id">
                       <span class="padding" (click)="updateUser(user.id)">
                         <i  class="fa fa-pencil" aria-hidden="true"></i>
-                      </span>
+                      </span></ng-template> 
                       <span class="padding" (click)="deleteUser(1)">
                         <i class="fa fa-trash" aria-hidden="true"></i>
                       </span>

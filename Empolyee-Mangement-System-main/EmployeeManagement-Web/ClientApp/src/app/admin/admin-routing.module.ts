@@ -17,6 +17,7 @@ import { UserComponent } from './user/user.component';
 import { ProjectComponent } from './project/project.component';
 import { CompanyViewComponent } from './company/company-view/company-view.component';
 import { UserViewComponent } from './user/user-view/user-view.component';
+import { UpdateUserComponent } from './user/update-user/update-user.component';
 const routes: Routes = [ 
 {
   path: '',

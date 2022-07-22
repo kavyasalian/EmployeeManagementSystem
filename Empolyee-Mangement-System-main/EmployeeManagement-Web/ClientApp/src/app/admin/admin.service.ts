@@ -2,40 +2,37 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CompanyCreateModel, CompanyViewModel } from './Model/company.model';
-import { CommanURLConstants, CompanyURLConstants, EmployeeURLConstants, ProjectURLConstants, USERURLConstants } from '../shared/constants/url-constant';
-import { Statistics } from './Model/common.model';
 import {
+  CommanURLConstants,
   CompanyURLConstants,
   EmployeeURLConstants,
   ProjectURLConstants,
+  USERURLConstants,
+} from '../shared/constants/url-constant';
+import { Statistics } from './Model/common.model';
+import {
   RoleURLConstants,
   UserURLConstants,
 } from '../shared/constants/url-constant';
-import { CompanyViewModel } from './Model/company.model';
+import { UserCreateModel } from '../shared/profile/model/user.model';
+import { RoleViewModel } from './Model/role.model';
+import { UpdateUserModel, ViewUserModel } from './Model/user.model';
 import { EmployeeCreateModel, EmployeeViewModel } from './Model/employee.model';
 import { ProjectCreateModel, ProjectViewModel } from './Model/project.model';
-import { UserCreateModel } from '../shared/profile/model/user.model';
-import { ProjectViewModel } from './Model/project.model';
-import { RoleViewModel } from './Model/role.model';
-import { UpdateUserModel,ViewUserModel } from './Model/user.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AdminService {
-
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getAllEmployees(): Observable<EmployeeViewModel[]> {
     return this.http.get<EmployeeViewModel[]>(
       EmployeeURLConstants.GET_ALL_EMPLOYEES
     );
   }
-  getAllUser():Observable<UserCreateModel[]>{
-    return this.http.get<UserCreateModel[]>(
-      USERURLConstants.GETALL
-    );
+  getAllUser(): Observable<UserCreateModel[]> {
+    return this.http.get<UserCreateModel[]>(USERURLConstants.GETALL);
   }
   getAllCompany(): Observable<CompanyViewModel[]> {
     return this.http.get<CompanyViewModel[]>(
@@ -51,7 +48,10 @@ export class AdminService {
     });
   }
   searchByEmployeeName(name: string) {
-    return this.http.get<EmployeeViewModel[]>(EmployeeURLConstants.SEARCH_EMPLOYEE_BY_NAME, { params: { employeeName: name } });
+    return this.http.get<EmployeeViewModel[]>(
+      EmployeeURLConstants.SEARCH_EMPLOYEE_BY_NAME,
+      { params: { employeeName: name } }
+    );
   }
 
   createEmployee(createEmployeeModel: EmployeeCreateModel) {
@@ -61,7 +61,10 @@ export class AdminService {
     );
   }
   createProject(createProjectModel: ProjectCreateModel) {
-    return this.http.post(ProjectURLConstants.CREATE_PROJECTS, createProjectModel)
+    return this.http.post(
+      ProjectURLConstants.CREATE_PROJECTS,
+      createProjectModel
+    );
   }
 
   updateEmployee(createEmployeeModel: EmployeeCreateModel) {
@@ -72,13 +75,17 @@ export class AdminService {
   }
 
   getAllEmployeeById(id: number): Observable<EmployeeCreateModel> {
-    return this.http.get<EmployeeCreateModel>(EmployeeURLConstants.GET_EMPLOYEE_BYID + id);
+    return this.http.get<EmployeeCreateModel>(
+      EmployeeURLConstants.GET_EMPLOYEE_BYID + id
+    );
   }
   getCompanyById(compayId: number) {
-    return this.http.get<CompanyCreateModel>(CompanyURLConstants.GET_COMPANY_BY_ID + compayId);
+    return this.http.get<CompanyCreateModel>(
+      CompanyURLConstants.GET_COMPANY_BY_ID + compayId
+    );
   }
-  getUserById(id:number){
-    return this.http.get<UserCreateModel>(USERURLConstants.GET_BY_ID +id)
+  getUserById(id: number) {
+    return this.http.get<UserCreateModel>(USERURLConstants.GET_BY_ID + id);
   }
   updateCompany(updateCompanyModel: CompanyViewModel) {
     return this.http.put<CompanyViewModel>(
@@ -88,7 +95,10 @@ export class AdminService {
   }
 
   createCompany(createCompanyModel: CompanyCreateModel) {
-    return this.http.post(CompanyURLConstants.CREATE_COMPANY, createCompanyModel);
+    return this.http.post(
+      CompanyURLConstants.CREATE_COMPANY,
+      createCompanyModel
+    );
   }
   getAllProject(): Observable<ProjectViewModel[]> {
     return this.http.get<ProjectViewModel[]>(
@@ -97,13 +107,13 @@ export class AdminService {
   }
 
   getStatistics() {
-    return this.http.get<Statistics>(
-      CommanURLConstants.GET_STATISTICS
-    );
+    return this.http.get<Statistics>(CommanURLConstants.GET_STATISTICS);
   }
 
   deleteProjectById(projectId: number) {
-    return this.http.delete<any>(ProjectURLConstants.DELETE_PROJECTS + projectId);
+    return this.http.delete<any>(
+      ProjectURLConstants.DELETE_PROJECTS + projectId
+    );
   }
   updateUser(updateUserModel: UpdateUserModel) {
     return this.http.put<UpdateUserModel>(
@@ -112,18 +122,12 @@ export class AdminService {
     );
   }
   getAllRoles(): Observable<RoleViewModel[]> {
-    return this.http.get<RoleViewModel[]>(
-      RoleURLConstants.GET_ALL_ROLE
-    );
+    return this.http.get<RoleViewModel[]>(RoleURLConstants.GET_ALL_ROLE);
   }
   getAllUsers(): Observable<ViewUserModel[]> {
-    return this.http.get<ViewUserModel[]>(
-      UserURLConstants.GET_ALL_USER
-    );
+    return this.http.get<ViewUserModel[]>(UserURLConstants.GET_ALL_USER);
   }
   getAllUserById(id: number): Observable<ViewUserModel> {
-    return this.http.get<ViewUserModel>(
-      UserURLConstants.GET_USER_BYID + id
-    );
+    return this.http.get<ViewUserModel>(UserURLConstants.GET_USER_BYID + id);
   }
 }

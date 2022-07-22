@@ -12,14 +12,15 @@ import { ViewUserModel } from '../Model/user.model';
 })
 export class UserComponent implements OnInit {
   userList!: ViewUserModel[];
-  constructor(private route: Router, private adminService: AdminService) {}
+  currentid!:number;
+  constructor(private router: Router, private adminService: AdminService) {}
 
   ngOnInit(): void {
     this.adminService.getAllUsers().subscribe((data) => {
       this.userList = data;
     });
     const loguser = JSON.parse(localStorage.getItem('currentUser') || '{}');
-    
+    this.currentid = loguser.userId;
   }
 
     viewUser(id: number) {

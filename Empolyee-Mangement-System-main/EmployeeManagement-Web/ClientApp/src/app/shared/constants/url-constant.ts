@@ -36,7 +36,7 @@ export class ProjectURLConstants{
 export class CommanURLConstants{
   static GET_STATISTICS=apiUrl +'/Common/GetStatistics';
 }
-}
+
 export class UserURLConstants{
   static GET_ALL_USER=apiUrl +'/User/GetAllUser';
   static UPDATE_USER= apiUrl + '/User/UpdateUser';
