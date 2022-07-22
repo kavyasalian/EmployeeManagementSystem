@@ -20,10 +20,13 @@ export class EmployeeComponent implements OnInit {
   deleteEmployee(id: number) {
     this.adminService.deleteEmployee(id).subscribe((data) => {
       if (data == 200) {
+        alert("Deleted successfully");
         this.adminService.getAllEmployees().subscribe((data) => {
           this.employeeList = data;
         });
       }
+    },(error)=>{
+      alert("Please Try Again!");
     });
   }
   viewEmployee(id: number) {
@@ -36,14 +39,12 @@ export class EmployeeComponent implements OnInit {
     this.router.navigateByUrl('admin/addEmployee');
   }
   onSearch(e: any, name: string) {
-    debugger
     if( name ==''){
       this.adminService.getAllEmployees().subscribe((data) => {
         this.employeeList = data;
       });
       return;
     }
-    console.log(e);
     
     if( e.keyCode == 13 || e.type == 'click'){
       this.adminService.searchByEmployeeName(name).subscribe(data => { 

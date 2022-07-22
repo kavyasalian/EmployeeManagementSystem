@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 
 import { ActivatedRoute } from '@angular/router';
@@ -12,7 +13,7 @@ import { CompanyCreateModel, CompanyViewModel } from '../../Model/company.model'
 export class CompanyViewComponent implements OnInit {
   companyId!: number;
   company!:CompanyCreateModel;
-  constructor(private adminService: AdminService,private route: ActivatedRoute) {}
+  constructor(private adminService: AdminService,private route: ActivatedRoute,private location:Location) {}
 
 
   ngOnInit(): void {
@@ -23,5 +24,7 @@ export class CompanyViewComponent implements OnInit {
       this.company = data;
     });
   }
-
+  goBack() {
+    this.location.back();
+  }
 }
