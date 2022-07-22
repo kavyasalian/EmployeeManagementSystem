@@ -6,12 +6,14 @@ import { CommanURLConstants, CompanyURLConstants, EmployeeURLConstants, ProjectU
 import { Statistics } from './Model/common.model';
 import { EmployeeCreateModel, EmployeeViewModel } from './Model/employee.model';
 import { ProjectCreateModel, ProjectViewModel } from './Model/project.model';
-import { UserCreateModel } from '../shared/profile/model/user.model';
+import { UserCreateModel, UserViewModel } from '../shared/profile/model/user.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AdminService {
+ 
+  
 
 
   constructor(private http: HttpClient) { }
@@ -87,4 +89,10 @@ export class AdminService {
   deleteProjectById(projectId: number) {
     return this.http.delete<any>(ProjectURLConstants.DELETE_PROJECTS + projectId);
   }
+
+  searchByUserName(name: string) {
+    return this.http.get<UserCreateModel[]>(USERURLConstants.SEARCH_USER_BY_NAME, { params: { userName: name } });
+  }
+
+
 }

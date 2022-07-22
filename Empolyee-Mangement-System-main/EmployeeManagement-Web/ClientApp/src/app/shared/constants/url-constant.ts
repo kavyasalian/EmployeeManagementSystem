@@ -8,7 +8,8 @@ export class LoginURLConstants {
 export class USERURLConstants {
   static GETALL = apiUrl + '/User/GetAllUser';
   static GET_BY_ID = apiUrl + '/User/GetUserById/';
-}
+  static SEARCH_USER_BY_NAME = apiUrl +'/User/SearchByUserName';
+} 
 export class EmployeeURLConstants {
   static GET_ALL_EMPLOYEES = apiUrl + '/Employee/GetAllEmployees';
   static DELETE_EMPLOYEES = apiUrl + '/Employee/DeleteEmployeeById/';
