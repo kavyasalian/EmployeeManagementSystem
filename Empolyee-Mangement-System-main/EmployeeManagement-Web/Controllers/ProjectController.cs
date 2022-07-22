@@ -55,7 +55,18 @@ namespace EmployeeManagement_Web.Controllers
             }
             return BadRequest(status);
 
+        }
 
+        [HttpDelete("DeleteProjectById/{Id}")]
+        public async Task<IActionResult> DeleteById(int Id)
+        {
+            var status = await projectBusiness.DeleteProjectAsync(Id);
+
+            if (status == HttpStatusCode.OK)
+            {
+                return Ok(status);
+            }
+            return BadRequest(status);
         }
     }
 }

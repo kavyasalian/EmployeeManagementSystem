@@ -1,0 +1,9 @@
+.padding{
+    padding-left: 10px;
+}
+.delete{
+    cursor: pointer;
+}
+.delete:hover{
+    color: crimson;
+}

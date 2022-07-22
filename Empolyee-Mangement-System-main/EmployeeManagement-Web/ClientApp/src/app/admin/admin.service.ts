@@ -11,8 +11,8 @@ import { ProjectCreateModel, ProjectViewModel } from './Model/project.model';
   providedIn: 'root',
 })
 export class AdminService {
-  
-  
+
+
   constructor(private http: HttpClient) { }
 
   getAllEmployees(): Observable<EmployeeViewModel[]> {
@@ -42,8 +42,8 @@ export class AdminService {
   createEmployee(createEmployeeModel: EmployeeCreateModel) {
     return this.http.post(EmployeeURLConstants.CREATE_EMPLOYEES, createEmployeeModel);
   }
-  createProject(createProjectModel:ProjectCreateModel){
-    return this.http.post(ProjectURLConstants.CREATE_PROJECTS,createProjectModel)
+  createProject(createProjectModel: ProjectCreateModel) {
+    return this.http.post(ProjectURLConstants.CREATE_PROJECTS, createProjectModel)
   }
 
   updateEmployee(createEmployeeModel: EmployeeCreateModel) {
@@ -59,9 +59,9 @@ export class AdminService {
   updateCompany(updateCompanyModel: CompanyViewModel) {
     return this.http.put<CompanyViewModel>(CompanyURLConstants.UPDATE_COMPANY, updateCompanyModel);
   }
-  
-  createCompany(createCompanyModel:CompanyCreateModel) {
-    return this.http.post(CompanyURLConstants.CREATE_COMPANY,createCompanyModel);
+
+  createCompany(createCompanyModel: CompanyCreateModel) {
+    return this.http.post(CompanyURLConstants.CREATE_COMPANY, createCompanyModel);
   }
   getAllProject(): Observable<ProjectViewModel[]> {
     return this.http.get<ProjectViewModel[]>(
@@ -73,5 +73,9 @@ export class AdminService {
     return this.http.get<Statistics>(
       CommanURLConstants.GET_STATISTICS
     );
+  }
+
+  deleteProjectById(projectId: number) {
+    return this.http.delete<any>(ProjectURLConstants.DELETE_PROJECTS + projectId);
   }
 }
