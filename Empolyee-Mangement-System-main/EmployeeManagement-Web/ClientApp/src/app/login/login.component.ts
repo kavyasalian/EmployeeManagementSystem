@@ -68,7 +68,7 @@ export class LoginComponent implements OnInit {
       signinDetails.roleId=1;
       console.log(signinDetails);
       this.adminService.createUser(signinDetails).subscribe((data) => {
-        alert('Successfully Signed In');
+        alert('Signup is successfull! Please login');
       this.router.navigate(['/login']);
       });
     }
