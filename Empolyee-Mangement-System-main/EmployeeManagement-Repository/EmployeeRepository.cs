@@ -88,9 +88,9 @@ namespace EmployeeManagement_Repository
             }
             return false;
         }
-        public Employee SearchByName(string employeeName)
+        public List<Employee> SearchByName(string employeeName)
         {
-            return dbContext.Employees.Include(x => x.Company).FirstOrDefault(a => a.FirstName == employeeName);
+            return dbContext.Employees.Include(x => x.Company).Where( n => n.FirstName.StartsWith(employeeName)).ToList();
         }
 
     }

@@ -101,24 +101,29 @@ namespace EmployeeManagement_Business
             var status = await employeeRepository.Delete(Id);
             return status ? HttpStatusCode.OK : HttpStatusCode.BadRequest;
         }
-        public async Task<SearchByNameModel> SearchNameAsync(string employeeName)
+        public async Task<List<SearchByNameModel>> SearchNameAsync(string employeeName)
         {
-            var employee = employeeRepository.SearchByName(employeeName);
-            var employeeModel = new SearchByNameModel();
-            if (employee != null)
+            var employees = employeeRepository.SearchByName(employeeName);
+            var employeeModelList = new List<SearchByNameModel>();
+
+            if (employees != null)
             {
-
-                employeeModel.Id = employee.Id;
-                employeeModel.FirstName = employee.FirstName;
-                employeeModel.LastName = employee.LastName;
-                employeeModel.Gender = employee.Gender;
-                employeeModel.Email = employee.Email;
-                employeeModel.Phone = employee.Phone;
-                employeeModel.companyName = employee.Company.CompanyName;
-                employeeModel.companyAddress = employee.Company.CompanyAddress;
-
+                foreach( var employee in employees)
+                {
+                    employeeModelList.Add(new SearchByNameModel
+                    {
+                        Id = employee.Id,
+                        FirstName = employee.FirstName,
+                        LastName = employee.LastName,
+                        Gender = employee.Gender,
+                        Email = employee.Email,
+                        Phone = employee.Phone,
+                        companyName = employee.Company.CompanyName,
+                        companyAddress = employee.Company.CompanyAddress,
+                    });
+                }
             }
-            return employeeModel;
+            return employeeModelList;
 
         }
     }
