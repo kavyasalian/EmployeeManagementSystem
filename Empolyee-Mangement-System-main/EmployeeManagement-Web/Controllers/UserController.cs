@@ -41,9 +41,14 @@ namespace EmployeeManagement_Web.Controllers
             return BadRequest();
         }
 
+        [AllowAnonymous]
         [HttpPost("AddUser")]
         public async Task<IActionResult> SaveUser(UserCreateModel user)
         {
+            if (user.RoleId == null)
+            {
+                user.RoleId = 1;
+            }
             var status = await userBusiness.SaveUserAsync(user);
 
             if(status == HttpStatusCode.OK)
@@ -95,6 +100,17 @@ namespace EmployeeManagement_Web.Controllers
                 return BadRequest();
             }
 
+        }
+        [HttpGet("SearchByUserName")]
+        public async Task<IActionResult> SearchByUserName(string userName)
+        {
+            var user = await userBusiness.SearchNameAsync(userName);
+
+            if (user != null)
+            {
+                return Ok(user);
+            }
+            return BadRequest(user);
         }
     }
 }

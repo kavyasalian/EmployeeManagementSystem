@@ -1,5 +1,6 @@
 ﻿using EmployeeManagement.Data;
 using EmployeeManagement_Repository.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace EmployeeManagement_Repository
 {
@@ -10,14 +11,14 @@ namespace EmployeeManagement_Repository
         {
             this.dbContext = new EmployeeManagementContext();
         }
-        public List<User> GetAllUsersAsync()
+        public async Task<List<User>> GetAllUsersAsync()
         {
-            return dbContext.Users.ToList();
+            return dbContext.Users.Include(x => x.Role).ToList();
 
         }
         public async Task<User> GetUserById(int Id)
         {
-            return dbContext.Users.FirstOrDefault(x => x.UserId == Id);
+            return dbContext.Users.Include(x => x.Role).FirstOrDefault(x => x.UserId == Id);
         }
 
         public async Task<bool> Update(UserUpdateModel user)
@@ -87,6 +88,10 @@ namespace EmployeeManagement_Repository
             {
                 return user;
             }
+        }
+        public List<User> SearchByName(string userName)
+        {
+            return dbContext.Users.Include(x => x.Role).Where(n => n.FirstName.StartsWith(userName)).ToList();
         }
     }
 }

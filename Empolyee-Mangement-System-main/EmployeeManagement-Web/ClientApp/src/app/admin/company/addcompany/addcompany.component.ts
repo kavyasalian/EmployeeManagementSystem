@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Form, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { AbstractControl, Form, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AdminService } from '../../admin.service';
 import { CompanyCreateModel, CompanyViewModel } from '../../Model/company.model';
 import { EmployeeCreateModel } from '../../Model/employee.model';
@@ -9,7 +9,6 @@ import { EmployeeCreateModel } from '../../Model/employee.model';
 @Component({
   selector: 'app-addcompany',
   templateUrl: './addcompany.component.html',
-  styleUrls: ['./addcompany.component.css']
 })
 export class AddcompanyComponent implements OnInit {
    addCompany!:FormGroup;
@@ -19,14 +18,15 @@ export class AddcompanyComponent implements OnInit {
 
   ngOnInit(): void {
     this.addCompany= this.formBuilder.group({
-            companyName: new FormControl(""),
-            companyAddress:new FormControl(""),
-            companyPhone:new FormControl(""),
+            companyName: new FormControl("",Validators.required),
+            companyAddress:new FormControl("",Validators.required),
+            companyPhone:new FormControl("",Validators.required),
           });
           
         }
 
  createCompany(){
+  if (this.addCompany.invalid) return;
     let comapny= new CompanyCreateModel();
     comapny.companyName=this.addCompany.controls['companyName'].value;
     comapny.companyAddress=this.addCompany.controls['companyAddress'].value;
@@ -40,5 +40,7 @@ export class AddcompanyComponent implements OnInit {
      goBack(){
       this.location.back();
     }
-    
+    get f(): { [key: string]: AbstractControl } {
+      return this.addCompany.controls;
+    }
   }

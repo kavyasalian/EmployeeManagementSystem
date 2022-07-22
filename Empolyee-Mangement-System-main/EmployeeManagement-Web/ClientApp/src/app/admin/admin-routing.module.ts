@@ -17,6 +17,7 @@ import { UserComponent } from './user/user.component';
 import { ProjectComponent } from './project/project.component';
 import { CompanyViewComponent } from './company/company-view/company-view.component';
 import { UserViewComponent } from './user/user-view/user-view.component';
+import { UpdateUserComponent } from './user/update-user/update-user.component';
 const routes: Routes = [ 
 {
   path: '',
@@ -84,13 +85,18 @@ const routes: Routes = [
 {
   path:'UserView/:id',
   component:UserViewComponent
-}
+    },
+
+    {
+        path: 'UpdateUser/:userId',
+        component: UpdateUserComponent,
+    },
 
 
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AdminRoutingModule { }
+export class AdminRoutingModule {}
