@@ -10,6 +10,11 @@ export class USERURLConstants {
   static GET_BY_ID = apiUrl + '/User/GetUserById/';
   static SEARCH_USER_BY_NAME = apiUrl +'/User/SearchByUserName';
 } 
+  static CREATE_USER =apiUrl + '/User/AddUser';
+}
+export class RoleURLConstants{
+  static GET_ALL_ROLE=apiUrl +'/Role/GetAllRoles/';
+}
 export class EmployeeURLConstants {
   static GET_ALL_EMPLOYEES = apiUrl + '/Employee/GetAllEmployees';
   static DELETE_EMPLOYEES = apiUrl + '/Employee/DeleteEmployeeById/';
