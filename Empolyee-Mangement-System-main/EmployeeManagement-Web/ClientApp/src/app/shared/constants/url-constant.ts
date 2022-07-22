@@ -30,9 +30,15 @@ export class CompanyURLConstants{
 
 export class ProjectURLConstants{
   static GET_ALL_PROJECT=apiUrl +'/Project/GetAllProjects';
-  static CREATE_PROJECTS=apiUrl +'/Project/SaveProject';
-  static DELETE_PROJECTS=apiUrl +'/Project/DeleteProjectById/';
+    static CREATE_PROJECTS = apiUrl + '/Project/SaveProject';
+    static DELETE_PROJECTS = apiUrl + '/Project/DeleteProjectById/';
 }
+
+export class UserURLConstants{
+  static CREATE_USERS = apiUrl + '/User/AddUser';
+}
+  
+
 
 export class CommanURLConstants{
   static GET_STATISTICS=apiUrl +'/Common/GetStatistics';
