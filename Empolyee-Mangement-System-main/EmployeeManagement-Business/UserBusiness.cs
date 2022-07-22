@@ -127,5 +127,28 @@ namespace EmployeeManagement_Business
             var token = tokenHandler.CreateToken(tokenDescriptor);
             authModel.Token = tokenHandler.WriteToken(token);
         }
+        public async Task<List<UserSearchByNameModel>> SearchNameAsync(string userName)
+        {
+            var users = userRepository.SearchByName(userName);
+            var userModelList = new List<UserSearchByNameModel>();
+            if (users != null)
+            {
+                foreach (var user in users)
+                {
+                    userModelList.Add(new UserSearchByNameModel
+                    {
+                        Id = user.UserId,
+                        FirstName = user.FirstName,
+                        LastName = user.LastName,
+                        Email = user.Email,
+                        Password = user.Password,
+                        Phone = user.Phone,
+                        RoleId = user.RoleId,
+                    });
+                }
+            }
+            return userModelList;
+
+        }
     }
 }

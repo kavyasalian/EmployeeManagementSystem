@@ -1,5 +1,6 @@
 ﻿using EmployeeManagement.Data;
 using EmployeeManagement_Repository.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace EmployeeManagement_Repository
 {
@@ -87,6 +88,10 @@ namespace EmployeeManagement_Repository
             {
                 return user;
             }
+        }
+        public List<User> SearchByName(string userName)
+        {
+            return dbContext.Users.Include(x => x.Role).Where(n => n.FirstName.StartsWith(userName)).ToList();
         }
     }
 }
