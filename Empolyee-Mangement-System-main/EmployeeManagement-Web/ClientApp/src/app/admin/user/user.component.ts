@@ -22,7 +22,9 @@ export class UserComponent implements OnInit {
     
   }
 
-  viewUser(id: number) {}
+    viewUser(id: number) {
+        this.router.navigate(['admin/UserView', id]);
+    }
 
   updateUser(id: number) {
     

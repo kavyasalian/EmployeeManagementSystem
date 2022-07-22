@@ -30,6 +30,19 @@ namespace EmployeeManagement_Web.Controllers
             }
             return NoContent();
         }
+        [HttpPost("SaveProject")]
+        public async Task<IActionResult> SaveProject(ProjectCreateModel project)
+        {
+            var status = await projectBusiness.SaveProjectAsync(project);
+
+            if (status == HttpStatusCode.OK)
+            {
+                return Ok(status);
+            }
+            return BadRequest(status);
+        }
+
+
 
         [HttpPut("UpdateProject")]
         public async Task<IActionResult> UpdateProject(ProjectGetModel project)
@@ -42,7 +55,18 @@ namespace EmployeeManagement_Web.Controllers
             }
             return BadRequest(status);
 
+        }
 
+        [HttpDelete("DeleteProjectById/{Id}")]
+        public async Task<IActionResult> DeleteById(int Id)
+        {
+            var status = await projectBusiness.DeleteProjectAsync(Id);
+
+            if (status == HttpStatusCode.OK)
+            {
+                return Ok(status);
+            }
+            return BadRequest(status);
         }
     }
 }

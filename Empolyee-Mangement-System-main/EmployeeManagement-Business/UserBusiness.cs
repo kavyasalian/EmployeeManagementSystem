@@ -22,9 +22,9 @@ namespace EmployeeManagement_Business
             this.userRepository = new UserRepository();
         }
 
-        public async Task<List<UserGetModel>> GetUsersListByIdAsync()
+        public async Task<List<UserGetModel>> GetAllUsersAsync()
         {
-            var users = await userRepository.GetAllUsersAsync();
+            var users = userRepository.GetAllUsersAsync();
             var userModel = new List<UserGetModel>();
             foreach (var item in users)
             {
@@ -38,7 +38,7 @@ namespace EmployeeManagement_Business
                 user.RoleId= item.RoleId;
                 userModel.Add(user);
             }
-           return userModel;
+            return userModel;
         }
         public async Task<UserGetModel> GetUserByIdAsync(int Id)
         {
@@ -59,9 +59,9 @@ namespace EmployeeManagement_Business
             return null;
         }
 
-        public  async Task<HttpStatusCode> UpdateUserAsync(UserUpdateModel userView)
+        public async Task<HttpStatusCode> UpdateUserAsync(UserUpdateModel userView)
         {
-            
+
             var status = await userRepository.Update(userView);
             if (status)
             {
@@ -74,7 +74,7 @@ namespace EmployeeManagement_Business
 
         }
 
-        public  async Task<HttpStatusCode> DeleteUserAsync(int userId)
+        public async Task<HttpStatusCode> DeleteUserAsync(int userId)
         {
             var status = await userRepository.Delete(userId);
             return status ? HttpStatusCode.OK : HttpStatusCode.BadRequest;

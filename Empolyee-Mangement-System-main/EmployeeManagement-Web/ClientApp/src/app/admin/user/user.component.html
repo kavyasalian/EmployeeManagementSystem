@@ -28,17 +28,13 @@
     <div class="row">
       <div class="clearfix"></div>
 
-      <div class="col-md-12 col-sm-12 col-xs-12">
+     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
           <div class="x_title">
             <h2>User <small> details</small></h2>
             <ul class="nav navbar-right panel_toolbox">
               <li>
-                <button
-                  class="btn btn-primary"
-                  type="button"
-                  (click)="addUser(1)"
-                >
+                <button class="btn btn-primary" type="button" (click)="addUser(1)">
                   <i class="fa fa-plus" aria-hidden="true"> Add</i>
                 </button>
               </li>
@@ -76,7 +72,7 @@
                     <td class=" ">{{ user.phone }}</td>
                     <td class=" ">{{ user.roleName }}</td>
                     <td>
-                      <span class="padding" (click)="viewUser(1)">
+                       <span class="padding" (click)="viewUser(user.id)">
                         <i class="fa fa-eye" aria-hidden="true"></i>
                       </span>
                       <span class="padding" (click)="updateUser(user.id)">
@@ -96,3 +92,4 @@
     </div>
   </div>
 </div>
+                 
