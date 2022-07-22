@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserCreateModel, UserViewModel } from 'src/app/shared/profile/model/user.model';
+import { AddUserModel, UserViewModel } from 'src/app/shared/profile/model/user.model';
 import { AdminService } from '../admin.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { AdminService } from '../admin.service';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-  userList!: UserCreateModel[];
+  userList!: AddUserModel[];
   
   constructor(private adminService: AdminService, private router: Router) {}
 

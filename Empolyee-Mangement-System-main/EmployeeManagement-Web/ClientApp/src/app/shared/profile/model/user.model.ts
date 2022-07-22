@@ -7,7 +7,7 @@ export class UserViewModel{
     phone!:string;
     roleId!:number;
 }
-export class UserCreateModel{
+export class AddUserModel{
     id!:number;
     firstName!:string;
     lastName!:string;
