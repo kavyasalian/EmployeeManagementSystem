@@ -1,0 +1,74 @@
+<div class="right_col" role="main">
+  <div class="">
+    <div class="page-title">
+      <div class="title_left">
+        <h3>User <small></small></h3>
+      </div>
+
+      <div class="title_right">
+        <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+          <div class="x_title">
+            <h2>user <small>Full details</small></h2>
+            <ul class="nav navbar-right panel_toolbox">
+              <button class="btn btn-primary" type="button" (click)="goBack()">
+                <i class="fa fa-backward" aria-hidden="true"> Back</i>
+              </button>
+            </ul>
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="right" role="main">
+            <div class="row">
+              <div class="x_content">
+                <br />
+                <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                  <div class="form-group">
+                    <label>
+                      <b><span class="firstName"> First Name: </span>{{user.firstName}}</b>
+                    </label>
+                  </div>
+                  <div class="form-group">
+                    <label>
+                      <b><span class="lastName"> Last Name: </span>{{user.lastName}}</b>
+                    </label>
+                  </div>
+                  <div class="form-group">
+                    <label>
+                      <b><span class="email">Email </span>{{user.email}}</b>
+                    </label>
+                  </div>
+                  <div class="Password">
+                    <label>
+                      <b><span class="required"> Password </span>{{user.password}}</b>
+                    </label>
+                  </div>
+                  <div class="form-group">
+                    <label>
+                      <b><span class="phone"> Phone: </span>{{user.phone}}</b>
+                    </label>
+                  </div>
+                  <div class="form-group">
+                    <label>
+                      <b><span class="roleId"> Role Id </span>{{user.roleId}}</b>
+                    </label>
+                  </div>
+
+
+                  <div class="ln_solid"></div>
+                  <div class="form-group"></div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
