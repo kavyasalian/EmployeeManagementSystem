@@ -59,6 +59,8 @@ export class EditEmployeeComponent implements OnInit {
     this.adminService.updateEmployee(employee).subscribe((data) => {
       alert('Updated');
       this.location.back();
+    },(error)=>{
+      alert("Please Try Again!");
     });
   }
   goBack() {

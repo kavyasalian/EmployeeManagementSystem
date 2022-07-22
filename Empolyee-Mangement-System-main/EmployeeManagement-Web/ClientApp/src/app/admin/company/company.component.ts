@@ -22,15 +22,20 @@ export class CompanyComponent implements OnInit {
   deleteCompany(id: number) {
     this.adminService.deleteCompany(id).subscribe((data) => {
       if (data == 200) {
-        this.adminService.getAllCompany().subscribe((data) => {
-          this.companyList = data;
+        alert("deleted Company Details");
+       this.adminService.getAllCompany().subscribe((data) => {
+      this.companyList=data;
         });
-        alert("Cannot delete company as there is Employee associated with it.");
       }
-    })
+      },
+      (error)=>{
+      alert("Cannot delete company as there is Employee associated with it.");
+     
+    }
+    );
   }
   viewCompany(id: number) {
-    this.router.navigate(['admin/CompanyView'])
+    this.router.navigate(['admin/CompanyView',id])
   }
 
   editCompany(compayId: number) {

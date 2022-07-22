@@ -32,7 +32,6 @@ namespace EmployeeManagement_Business
             return projectList;
         }
 
-
         public async Task<HttpStatusCode> SaveProjectAsync(ProjectCreateModel project)
         {
             var status = await projectRepository.Create(new Project
@@ -64,6 +63,12 @@ namespace EmployeeManagement_Business
                 return HttpStatusCode.OK;
             }
             return HttpStatusCode.BadRequest;
+        }
+
+        public async Task<HttpStatusCode> DeleteProjectAsync(int ProjectId)
+        {
+            var status = await projectRepository.Delete(ProjectId);
+            return status ? HttpStatusCode.OK : HttpStatusCode.BadRequest;
         }
     }
 }

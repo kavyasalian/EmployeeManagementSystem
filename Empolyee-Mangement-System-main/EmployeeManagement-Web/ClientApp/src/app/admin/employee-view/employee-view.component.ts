@@ -14,7 +14,6 @@ export class EmployeeViewComponent implements OnInit {
   employeeId!: number;
   employee!: EmployeeCreateModel;
   constructor(
-    private formBuilder: FormBuilder,
     private adminService: AdminService,
     private location: Location,
     private route: ActivatedRoute
@@ -28,5 +27,8 @@ export class EmployeeViewComponent implements OnInit {
     this.adminService.getAllEmployeeById(this.employeeId).subscribe((data) => {
       this.employee = data;
     });
+  }
+  goBack(){
+    this.location.back();
   }
 }

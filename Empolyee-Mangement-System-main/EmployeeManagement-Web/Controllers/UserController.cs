@@ -22,7 +22,7 @@ namespace EmployeeManagement_Web.Controllers
         [HttpGet("GetAllUser")]
         public async Task<IActionResult> GetAllUsersAsync()
         {
-            var users = await userBusiness.GetUsersListByIdAsync();
+            var users = await userBusiness.GetAllUsersAsync();
             if (users != null)
             {
                 return Ok(users);

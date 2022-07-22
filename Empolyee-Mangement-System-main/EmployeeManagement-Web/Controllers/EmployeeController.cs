@@ -95,10 +95,7 @@ namespace EmployeeManagement_Web.Controllers
             {
                 return Ok(employee);
             }
-            else
-            {
                 return BadRequest(employee);
-            }
         }
     }
 }
