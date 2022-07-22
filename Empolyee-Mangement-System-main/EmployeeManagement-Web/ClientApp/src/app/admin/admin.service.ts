@@ -29,8 +29,8 @@ export class AdminService {
       EmployeeURLConstants.GET_ALL_EMPLOYEES
     );
   }
-  getAllUser(): Observable<AddUserModel[]> {
-    return this.http.get<AddUserModel[]>(USERURLConstants.GETALL);
+  getAllUser(): Observable<UserCreateModel[]> {
+    return this.http.get<UserCreateModel[]>(USERURLConstants.GETALL);
   }
   getAllCompany(): Observable<CompanyViewModel[]> {
     return this.http.get<CompanyViewModel[]>(
@@ -82,8 +82,8 @@ export class AdminService {
       CompanyURLConstants.GET_COMPANY_BY_ID + compayId
     );
   }
-  getUserById(id: number) {
-    return this.http.get<AddUserModel>(USERURLConstants.GET_BY_ID + id);
+  getUserById(id:number){
+    return this.http.get<UserCreateModel>(USERURLConstants.GET_BY_ID +id)
   }
   updateCompany(updateCompanyModel: CompanyViewModel) {
     return this.http.put<CompanyViewModel>(
@@ -112,9 +112,7 @@ export class AdminService {
   }
 
   deleteProjectById(projectId: number) {
-    return this.http.delete<any>(
-      ProjectURLConstants.DELETE_PROJECTS + projectId
-    );
+    return this.http.delete<any>(ProjectURLConstants.DELETE_PROJECTS + projectId);
   }
 
   searchByUserName(name: string) {
