@@ -47,6 +47,4 @@ export class UserURLConstants {
   static GET_USER_BYID = apiUrl + '/User/GetUserById/';
   static CREATE_USERS = apiUrl + '/User/AddUser';
 }
-export class RoleURLConstants {
-  static GET_ALL_ROLE = apiUrl + '/Role/GetAllRoles';
-}
+

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AddUserModel, UserViewModel } from 'src/app/shared/profile/model/user.model';
 import { AdminService } from '../admin.service';
-import { ViewUserModel } from '../Model/user.model';
+import { UserCreateModel, ViewUserModel } from '../Model/user.model';
 
 @Component({
   selector: 'app-user',
@@ -10,12 +10,12 @@ import { ViewUserModel } from '../Model/user.model';
   styleUrls: ['./user.component.css'],
 })
 export class UserComponent implements OnInit {
-  userList!: ViewUserModel[];
+  userList!: AddUserModel[];
   currentid!:number;
   constructor(private router: Router, private adminService: AdminService) {}
 
   ngOnInit(): void {
-    this.adminService.getAllUsers().subscribe((data) => {
+    this.adminService.getAllUser().subscribe((data) => {
       this.userList = data;
     });
     const loguser = JSON.parse(localStorage.getItem('currentUser') || '{}');
