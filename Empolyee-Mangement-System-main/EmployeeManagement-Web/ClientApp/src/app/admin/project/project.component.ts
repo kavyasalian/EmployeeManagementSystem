@@ -16,7 +16,6 @@ export class ProjectComponent implements OnInit {
   constructor(private adminService: AdminService, private router: Router) { }
 
   ngOnInit(): void {
-    debugger
     this.getAllProjects();
   }
   getAllProjects() {
@@ -32,14 +31,12 @@ export class ProjectComponent implements OnInit {
     this.router.navigate(['admin/EditProject', id])
   }
   deleteProject(project: ProjectViewModel) {
-    debugger
     let employeeCount: number;
 
     this.adminService.getAllEmployees().subscribe(data => {
       employeeCount = data.filter(e => e.projectId == project.projectId).length;
       this.isDeletable = employeeCount == 0;
-      console.log(this.isDeletable);
-
+      
       if (this.isDeletable) {
         this.adminService.deleteProjectById(project.projectId).subscribe(data => {
           console.log("Delete status: " + data);
