@@ -8,9 +8,10 @@
       <div class="title_right">
         <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search for..." />
+            <input type="text" class="form-control" placeholder="Search for..."#searchName
+            (keyup)="onSearch($event, searchName.value)"/>
             <span class="input-group-btn">
-              <button class="btn btn-default" type="button">Go!</button>
+              <button class="btn btn-default" (click)="onSearch($event, searchName.value)" type="button">Go!</button>
             </span>
           </div>
         </div>
@@ -41,14 +42,13 @@
               <table class="table table-striped jambo_table bulk_action">
                 <thead>
                   <tr class="headings">
-                    <th class="column-title">User ID</th>
+                     <th class="column-title">User ID</th> 
                     <th class="column-title">First Name</th>
                     <th class="column-title">Last Name</th>
-
                     <th class="column-title">Email</th>
                     <th class="column-title">Password</th>
                     <th class="column-title">Phone</th>
-                    <th class="column-title">Roll Id</th>
+                    <th class="column-title">Role Id</th>
                     <th class="column-title no-link last">
                       <span class="nobr">Action</span>
                     </th>
@@ -63,7 +63,7 @@
                 <tbody>
                   <tr>
                   <tr class="even pointer" *ngFor="let user of userList">
-                    <td class=" "> {{user.id}} </td>
+                    <td class=" "> {{user.id}} </td> 
                     <td class=" "> {{user.firstName}}</td>
                     <td class=" "> {{user.lastName}} </td>
                     <td class=" "> {{user.email}} </td>

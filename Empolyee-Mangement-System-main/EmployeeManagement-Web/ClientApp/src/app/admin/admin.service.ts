@@ -13,6 +13,8 @@ import { UserModel } from './Model/user.model';
   providedIn: 'root',
 })
 export class AdminService {
+ 
+  
 
 
   constructor(private http: HttpClient) { }
@@ -91,4 +93,10 @@ export class AdminService {
   deleteProjectById(projectId: number) {
     return this.http.delete<any>(ProjectURLConstants.DELETE_PROJECTS + projectId);
   }
+
+  searchByUserName(name: string) {
+    return this.http.get<UserCreateModel[]>(USERURLConstants.SEARCH_USER_BY_NAME, { params: { userName: name } });
+  }
+
+
 }
