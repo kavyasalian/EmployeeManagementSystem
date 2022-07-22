@@ -9,7 +9,6 @@ export class USERURLConstants {
   static GETALL = apiUrl + '/User/GetAllUser';
   static GET_BY_ID = apiUrl + '/User/GetUserById/';
   static SEARCH_USER_BY_NAME = apiUrl +'/User/SearchByUserName';
-} 
   static CREATE_USER =apiUrl + '/User/AddUser';
 }
 export class RoleURLConstants{

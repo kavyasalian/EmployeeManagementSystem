@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { AdminService } from '../../admin.service';
-import { UserCreateModel } from '../../Model/user.model';
 import { Location } from '@angular/common';
 import { RoleViewModel } from '../../Model/role.model';
+import { UserCreateModel } from '../../Model/user.model';
 
 @Component({
   selector: 'app-add-user',
@@ -36,7 +36,7 @@ export class AddUserComponent implements OnInit {
     User.Userphone=this.addUser.controls['phoneNo'].value;
     User.Useremail=this.addUser.controls['email'].value;
     User.UserRoleID=this.addUser.controls['RoleId'].value;
-    this.adminService.createUser(User).subscribe((data) =>{
+    this.adminService.addUser(User).subscribe((data) =>{
        alert("Saved")    ;
        this.location.back();
     });       

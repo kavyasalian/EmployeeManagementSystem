@@ -2,27 +2,27 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CompanyCreateModel, CompanyViewModel } from './Model/company.model';
-import { CommanURLConstants, CompanyURLConstants, EmployeeURLConstants, ProjectURLConstants, UserURLConstants, USERURLConstants } from '../shared/constants/url-constant';
+import {
+  CommanURLConstants,
+  CompanyURLConstants,
+  EmployeeURLConstants,
+  ProjectURLConstants,
+  RoleURLConstants,
+  UserURLConstants,
+  USERURLConstants,
+} from '../shared/constants/url-constant';
 import { Statistics } from './Model/common.model';
-import { CompanyURLConstants, EmployeeURLConstants, ProjectURLConstants, RoleURLConstants, USERURLConstants } from '../shared/constants/url-constant';
-import { CompanyViewModel } from './Model/company.model';
 import { EmployeeCreateModel, EmployeeViewModel } from './Model/employee.model';
 import { ProjectCreateModel, ProjectViewModel } from './Model/project.model';
-import { UserCreateModel } from '../shared/profile/model/user.model';
-import { UserModel } from './Model/user.model';
-import { ProjectViewModel } from './Model/project.model';
+import { AddUserModel } from '../shared/profile/model/user.model';
+import { UserCreateModel, UserModel } from './Model/user.model';
 import { RoleViewModel } from './Model/role.model';
-import { UserCreateModel } from './Model/user.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AdminService {
- 
-  
-
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getAllEmployees(): Observable<EmployeeViewModel[]> {
     return this.http.get<EmployeeViewModel[]>(
@@ -82,8 +82,8 @@ export class AdminService {
       CompanyURLConstants.GET_COMPANY_BY_ID + compayId
     );
   }
-  getUserById(id: number) {
-    return this.http.get<UserCreateModel>(USERURLConstants.GET_BY_ID + id);
+  getUserById(id:number){
+    return this.http.get<UserCreateModel>(USERURLConstants.GET_BY_ID +id)
   }
   updateCompany(updateCompanyModel: CompanyViewModel) {
     return this.http.put<CompanyViewModel>(
@@ -103,7 +103,7 @@ export class AdminService {
       ProjectURLConstants.GET_ALL_PROJECT
     );
   }
-  createUser(userModel: UserModel) {
+  createUser(userModel: AddUserModel) {
     return this.http.post(UserURLConstants.CREATE_USERS, userModel);
   }
 
@@ -112,37 +112,20 @@ export class AdminService {
   }
 
   deleteProjectById(projectId: number) {
-    return this.http.delete<any>(
-      ProjectURLConstants.DELETE_PROJECTS + projectId
-    );
-  }
-  updateUser(updateUserModel: UpdateUserModel) {
-    return this.http.put<UpdateUserModel>(
-      UserURLConstants.UPDATE_USER,
-      updateUserModel
-    );
-  }
-  getAllRoles(): Observable<RoleViewModel[]> {
-    return this.http.get<RoleViewModel[]>(RoleURLConstants.GET_ALL_ROLE);
-  }
-  getAllUsers(): Observable<ViewUserModel[]> {
-    return this.http.get<ViewUserModel[]>(UserURLConstants.GET_ALL_USER);
-  }
-  getAllUserById(id: number): Observable<ViewUserModel> {
-    return this.http.get<ViewUserModel>(UserURLConstants.GET_USER_BYID + id);
+    return this.http.delete<any>(ProjectURLConstants.DELETE_PROJECTS + projectId);
   }
 
   searchByUserName(name: string) {
-    return this.http.get<UserCreateModel[]>(USERURLConstants.SEARCH_USER_BY_NAME, { params: { userName: name } });
+    return this.http.get<AddUserModel[]>(
+      USERURLConstants.SEARCH_USER_BY_NAME,
+      { params: { userName: name } }
+    );
   }
 
-
-  createUser(createUserModel: UserCreateModel) {
+  addUser(createUserModel: UserCreateModel) {
     return this.http.post(USERURLConstants.CREATE_USER, createUserModel);
   }
   getAllRole(): Observable<RoleViewModel[]> {
-    return this.http.get<RoleViewModel[]>(
-      RoleURLConstants.GET_ALL_ROLE
-    );
+    return this.http.get<RoleViewModel[]>(RoleURLConstants.GET_ALL_ROLE);
   }
 }

@@ -7,10 +7,9 @@ import {
 } from '@angular/forms';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { first } from 'rxjs';
 import { AdminService } from '../admin/admin.service';
-import { UserModel } from '../admin/Model/user.model';
 import { AuthenticationService } from '../core/service/authentication.service';
+import { AddUserModel } from '../shared/profile/model/user.model';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -59,7 +58,7 @@ export class LoginComponent implements OnInit {
       alert('Enter the Details');
     } 
     else {
-      let signinDetails = new UserModel();
+      let signinDetails = new AddUserModel();
       signinDetails.firstName = this.signinForm.controls['firstName'].value;
       signinDetails.lastName = this.signinForm.controls['lastName'].value;
       signinDetails.email = this.signinForm.controls['email'].value;

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserCreateModel, UserViewModel } from 'src/app/shared/profile/model/user.model';
+import { AddUserModel, UserViewModel } from 'src/app/shared/profile/model/user.model';
 import { AdminService } from '../admin.service';
 import { ViewUserModel } from '../Model/user.model';
 
