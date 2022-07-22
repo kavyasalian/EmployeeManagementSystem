@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { UserCreateModel } from 'src/app/shared/profile/model/user.model';
 import { AdminService } from '../../admin.service';
 import { Location } from '@angular/common';
+import { AddUserModel } from 'src/app/shared/profile/model/user.model';
 
 @Component({
   selector: 'app-user-view',
@@ -11,7 +11,7 @@ import { Location } from '@angular/common';
 })
 export class UserViewComponent implements OnInit {
   UserId!: number;
-  user!: UserCreateModel;
+  user!: AddUserModel;
   constructor(
     private adminService: AdminService,
     private location: Location,

@@ -5,6 +5,7 @@ export class UserModel {
   password!: string;
   phone!: string;
   roleId!: number;
+}
 export class UserViewModel{
     UserId!:number;
     UserFirstName!:string;
