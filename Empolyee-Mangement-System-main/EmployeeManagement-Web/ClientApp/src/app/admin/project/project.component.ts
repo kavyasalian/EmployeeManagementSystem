@@ -16,7 +16,6 @@ export class ProjectComponent implements OnInit {
   constructor(private adminService: AdminService, private router: Router) { }
 
   ngOnInit(): void {
-    debugger
     this.getAllProjects();
   }
   getAllProjects() {
@@ -32,7 +31,6 @@ export class ProjectComponent implements OnInit {
     this.router.navigate(['admin/EditProject', id])
   }
   deleteProject(project: ProjectViewModel) {
-    debugger
     let employeeCount: number;
 
     this.adminService.getAllEmployees().subscribe(data => {
