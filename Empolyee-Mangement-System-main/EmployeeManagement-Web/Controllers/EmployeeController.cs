@@ -1,6 +1,5 @@
 ﻿using EmployeeManagement.Data;
 using EmployeeManagement_Business;
-using EmployeeManagement_Repository.Entities;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
@@ -22,8 +21,8 @@ namespace EmployeeManagement_Web.Controllers
         [HttpGet("GetAllEmployees")]
         public async Task<IActionResult> GetAllEmployee()
         {
-           var employees = await employeeBusiness.GetAllEmployeeAsync();
-           return Ok(employees);
+            var employees = await employeeBusiness.GetAllEmployeeAsync();
+            return Ok(employees);
         }
 
         [HttpGet("GetEmployeeById/{Id}")]
@@ -95,7 +94,7 @@ namespace EmployeeManagement_Web.Controllers
             {
                 return Ok(employee);
             }
-                return BadRequest(employee);
+            return BadRequest(employee);
         }
     }
 }

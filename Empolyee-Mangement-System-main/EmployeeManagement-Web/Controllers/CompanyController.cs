@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using EmployeeManagement.Data;
 using EmployeeManagement_Business;
+using Microsoft.AspNetCore.Mvc;
 using System.Net;
-using EmployeeManagement.Data;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 namespace EmployeeManagement_Web.Controllers

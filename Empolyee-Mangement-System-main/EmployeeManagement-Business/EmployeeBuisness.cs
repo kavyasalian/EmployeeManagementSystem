@@ -1,6 +1,5 @@
 ﻿using EmployeeManagement.Data;
 using EmployeeManagement_Repository;
-using EmployeeManagement_Repository.Entities;
 using System.Net;
 
 namespace EmployeeManagement_Business
@@ -109,7 +108,7 @@ namespace EmployeeManagement_Business
 
             if (employees != null)
             {
-                foreach( var employee in employees)
+                foreach (var employee in employees)
                 {
                     employeeModelList.Add(new SearchByNameModel
                     {

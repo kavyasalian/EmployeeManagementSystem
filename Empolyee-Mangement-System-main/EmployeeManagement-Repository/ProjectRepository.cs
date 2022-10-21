@@ -1,6 +1,4 @@
-﻿using EmployeeManagement.Data;
-using EmployeeManagement_Repository.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using EmployeeManagement_Repository.Entities;
 
 namespace EmployeeManagement_Repository
 {

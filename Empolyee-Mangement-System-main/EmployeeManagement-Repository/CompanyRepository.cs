@@ -1,5 +1,4 @@
 ﻿using EmployeeManagement_Repository.Entities;
-using Microsoft.EntityFrameworkCore;
 
 namespace EmployeeManagement_Repository
 {
@@ -28,7 +27,7 @@ namespace EmployeeManagement_Repository
         {
             var effectedRow = _dbContext.Companies.Add(company);
             await _dbContext.SaveChangesAsync();
-            return ( effectedRow != null ) ? true:false;
+            return (effectedRow != null) ? true : false;
         }
 
         public async Task<bool> Update(Company company)
@@ -54,9 +53,9 @@ namespace EmployeeManagement_Repository
                 await _dbContext.SaveChangesAsync();
                 return true;
             }
-            return false;            
-        }      
-        
+            return false;
+        }
+
     }
 }
 

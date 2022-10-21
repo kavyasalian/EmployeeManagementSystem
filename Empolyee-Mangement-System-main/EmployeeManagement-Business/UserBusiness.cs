@@ -1,15 +1,10 @@
 ﻿using EmployeeManagement.Data;
 using EmployeeManagement_Repository;
-using EmployeeManagement_Repository.Entities;
 using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Net;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace EmployeeManagement_Business
 {
@@ -34,8 +29,8 @@ namespace EmployeeManagement_Business
                 user.LastName = item.LastName;
                 user.Email = item.Email;
                 user.Phone = item.Phone;
-                user.RoleName= item.Role.RoleName;
-                user.RoleId= item.RoleId;
+                user.RoleName = item.Role.RoleName;
+                user.RoleId = item.RoleId;
                 userModel.Add(user);
             }
             return userModel;

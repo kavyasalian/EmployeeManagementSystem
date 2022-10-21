@@ -1,7 +1,4 @@
 ﻿using EmployeeManagement_Repository.Entities;
-using System.Threading.Tasks;
-using EmployeeManagement.Data;
-using Microsoft.EntityFrameworkCore;
 
 namespace EmployeeManagement_Repository
 {
@@ -25,7 +22,7 @@ namespace EmployeeManagement_Repository
 
         public async Task<bool> Create(Role role)
         {
-           try
+            try
             {
                 _ = dbContext.Roles.Add(new Role
                 {
@@ -40,7 +37,7 @@ namespace EmployeeManagement_Repository
             }
             catch (Exception ex)
             {
-              return false;
+                return false;
             }
         }
 

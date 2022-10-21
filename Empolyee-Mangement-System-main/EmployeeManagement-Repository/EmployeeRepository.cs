@@ -26,14 +26,14 @@ namespace EmployeeManagement_Repository
 
         public async Task<Employee> GetById(int Id)
         {
-            return dbContext.Employees.Include(x=>x.Company).FirstOrDefault(x => x.Id == Id);
+            return dbContext.Employees.Include(x => x.Company).FirstOrDefault(x => x.Id == Id);
         }
 
         public async Task<bool> Create(EmployeeCreateModel employee)
         {
             try
             {
-                dbContext.Employees.Add( new Employee
+                dbContext.Employees.Add(new Employee
                 {
                     FirstName = employee.FirstName,
                     LastName = employee.LastName,
@@ -90,7 +90,7 @@ namespace EmployeeManagement_Repository
         }
         public List<Employee> SearchByName(string employeeName)
         {
-            return dbContext.Employees.Include(x => x.Company).Where( n => n.FirstName.StartsWith(employeeName)).ToList();
+            return dbContext.Employees.Include(x => x.Company).Where(n => n.FirstName.StartsWith(employeeName)).ToList();
         }
 
     }
