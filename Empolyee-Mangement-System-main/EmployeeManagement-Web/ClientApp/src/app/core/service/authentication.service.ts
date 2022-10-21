@@ -21,7 +21,6 @@ export class AuthenticationService {
         }
         return this.http.post<any>(LoginURLConstants.LOGIN,loginmodel)
             .pipe(map(user => {
-            debugger
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('currentUser', JSON.stringify(user));
                 //return user;

@@ -1,6 +1,4 @@
-﻿
-
-namespace EmployeeManagement.Data
+﻿namespace EmployeeManagement.Data
 {
     public class LoginModel
     {

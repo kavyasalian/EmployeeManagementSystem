@@ -52,9 +52,9 @@ namespace EmployeeManagement_Business
                 ProjectId = projectView.ProjectId,
                 ProjectName = projectView.ProjectName,
                 ProjectDesc = projectView.ProjectDesc,
-                StartDate= projectView.StartDate,
-                EndDate= projectView.EndDate,
-                
+                StartDate = projectView.StartDate,
+                EndDate = projectView.EndDate,
+
 
             };
             var status = await projectRepository.Update(project);

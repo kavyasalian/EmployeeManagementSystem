@@ -51,7 +51,7 @@ namespace EmployeeManagement_Web.Controllers
             }
             var status = await userBusiness.SaveUserAsync(user);
 
-            if(status == HttpStatusCode.OK)
+            if (status == HttpStatusCode.OK)
             {
                 return Ok(status);
             }
@@ -69,7 +69,7 @@ namespace EmployeeManagement_Web.Controllers
             }
             return BadRequest(status);
         }
-        
+
         [HttpDelete("DeleteUser/{UserId}")]
         public async Task<IActionResult> DeleteById(int UserId)
         {

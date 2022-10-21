@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace EmployeeManagement.Data
+﻿namespace EmployeeManagement.Data
 {
     public class SearchByNameModel
     {
@@ -16,6 +10,6 @@ namespace EmployeeManagement.Data
         public string Email { get; set; } = null!;
         public string companyName { get; set; } = null!;
         public string companyAddress { get; set; } = null!;
- 
+
     }
 }

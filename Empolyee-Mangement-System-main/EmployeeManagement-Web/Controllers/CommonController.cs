@@ -1,7 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using EmployeeManagement.Data;
 using EmployeeManagement_Business;
-using EmployeeManagement.Data;
+using Microsoft.AspNetCore.Mvc;
 
 namespace EmployeeManagement_Web.Controllers
 {
@@ -32,7 +31,7 @@ namespace EmployeeManagement_Web.Controllers
                 TotalEmployee = employees.Count,
                 TotalUser = users.Count,
             };
-            return Ok( statistic);
+            return Ok(statistic);
         }
     }
 }

@@ -34,7 +34,7 @@ namespace EmployeeManagement_Business
             var status = await RoleRepository.Create(new Role
             {
                 RoleName = roleModel.RoleName,
-                DateCreated=roleModel.DateCreated,
+                DateCreated = roleModel.DateCreated,
             });
 
             if (status)
@@ -53,7 +53,7 @@ namespace EmployeeManagement_Business
                 DateCreated = roleView.DateCreated,
             };
             var status = await RoleRepository.Update(role);
-            
+
             if (status)
             {
                 return HttpStatusCode.OK;

@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace EmployeeManagement.Data
+﻿namespace EmployeeManagement.Data
 {
-    public  class ProjectCreateModel
+    public class ProjectCreateModel
     {
         public String ProjectName { get; set; } = null!;
         public String ProjectDesc { get; set; } = null!;
